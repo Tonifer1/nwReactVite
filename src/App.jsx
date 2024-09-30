@@ -3,16 +3,17 @@
 //export pitää aina olla, jotta komponentti on käytettävissä muualla.
 import { useState } from 'react'
 import './App.css'
+import Laskuri from './Laskuri.jsx'
 
-const App =()=> {
-  const [count, setCount] = useState(0)
-
+const App = () => {
   return (
      <div className="app">
-      <h1>Hello from React</h1>        
+      <h1>Hello from React</h1>
+      <Laskuri />        
     </div>
       
   )
 }
 
 export default App
+
