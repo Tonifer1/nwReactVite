@@ -5,6 +5,7 @@ import React, { useState } from 'react'
 import './App.css'
 import Laskuri from './Laskuri.jsx'
 import Viesti from './Viesti.jsx'
+import Posts from './Posts.jsx'
 
 // Määritellään funktionaalinen komponentti App
 const App = () => {
@@ -21,6 +22,7 @@ const App = () => {
   return (
     <div className="app">
       <h1>Hello from React</h1>
+      <Posts />
       {/* Jos 'showLaskuri' on true, näytetään Laskuri-komponentti */}
       {/* Läheteään huomio niminen props Laskuri komponentille, jonka sisältö on huomio funktion arvo */}
       {showLaskuri && <Laskuri huomio={huomio} />}
