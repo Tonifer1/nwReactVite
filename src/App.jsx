@@ -8,29 +8,36 @@ import Viesti from './Viesti.jsx'
 
 // Määritellään funktionaalinen komponentti App
 const App = () => {
-  const [x, setx] = useState("")
+  
+  // Määritellään huomio-funktio, joka näyttää alert-viestin
+  const huomio = () => {
+    alert('huomio!')
+  }
 
   // Määritellään state 'showLaskuri' ja sen asettamiseen käytettävä funktio 'setShowLaskuri'
   // Alustetaan 'showLaskuri' arvolla false
   const [showLaskuri, setShowLaskuri] = useState(false)
 
   return (
-     <div className="app">
+    <div className="app">
       <h1>Hello from React</h1>
       {/* Jos 'showLaskuri' on true, näytetään Laskuri-komponentti */}
-      {showLaskuri && <Laskuri />}
+      {/* Läheteään huomio niminen props Laskuri komponentille, jonka sisältö on huomio funktion arvo */}
+      {showLaskuri && <Laskuri huomio={huomio} />}
 
-      {/* Jos 'showLaskuri' on true, näytetään nappi, joka piilottaa Laskuri-komponentin */}
+      {/* Jos 'showLaskuri' on true, näytetään button, joka (asettaa falsen) ja piilottaa Laskuri-komponentin */}
       {showLaskuri && <button onClick={() => setShowLaskuri(false)}>Piilota laskuri</button>}
 
-      {/* Jos 'showLaskuri' on false, näytetään nappi, joka näyttää Laskuri-komponentin */} 
+      {/* Jos 'showLaskuri' on false, näytetään button, joka (asettaa truen) ja näyttää Laskuri-komponentin */}
       {!showLaskuri && <button onClick={() => setShowLaskuri(true)}>Näytä laskuri</button>}
 
-      <Viesti teksti="tervehdys app komponentista" />       
+      {/* Näytetään Viesti-komponentti, joka saa propsina tekstin "tervehdys app komponentista" */}
+      <Viesti teksti=" app komponentista terve!" />
     </div>
-      
+
   )
 }
 
+//Exportataan App-komponentti, jotta sitä voidaan käyttää muualla sovelluksessa
 export default App
 

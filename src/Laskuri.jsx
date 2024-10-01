@@ -7,7 +7,8 @@ import React, { useState } from 'react'
 import './App.css'
 
 // Määritellään funktionaalinen komponentti Laskuri
-const Laskuri = () => {
+//Props otettu vastaan suoraan {huomio} nimellä
+const Laskuri = ({huomio}) => {
     // Määritellään state 'luku' ja sen asettamiseen käytettävä funktio 'setLuku'
     // Alustetaan 'luku' arvolla 0
     const [luku, setLuku] = useState(0)
@@ -21,6 +22,9 @@ const Laskuri = () => {
             <button onClick={() => setLuku(luku + 1)}>+</button>
             <button onClick={() => setLuku(luku - 1)}>-</button>
             <button onClick={() => setLuku(luku - luku)}>Reset</button>
+
+            {/* Props joka tulee App.jsx tiedostosta {huomio nimellä} */}
+            <button onClick={huomio}>huomio</button>
         </>
 
     )
