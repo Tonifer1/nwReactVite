@@ -1,8 +1,17 @@
+//Kun state muuttuu tässä komponentissa, se näyttää statea vastaavan datan ja aiheuttaa renderöinnin.
+//Tyhjään [] jos laittaisi tässä posts, niin se aiheuttaisi loputtoman silmukan.
+//2. parametri on tyhjä taulukko, joka tarkoittaa, että useEffect suoritetaan vain kerran.
+//use effect kutsutaan aina automaattisesti aina alussa
+//2. parametri on tyhjä taulukko:jos sinne laittaa statejen nimiä, niiden 
+
+
 import './App.css'
 import React, { useState, useEffect } from 'react'
 
 const Posts = () => {
+
     const [posts, setPosts] = useState([])
+    const [show, setShow] = useState(false)
 
     useEffect(() => {
         fetch('https://jsonplaceholder.typicode.com/posts')
@@ -12,9 +21,10 @@ const Posts = () => {
 
     return (
         <>
-            <h2>Posts from typicode</h2>
+            <h2>Posts</h2>
+            <button onClick={() => setShow(!show)}>{show ? "Hide Posts" : "Show Posts"}</button>
             {
-                posts && posts.map(p =>
+                show && posts && posts.map(p =>
                     <div className='post' key={p.id}>
                          <h3>UserId: {p.userId}</h3>
                         <h3>{p.title}</h3>

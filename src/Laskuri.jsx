@@ -3,6 +3,8 @@
 //export pitää aina olla, jotta komponentti on käytettävissä muualla.
 //Jos ei halua tehdä div määritystä voi käyttää tyhjää tagia <></>
 //Tuodaan React ja useState hook käyttöön
+//Staten päivitys muuttaa vain sen osan, joka on muuttunut.
+//Lisää ehdollinen lause myöhemmin!
 import React, { useState } from 'react'
 import './App.css'
 

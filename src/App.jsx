@@ -1,11 +1,12 @@
 //Täällä on funktionaalinen komponentti App, joka palauttaa divin, jonka sisäällä on html-elementtejä.
 //Sivun alaosassa on exportattu App-komponentti, joka on käytössä main.jsx-tiedostossa.
 //export pitää aina olla, jotta komponentti on käytettävissä muualla.
-import React, { useState } from 'react'
+//import React, { useState } from 'react'
 import './App.css'
 import Laskuri from './Laskuri.jsx'
 import Viesti from './Viesti.jsx'
 import Posts from './Posts.jsx'
+import {useState} from 'react'
 
 // Määritellään funktionaalinen komponentti App
 const App = () => {
@@ -17,12 +18,14 @@ const App = () => {
 
   // Määritellään state 'showLaskuri' ja sen asettamiseen käytettävä funktio 'setShowLaskuri'
   // Alustetaan 'showLaskuri' arvolla false
+  //State määrittää onko laskuri näkyvissä vai ei
   const [showLaskuri, setShowLaskuri] = useState(false)
 
   return (
     <div className="app">
       <h1>Hello from React</h1>
-      <Posts />
+      <Posts /> 
+
       {/* Jos 'showLaskuri' on true, näytetään Laskuri-komponentti */}
       {/* Läheteään huomio niminen props Laskuri komponentille, jonka sisältö on huomio funktion arvo */}
       {showLaskuri && <Laskuri huomio={huomio} />}
