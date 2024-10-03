@@ -6,9 +6,10 @@ import './App.css'
 import Laskuri from './Laskuri.jsx'
 import Viesti from './Viesti.jsx'
 import Posts from './Posts.jsx'
+import CustomerList from './Customers/CustomerList.jsx'
 import {useState} from 'react'
 
-// Määritellään funktionaalinen komponentti App
+// Määritellään / esitellään funktionaalinen komponentti App. Huom! Komponentit on aina oltava isolla alkukirjaimella!
 const App = () => {
   
   // Määritellään huomio-funktio, joka näyttää alert-viestin
@@ -24,7 +25,8 @@ const App = () => {
   return (
     <div className="app">
       <h1>Hello from React</h1>
-      <Posts /> 
+      <CustomerList />
+      {/* <Posts />  */}
 
       {/* Jos 'showLaskuri' on true, näytetään Laskuri-komponentti */}
       {/* Läheteään huomio niminen props Laskuri komponentille, jonka sisältö on huomio funktion arvo */}
@@ -43,6 +45,7 @@ const App = () => {
   )
 }
 
-//Exportataan App-komponentti, jotta sitä voidaan käyttää muualla sovelluksessa
+//Exportataan App-komponentti, jotta sitä voidaan käyttää muualla sovelluksessa import komennolla
+//Tämä on importattu main.jsx-tiedostossa
 export default App
 
