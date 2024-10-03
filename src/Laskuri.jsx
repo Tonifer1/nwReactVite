@@ -11,8 +11,9 @@ import './App.css'
 // Määritellään funktionaalinen komponentti Laskuri
 //Props otettu vastaan suoraan {huomio} nimellä
 const Laskuri = ({huomio}) => {
-    // Määritellään state 'luku' ja sen asettamiseen käytettävä funktio 'setLuku'
-    // Alustetaan 'luku' arvolla 0
+    // Määritellään state (muuttuja) 'luku' ja sen asettamiseen käytettävä funktio 'setLuku'
+    //Jos tila muuttuu, komponentti renderöidään uudelleen
+    // Alustetaan staten nimi eli 'luku'  arvolla 0
     const [luku, setLuku] = useState(0)
 
     // Palautetaan JSX, joka sisältää otsikon ja napin

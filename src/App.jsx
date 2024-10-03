@@ -10,8 +10,11 @@ import CustomerList from './Customers/CustomerList.jsx'
 import {useState} from 'react'
 
 // Määritellään / esitellään funktionaalinen komponentti App. Huom! Komponentit on aina oltava isolla alkukirjaimella!
+//Nimetön funktio arvoltaan.
+//Ei parametreja, joten sulut ovat tyhjät.
+//ES 6 syntaksi: const App = () => {}
 const App = () => {
-  
+
   // Määritellään huomio-funktio, joka näyttää alert-viestin
   const huomio = () => {
     alert('huomio!')
