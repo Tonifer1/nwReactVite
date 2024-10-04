@@ -9,15 +9,21 @@ import Posts from './Posts.jsx'
 import CustomerList from './Customers/CustomerList.jsx'
 import {useState} from 'react'
 
-// Määritellään / esitellään funktionaalinen "Äiti" komponentti App. Huom! Komponentit on aina oltava isolla alkukirjaimella!
+//Määritellään / esitellään funktionaalinen "Äiti" komponentti App. Huom! Komponentit on aina oltava isolla alkukirjaimella!
 //Nimetön funktio arvoltaan.
 //Ei parametreja, joten sulut ovat tyhjät.
 //ES 6 syntaksi: const App = () => {}
+//Ehdolliset renderöinnit kannattaa tehdä yhden (main) return palautuksen sisällä, jos mahdollista ilman erillisiä if lohkoja.
+//Reactin KOMPONENTEISSA  return osio on AINA pakollinen.Oltava vähintään NULL, jos ei ole muuta palautettavaa.
 const App = () => {
 
   // Määritellään huomio-funktio, (funktionaalisen komponentin sisälle) joka näyttää alert-viestin
   const huomio = () => {
     alert('huomio!')
+  }
+
+  const attention = () => {
+    alert('attention!')
   }
 
   // Määritellään state 'showLaskuri' ja sen asettamiseen käytettävä funktio 'setShowLaskuri'
@@ -29,12 +35,12 @@ const App = () => {
   return (
     <div className="app">
       
-      <CustomerList />
-      {/* <Posts />  */}
+      {/* <CustomerList /> */}
+      <Posts /> 
 
       {/* Jos 'showLaskuri' on true, näytetään Laskuri-komponentti */}
       {/* Läheteään huomio niminen props Laskuri komponentille, jonka sisältö on huomio funktion arvo */}
-      {showLaskuri && <Laskuri huomio={huomio} />}
+      {showLaskuri && <Laskuri huomio={huomio} attention={attention} />}
 
       {/* Jos 'showLaskuri' on true, näytetään button, joka (asettaa falsen) ja piilottaa Laskuri-komponentin */}
       {showLaskuri && <button onClick={() => setShowLaskuri(false)}>Piilota laskuri</button>}
@@ -43,7 +49,8 @@ const App = () => {
       {!showLaskuri && <button onClick={() => setShowLaskuri(true)}>Näytä laskuri</button>}
 
       {/* Näytetään Viesti-komponentti, joka saa propsina(sisältönä) tekstin "tervehdys app komponentista" */}
-      <Viesti teksti=" Viesti.jsx-> app komponentista terve!" />
+      <Viesti teksti=" Viesti.jsx-> app komponentista terve!" teksti2="Toinen Viesti" />
+      
     </div>
 
   )

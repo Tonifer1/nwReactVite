@@ -9,11 +9,12 @@ import React, { useState } from 'react'
 import './App.css'
 
 // Määritellään funktionaalinen komponentti Laskuri
-//Props {huomio} otetaan  vastaan App.jsx tiedostosta
-const Laskuri = ({huomio}) => {
-    // Määritellään state (muuttuja) 'luku' ja sen asettamiseen käytettävä funktio 'setLuku'
-    // Jos tila muuttuu, koko komponentti renderöidään uudelleen, 
-    //mutta React päivittää vain muuttuneet osat (esim. tässä h3-elementin sisältö{luku}).
+//Props {huomio} otetaan  vastaan App.jsx tiedostosta suoraan nimellä {huomio}
+// Määritellään state (muuttuja) 'luku' ja sen asettamiseen käytettävä funktio 'setLuku'
+// Jos tila muuttuu, koko komponentti renderöidään uudelleen, 
+//mutta React päivittää vain muuttuneet osat (esim. tässä h3-elementin sisältö{luku}).
+const Laskuri = ({huomio, attention}) => {
+    
 
     // Alustetaan staten nimi eli 'luku'  arvolla 0. Käytetään reactin hookia useState
     const [luku, setLuku] = useState(0)
@@ -30,6 +31,7 @@ const Laskuri = ({huomio}) => {
 
             {/* Props joka tulee App.jsx tiedostosta {huomio nimellä} */}
             <button onClick={huomio}>huomio</button>
+            <button onClick={attention}>attention</button>
         </>
 
     )
