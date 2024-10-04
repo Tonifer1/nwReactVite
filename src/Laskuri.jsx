@@ -9,14 +9,16 @@ import React, { useState } from 'react'
 import './App.css'
 
 // Määritellään funktionaalinen komponentti Laskuri
-//Props otettu vastaan suoraan {huomio} nimellä
+//Props {huomio} otetaan  vastaan App.jsx tiedostosta
 const Laskuri = ({huomio}) => {
     // Määritellään state (muuttuja) 'luku' ja sen asettamiseen käytettävä funktio 'setLuku'
-    //Jos tila muuttuu, komponentti renderöidään uudelleen
-    // Alustetaan staten nimi eli 'luku'  arvolla 0
+    // Jos tila muuttuu, koko komponentti renderöidään uudelleen, 
+    //mutta React päivittää vain muuttuneet osat (esim. tässä h3-elementin sisältö{luku}).
+
+    // Alustetaan staten nimi eli 'luku'  arvolla 0. Käytetään reactin hookia useState
     const [luku, setLuku] = useState(0)
 
-    // Palautetaan JSX, joka sisältää otsikon ja napin
+    // Palautetaan JSX muotoista dataa, joka sisältää otsikon ja napin. {Jsx} on Reactin tapa kirjoittaa html-koodia JavaScriptissä.
     return (
         <>
         {/* Näytetään nykyinen 'luku' h3-elementissä */}

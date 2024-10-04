@@ -2,7 +2,7 @@ import '../App.css'
 import React, {useState} from 'react'
 import CustomerService from '../Services/Customer'
 
-//Funktion nimi on oltana isolla alkukirjaimella
+//Funktion nimi on oltava isolla alkukirjaimella
 const CustomerAdd = () => {
 
 // Komponentin tilan määritys

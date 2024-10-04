@@ -9,13 +9,13 @@ import Posts from './Posts.jsx'
 import CustomerList from './Customers/CustomerList.jsx'
 import {useState} from 'react'
 
-// Määritellään / esitellään funktionaalinen komponentti App. Huom! Komponentit on aina oltava isolla alkukirjaimella!
+// Määritellään / esitellään funktionaalinen "Äiti" komponentti App. Huom! Komponentit on aina oltava isolla alkukirjaimella!
 //Nimetön funktio arvoltaan.
 //Ei parametreja, joten sulut ovat tyhjät.
 //ES 6 syntaksi: const App = () => {}
 const App = () => {
 
-  // Määritellään huomio-funktio, joka näyttää alert-viestin
+  // Määritellään huomio-funktio, (funktionaalisen komponentin sisälle) joka näyttää alert-viestin
   const huomio = () => {
     alert('huomio!')
   }
@@ -23,11 +23,12 @@ const App = () => {
   // Määritellään state 'showLaskuri' ja sen asettamiseen käytettävä funktio 'setShowLaskuri'
   // Alustetaan 'showLaskuri' arvolla false
   //State määrittää onko laskuri näkyvissä vai ei
+  //Tämä on ehdollinen renderöinti, jossa näytetään Laskuri-komponentti vain, jos 'showLaskuri' on true
   const [showLaskuri, setShowLaskuri] = useState(false)
 
   return (
     <div className="app">
-      <h1>Hello from React</h1>
+      
       <CustomerList />
       {/* <Posts />  */}
 
@@ -41,8 +42,8 @@ const App = () => {
       {/* Jos 'showLaskuri' on false, näytetään button, joka (asettaa truen) ja näyttää Laskuri-komponentin */}
       {!showLaskuri && <button onClick={() => setShowLaskuri(true)}>Näytä laskuri</button>}
 
-      {/* Näytetään Viesti-komponentti, joka saa propsina tekstin "tervehdys app komponentista" */}
-      <Viesti teksti=" app komponentista terve!" />
+      {/* Näytetään Viesti-komponentti, joka saa propsina(sisältönä) tekstin "tervehdys app komponentista" */}
+      <Viesti teksti=" Viesti.jsx-> app komponentista terve!" />
     </div>
 
   )
