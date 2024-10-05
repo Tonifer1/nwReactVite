@@ -10,9 +10,9 @@ import { useState, useEffect } from 'react'
 
 const Posts = () => {
     // Määritellään tila posts, joka sisältää postaukset (jsoliot)
-    const [posts, setPosts] = useState([])
+    const [posts, setPosts] = useState([]) // Määrittelee aluksi posts-tilan tyhjäksi taulukoksi[]
 
-    // Määritellään tila show, joka määrittää näytetäänkö postaukset vai ei
+    // EHDOLLINEN RENDERÖINTI. Määritellään tila show, joka määrittää näytetäänkö postaukset vai ei. 
     const [show, setShow] = useState(false)
 
     // useEffect-hook, joka hakee postaukset API:sta komponentin latautuessa
@@ -21,7 +21,7 @@ const Posts = () => {
     useEffect(() => {
         fetch('https://jsonplaceholder.typicode.com/posts')
             .then(response => response.json()) // Muutetaan JSON-data JavaScript muotoon.(Taulukollinen olioita)
-            .then(jsoliot => setPosts(jsoliot)) // Asetetaan haetut postaukset posts-tilaan
+            .then(jsoliot => setPosts(jsoliot)) // Asetetaan haetut postaukset posts-tilaan,eli lähetetään jsoliot setPosts-funktiolle
     }, []) // Tyhjä riippuvuuslista tarkoittaa, että tämä ajetaan vain kerran, komponentin latautuessa
 
     return (
@@ -32,6 +32,8 @@ const Posts = () => {
             {
                 // Jos show on true ja posts-tila ei ole tyhjä(posts && tarkistaa tilan), renderöidään postaukset
                 //posts.map on paras tapa käydä läpi taulukko ja renderöidä sen sisältö. eli .map() funktio.
+                //Huom! Json datassa on aina yhdys-sana eli camelCasea käytetään, kuten tässä userId. Eli p.userId taulukossa.
+                //Käytettävä classNamea. Ei saa olla id, koska tässä on looppi.
                 show && posts && posts.map(p =>
                     <div className='post' key={p.id}>
                         <h3>UserId: {p.userId}</h3>

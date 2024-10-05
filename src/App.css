@@ -51,19 +51,40 @@
 } */
 
 /* App.css */
+
+/* Määritellään .post-luokan tyylit */
 .post {
+  /* Reunan määrittely: 1 pikselin leveä, yhtenäinen viiva, väriltään #ccc (vaaleanharmaa) */
   border: 1px solid #ccc;
+  
+  /* Tekstin värin määrittely: #333 (tummanpunainen) */
+  color: #9e0909;
+  
+  /* Sisäisen täytön määrittely: 16 pikseliä kaikilla puolilla */
   padding: 16px;
+  
+  /* Ulkoisen marginaalin määrittely: 16 pikseliä ylä- ja alapuolella, 0 pikseliä oikealla ja vasemmalla */
   margin: 16px 0;
+  
+  /* Reunan pyöristyksen määrittely: 8 pikseliä */
   border-radius: 8px;
+  
+  /* Taustavärin määrittely: #f9f9f9 (vaaleanharmaa) */
   background-color: #f9f9f9;
 }
 
+/* Määritellään .post-luokan sisällä olevien h3-elementtien marginaalit */
+/*Ensimmäinen arvo: Yläreunan marginaali
+Toinen arvo: Oikean ja vasemman reunan marginaali
+Kolmas arvo: Alareunan marginaali*/
 .post h3 {
+  /* Yläreuna: 0 pikseliä, Oikea reuna: 0 pikseliä, Vasen reuna: 0 pikseliä Alareuna: 8 pikseliä,  */
   margin: 0 0 8px;
 }
 
+/* Määritellään .post-luokan sisällä olevien p-elementtien marginaalit */
 .post p {
+  /* Ei marginaalia missään reunassa (ylä-, oikea-, ala- tai vasemmalla puolella) */
   margin: 0;
 }
 
