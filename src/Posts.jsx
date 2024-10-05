@@ -12,7 +12,7 @@ const Posts = () => {
     // Määritellään tila posts, joka sisältää postaukset (jsoliot)
     const [posts, setPosts] = useState([]) // Määrittelee aluksi posts-tilan tyhjäksi taulukoksi[]
 
-    // EHDOLLINEN RENDERÖINTI. Määritellään tila show, joka määrittää näytetäänkö postaukset vai ei. 
+    // EHDOLLINEN RENDERÖINTI. Määritellään tila show, joka siis määrittää näytetäänkö posts vai ei. 
     const [show, setShow] = useState(false)
 
     // useEffect-hook, joka hakee postaukset API:sta komponentin latautuessa
@@ -27,8 +27,8 @@ const Posts = () => {
     return (
         <>
             <h2>Posts From Typicode</h2>
-            {/* Button, joka vaihtaa show-tilan arvoa true/false */}
-            <button onClick={() => setShow(!show)}>{show ? "Hide Posts" : "Show Posts"}</button>
+            {/* Button, (tapahtuman käsittelijä: onClick) joka vaihtaa show-tilan arvoa true/false */}
+            <button onClick={() => setShow(!show)}> {show ? "Hide Posts" : "Show Posts"}</button>
             {
                 // Jos show on true ja posts-tila ei ole tyhjä(posts && tarkistaa tilan), renderöidään postaukset
                 //posts.map on paras tapa käydä läpi taulukko ja renderöidä sen sisältö. eli .map() funktio.

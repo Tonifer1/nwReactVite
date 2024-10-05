@@ -15,7 +15,8 @@ import CustomerAdd from './customerAdd';
 
 // CustomerList-komponentti, joka renderöi asiakaslistan ja mahdollistaa asiakkaiden näyttämisen/piilottamisen
 function CustomerList() {
-    // useEffect-hook, joka hakee asiakastiedot CustomerService:ltä komponentin latautuessa
+    // useEffect-hook, joka hakee asiakastiedot CustomerService:ltä komponentin latautuessa. Tässä tulee Axios käyttöön.
+    //Axios osaa konvertoida JSON datan suoraan JavaScriptiksi.
     useEffect(() => {
         CustomerService.getAll()
             .then(data => setCustomers(data)) // Asetetaan haetut asiakastiedot customers-tilaan
@@ -24,7 +25,7 @@ function CustomerList() {
     // Määritellään tila eli state customers, joka sisältää asiakaslistan
     const [customers, setCustomers] = useState([])
 
-    // Määritellään tila eli state show, joka määrittää näytetäänkö asiakaslista vai ei
+    // Määritellään tila eli state show, joka määrittää näytetäänkö customers vai ei.
     const [show, setShow] = useState(false)
 
     return (
