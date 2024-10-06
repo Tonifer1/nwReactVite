@@ -1,6 +1,6 @@
 import '../App.css'
 import React, {useState} from 'react'
-import CustomerService from '../Services/Customer'
+import CustomerService from '../Services/CustomerServ'
 
 //Funktion nimi on oltava isolla alkukirjaimella
 const CustomerAdd = () => {

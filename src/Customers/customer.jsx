@@ -1,14 +1,18 @@
 import '../App.css'
 import { useState } from 'react'
+// Täällä käsitellään yksittäisen asiakkaan tiedot. Siksi nimi customer.jsx yksikkömuodossa.
+ // Props on nimeltään customer, jonka se saa CustomerList-komponentilta.
+// Tämä tarkoittaa, että Customer-komponentti odottaa saavansa customer-nimisen propsin, joka sisältää asiakkaan tiedot.
+// Tässä Customer-komponentti ottaa vastaan propsit, jotka on määritelty { customer }-parametrina.
+// cust on yksittäinen asiakasobjekti, joka on peräisin CustomerList customers-taulukosta ja sisältää yhden asiakkaan tiedot.
 
-// props on nimeltään customer
 const Customer = ({ customer }) => {
     // Komponentin tilan määritys
     const [showDetails, setShowDetails] = useState(false)
 
     return (
         <div className='customerDiv'>
-            {/* Näytetään asiakkaan yrityksen nimi */}
+            {/* Näytetään yksittäisen asiakkaan yrityksen nimi */}
             <h4>
                 {customer.companyName}
             </h4>

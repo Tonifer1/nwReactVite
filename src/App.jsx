@@ -35,8 +35,8 @@ const App = () => {
   return (
     <div className="app">
       
-      {/* <CustomerList /> */}
-      <Posts /> 
+      <CustomerList />
+      {/* <Posts />  */}
 
       {/* Jos 'showLaskuri' on true, näytetään Laskuri-komponentti */}
       {/* Läheteään huomio niminen props Laskuri komponentille, jonka sisältö on huomio funktion arvo */}
