@@ -40,16 +40,16 @@ const App = () => {
 
       {/* Jos 'showLaskuri' on true, näytetään Laskuri-komponentti */}
       {/* Läheteään huomio niminen props Laskuri komponentille, jonka sisältö on huomio funktion arvo */}
-      {showLaskuri && <Laskuri huomio={huomio} attention={attention} />}
+      {/* {showLaskuri && <Laskuri huomio={huomio} attention={attention} />} */}
 
       {/* Jos 'showLaskuri' on true, näytetään button, joka (asettaa falsen) ja piilottaa Laskuri-komponentin */}
-      {showLaskuri && <button onClick={() => setShowLaskuri(false)}>Piilota laskuri</button>}
+      {/* {showLaskuri && <button onClick={() => setShowLaskuri(false)}>Piilota laskuri</button>} */}
 
       {/* Jos 'showLaskuri' on false, näytetään button, joka (asettaa truen) ja näyttää Laskuri-komponentin */}
-      {!showLaskuri && <button onClick={() => setShowLaskuri(true)}>Näytä laskuri</button>}
+      {/* {!showLaskuri && <button onClick={() => setShowLaskuri(true)}>Näytä laskuri</button>} */}
 
       {/* Näytetään Viesti-komponentti, joka saa propsina(sisältönä) tekstin "tervehdys app komponentista" */}
-      <Viesti teksti=" Viesti.jsx-> app komponentista terve!" teksti2="Toinen Viesti" />
+      {/* <Viesti teksti=" Viesti.jsx-> app komponentista terve!" teksti2="Toinen Viesti" /> */}
       
     </div>
 

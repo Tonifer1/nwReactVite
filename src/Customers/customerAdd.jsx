@@ -2,7 +2,7 @@ import '../App.css'
 import React, {useState} from 'react'
 import CustomerService from '../Services/CustomerServ'
 
-//Funktion nimi on oltava isolla alkukirjaimella
+//Funktion nimi. Huom! On oltava isolla alkukirjaimella
 const CustomerAdd = () => {
 
 // Komponentin tilan määritys
@@ -23,9 +23,12 @@ const [newFax, setNewFax] = useState('')
 
 // onSubmit tapahtumankäsittelijä funktio
 const handleSubmit = (event) => {
+    alert('Customer added')
       event.preventDefault()
+
+    // Luodaan uusi asiakasobjekti lomakkeen tiedoista
       var newCustomer = {
-        customerId: newCustomerId.toUpperCase(),
+        customerId: newCustomerId.toUpperCase(), // Muutetaan ID isoiksi kirjaimiksi
         companyName: newCompanyName,
         contactName: newContactName,
         contactTitle: newContactTitle,
@@ -36,6 +39,8 @@ const handleSubmit = (event) => {
         phone: newPhone,
         fax: newFax
     }
+
+    // Lähetetään uusi asiakas CustomerService:n kautta
     
     CustomerService.addNew(newCustomer)
     .then(response => {
@@ -55,6 +60,16 @@ const handleSubmit = (event) => {
   return (
     <div id="addNew">
        <h2>Customer add</h2>
+
+         {/* Lomake eli Form uuden asiakkaan lisäämistä varten */}
+         {/* Normaalisti ei anneta Id kenttää käyttäjän täytettäväksi, mutta tässä annetaan, koska Id on string. */}
+         {/* Tietokanta huolehtii id:n lisäämisestä juoksevalla numerolla */}
+         {/* value viittaa tilaan, joka on määritelty yläpuolella.*/} 
+         {/*Eli alla {newCustomerId} = const [newCustomerId, setNewCustomerId] = useState('')  */}
+         {/* onChange tapahtumankäsittelijä, joka päivittää tilaa, kun kenttään kirjoitetaan */}
+         {/* required tarkoittaa, että kenttä on pakollinen ja se ei voi olla tyhjä */}
+         {/* virheenkäsittely varten Id kenttä on pakollinen ja pituus 5 merkkiä: maxLength="5" minLength="5" */}
+
 
        <form onSubmit={handleSubmit}>
        <div>
@@ -99,7 +114,10 @@ const handleSubmit = (event) => {
             </div>
          
             <div style={{ marginTop: '20px' }}>
+                {/* Tämä on submit-tyyppinen input-elementti, joka lähettää lomakkeen, kun sitä klikataan */}
                     <input type='submit' value='save' style={{ marginRight: '10px' }} />
+
+                    {/* Tämä on tavallinen button-tyyppinen input-elementti, joka ei lähetä lomaketta */}
                     <input type='button' value='back' />
                 </div>
        </form>

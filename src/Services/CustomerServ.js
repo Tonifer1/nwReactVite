@@ -6,8 +6,10 @@ import axios from "axios"
 // Määritellään perus-URL, johon kaikki pyynnöt tehdään
 const baseUrl = 'https://localhost:7121/api/customers'
 
+//GET
 // Nimetön funktio, joka palauttaa pyynnön vastauksen. Ei parametreja.
 //data lähetetään CustomerList moduuliin CustomerList-komponenttiin.
+
 const getAll = () => {
     // Tehdään GET-pyyntö baseUrl-osoitteeseen. (axios).get itse keksitty nimi.
     const request = axios.get(baseUrl)
@@ -15,8 +17,10 @@ const getAll = () => {
     return request.then(response => response.data)
 }
 
+//CREATE
 // Nimetön funktio, jossa object on alias nimi customerille
 // Parametrina mihin osoitteeseen (baseUrl) pyyntö tehdään ja mitä dataa lähetetään
+
 const addNew = (object) => {
     // Tehdään POST-pyyntö baseUrl-osoitteeseen ja lähetetään mukana object-data
     const request = axios.post(baseUrl, object)
