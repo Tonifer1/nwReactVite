@@ -8,6 +8,7 @@ import Viesti from './Viesti.jsx'
 import Posts from './Posts.jsx'
 import CustomerList from './Customers/CustomerList.jsx'
 import {useState} from 'react'
+import Message from './Message.jsx'
 
 //Määritellään / esitellään funktionaalinen "Äiti" komponentti App. Huom! Komponentit on aina oltava isolla alkukirjaimella!
 //Nimetön funktio arvoltaan.
@@ -34,6 +35,9 @@ const App = () => {
 
   return (
     <div className="app">
+      <h1>React</h1>
+
+      {/* <Message message={} isPositive={} /> */}
       
       <CustomerList />
       {/* <Posts />  */}

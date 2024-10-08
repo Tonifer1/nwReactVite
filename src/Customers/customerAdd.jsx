@@ -3,9 +3,13 @@ import React, {useState} from 'react'
 import CustomerService from '../Services/CustomerServ'
 
 //Funktion nimi. Huom! On oltava isolla alkukirjaimella
-const CustomerAdd = () => {
+// setLisäystila on propsi, joka tulee CustomerList-komponentilta, jotta täältä päästään pois.
 
-// Komponentin tilan määritys
+const CustomerAdd = ({setLisäystila}) => {
+
+//! ********************Tilan eli Staten määritys*************************************
+// Statet pitävät kirjaa sen hetken tilasta ja päivittävät sitä, joka kerta kun käyttäjä kirjoittaa jotain kenttään.
+// Esim Id kenttään kirjoitettaessa, kutsutaan setNewCustomerId funktiota(alla returnissa), joka päivittää tilan newCustomerId arvon.
 
 const [newCustomerId, setNewCustomerId] = useState('')
 const [newCompanyName, setNewCompanyName] = useState('')
@@ -20,13 +24,16 @@ const [newPostalCode, setNewPostalCode] = useState('')
 const [newPhone, setNewPhone] = useState('')
 const [newFax, setNewFax] = useState('')
 
+//! ********************onSubmit tapahtumankäsittelijä funktio*****************************************************
+// event.preventDefault() estää lomakkeen lähettämisen yhteydessä kokokonaisen sivun uudelleen lataamisen.
+// 2.  Syötetyt tiedot kerätään ja luodaan uusi asiakasobjekti(newCustomer), johon tiedot tallennetaan.
 
-// onSubmit tapahtumankäsittelijä funktio
 const handleSubmit = (event) => {
     alert('Customer added')
       event.preventDefault()
 
-    // Luodaan uusi asiakasobjekti lomakkeen tiedoista
+    // Luodaan uusi asiakasobjekti lomakkeen tiedoista. new Customer on itse keksitty nimi.
+    // Alla olevat kentät täytyy olla nimeltään samat kuin back-endissä olevat kentät. Huom! camelCase.
       var newCustomer = {
         customerId: newCustomerId.toUpperCase(), // Muutetaan ID isoiksi kirjaimiksi
         companyName: newCompanyName,
@@ -40,23 +47,36 @@ const handleSubmit = (event) => {
         fax: newFax
     }
 
-    // Lähetetään uusi asiakas CustomerService:n kautta
+    //3.
+    // Uusi asiakas (newCustomer) lähetetään back-endille kutsumalla CustomerService.addNew-funktiota -> (CustomerServ.js),    
+    // joka tekee POST-pyynnön ja lähettää uuden asiakasobjektin.
+    // Ottaa parametriksi uuden asiakkaan (newCustomer) ja palauttaa vastauksen eli (responsen).
+    //5. Kun onnistunut vastaus on saatu, päivittyy asiakaslista suoraan ilman sivun uudelleenlatausta funktion avulla.
     
     CustomerService.addNew(newCustomer)
-    .then(response => {
-      if (response.status === 200) {
-       alert(response.data)
-        window.location.reload()     
+        .then(response => {
+            if (response.status === 200) {
+                alert(response.data)
+                setLisäystila(false)
+                
+                //Arrow-Funktio, joka on määritelty komponentin tilan päivittämiseksi. Se ottaa parametrina uuden tilan arvon.
+               //[...]:spread-operaattori, joka levittää/kopioi prevCustomers-taulukon alkiot uuteen taulukkoon.
+               //newCustomer:uusi asiakasobjekti, joka lisätään taulukon loppuun.
+                setCustomers(prevCustomers => [...prevCustomers, newCustomer])
+            }
+
+        })
+        .catch(error => {
+            alert(error.message)
+
+        })
+    
+
+
     }
+    
 
-      })
-      .catch(error => {
-        alert(error.message)
-   
-      })
-    }
-
-
+//! ****************************return*************************************
   return (
     <div id="addNew">
        <h2>Customer add</h2>
@@ -114,11 +134,15 @@ const handleSubmit = (event) => {
             </div>
          
             <div style={{ marginTop: '20px' }}>
-                {/* Tämä on submit-tyyppinen input-elementti, joka lähettää lomakkeen, kun sitä klikataan */}
+                {/* 1. */}
+                {/* Tämä on submit-tyyppinen input-elementti, joka lähettää lomakkeen, kun sitä(save) klikataan */}
+                
+                {/* Ohjelman suoritus siirtyy tästä ylhäällä olevaan handleSubmit-funktioon */}
+                    
                     <input type='submit' value='save' style={{ marginRight: '10px' }} />
 
                     {/* Tämä on tavallinen button-tyyppinen input-elementti, joka ei lähetä lomaketta */}
-                    <input type='button' value='back' />
+                    <input type='button' value='back' onClick={() => setLisäystila(false)} />
                 </div>
        </form>
 

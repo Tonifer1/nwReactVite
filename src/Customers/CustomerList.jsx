@@ -32,35 +32,39 @@ function CustomerList() {
     useEffect(() => {
         CustomerService.getAll()
             .then(data => setCustomers(data)) // Asetetaan haetut asiakastiedot customers-tilaan.(data) tulee CustomerServ.js tiedostosta.
-    }, []) // Tyhjä riippuvuuslista tarkoittaa, että tämä ajetaan vain kerran, komponentin latautuessa
+    }, [lisäystila]) // Tyhjä riippuvuuslista tarkoittaa, että tämä ajetaan vain kerran, komponentin latautuessa
 
     
 
     return (
        <>
-            <h3>
-                {/* Ensimmäinen nobr-elementti, joka sisältää tekstin "Show Customers" tai "Hide Customers" riippuen show-tilan arvosta */}
-                <nobr 
-                style={{cursor: 'pointer'}}               
+            <h4>
+                {/* Ensimmäinen span-elementti, joka sisältää tekstin "Show Customers" tai "Hide Customers" riippuen show-tilan arvosta */}
+                {/* nowrap estää tekstin rivittymisen (eli estää sen katkeamisen useammalle riville käyttäjälle). */}
+                <h1>Customers</h1>
+                <span class="nowrap"> 
+                <button className="nappi" style={{cursor: 'pointer'}}               
                  onClick={() => setShow(!show)}>
                 {/* Näytetään "Hide Customers", jos show-tila on true, ja "Show Customers", jos show-tila on false */}
-                    {show ? "Hide Customers" : "Show Customers"}                    
-                </nobr>
+                    {show ? "Hide Customers" : "Show Customers"}</button>                        
+                </span>
 
-                {/* Toinen nobr-elementti, joka sisältää painikkeen "Show Add Customer" tai "Hide Add Customer" riippuen lisäystila-tilan arvosta */}
-                <nobr>
+                {/* Toinen span-elementti, joka sisältää painikkeen "Show Add Customer" tai "Hide Add Customer" riippuen lisäystila-tilan arvosta */}
+                <span class="nowrap"> 
                     {/* Jos lisäystila on false, näytetään painike "Show Add Customer" */}
                     {!lisäystila &&  <button className="nappi" style={{ cursor: 'pointer' }}
-                      onClick={() => setLisäystila(!lisäystila)}>
-                    {/* Näytetään teksti "Hide Add Customer", jos lisäystila on true, muuten "Show Add Customer"     */}
-                        {lisäystila ? "Hide Add Customer" : "Show Add Customer"} </button>                                              
+                    onClick={() => setLisäystila(true)}>Show Add Customer</button>                    
                     }
-                </nobr>
+
+                    {/* Jos lisäystila on true, näytetään painike "Hide Add Customer" */}   
+                    {lisäystila && <button className="nappi" style={{ cursor: 'pointer' }}                        
+                    onClick={() => setLisäystila(false)}> Hide Add Customer</button>                                                                                         
+                    }
+                </span>
+
                 {/* Renderöidään CustomerAdd-komponentti, kun lisäystila on true. Mahdollistaa uuden asiakaan lisäyksen */}
-                {lisäystila && <CustomerAdd />}
-
-
-            </h3>
+                {lisäystila && <CustomerAdd setLisäystila= {setLisäystila} />}
+            </h4>
 
 
 

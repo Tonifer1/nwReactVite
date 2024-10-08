@@ -20,7 +20,7 @@ const Customer = ({ customerprops }) => {
             </h4>
 
             {/* Nappi, joka vaihtaa showDetails-tilan arvoa true/false */}
-            <button onClick={() => setShowDetails(!showDetails)}>
+            <button class="nappi" onClick={() => setShowDetails(!showDetails)}>
                 
             {/* tämä ternäärinen operaattori tarkistaa showDetails-tilan arvon ja palauttaa 
             joko "Hide Details" tai "Show Details"
@@ -32,7 +32,7 @@ const Customer = ({ customerprops }) => {
             {showDetails && (
                 <div className="customerDetails">
                     <h3>{customerprops.companyName}</h3>
-                    <button>Edit</button>
+                    <button style={{ marginRight: '10px' }}>Edit</button>
                     <button>Delete</button>
                     <table>
                         <thead>

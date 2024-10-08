@@ -21,8 +21,10 @@ const getAll = () => {
 // Nimetön funktio, jossa object on alias nimi customerille
 // Parametrina mihin osoitteeseen (baseUrl) pyyntö tehdään ja mitä dataa lähetetään
 
+//Vaihe 4.
 const addNew = (object) => {
     // Tehdään POST-pyyntö baseUrl-osoitteeseen ja lähetetään mukana object-data
+    // Eli minne lähetetään ja mitä lähetetään.
     const request = axios.post(baseUrl, object)
     // Palautetaan pyyntö ja käsitellään vastaus, jolloin saadaan data
     return request.then(response => response.data)
