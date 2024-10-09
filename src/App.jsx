@@ -9,37 +9,44 @@ import Posts from './Posts.jsx'
 import CustomerList from './Customers/CustomerList.jsx'
 import {useState} from 'react'
 import Message from './Message.jsx'
-
+//
 //Määritellään / esitellään funktionaalinen "Äiti" komponentti App. Huom! Komponentit on aina oltava isolla alkukirjaimella!
 //Nimetön funktio arvoltaan.
 //Ei parametreja, joten sulut ovat tyhjät.
 //ES 6 syntaksi: const App = () => {}
 //Ehdolliset renderöinnit kannattaa tehdä yhden (main) return palautuksen sisällä, jos mahdollista ilman erillisiä if lohkoja.
 //Reactin KOMPONENTEISSA  return osio on AINA pakollinen.Oltava vähintään NULL, jos ei ole muuta palautettavaa.
+
 const App = () => {
 
-  // Määritellään huomio-funktio, (funktionaalisen komponentin sisälle) joka näyttää alert-viestin
+  // App komponentin tila 
+  const [showLaskuri, setShowLaskuri] = useState(false)
+
+  // Statet messagen näyttämistä varten 
+  const [showMessage, setShowMessage] = useState(false)
+  const [message, setMessage] = useState('')
+  const [isPositive, setIsPositive] = useState(false)
+
+
+
   const huomio = () => {
     alert('huomio!')
   }
 
-  const attention = () => {
-    alert('attention!')
-  }
+
 
   // Määritellään state 'showLaskuri' ja sen asettamiseen käytettävä funktio 'setShowLaskuri'
   // Alustetaan 'showLaskuri' arvolla false
   //State määrittää onko laskuri näkyvissä vai ei
   //Tämä on ehdollinen renderöinti, jossa näytetään Laskuri-komponentti vain, jos 'showLaskuri' on true
-  const [showLaskuri, setShowLaskuri] = useState(false)
 
   return (
     <div className="app">
       <h1>React</h1>
-
-      {/* <Message message={} isPositive={} /> */}
+      {/* Läheteään kaksi propsia Message-komponentille */}
+      { showMessage && <Message message={message} isPositive={isPositive} /> }
       
-      <CustomerList />
+      <CustomerList setIsPositive={setIsPositive} setMessage={setMessage} setShowMessage={setShowMessage} />
       {/* <Posts />  */}
 
       {/* Jos 'showLaskuri' on true, näytetään Laskuri-komponentti */}

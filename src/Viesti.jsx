@@ -17,7 +17,7 @@ const Viesti = ({teksti, teksti2}) => {
     return (
         <>
             <h3>{teksti}</h3>
-            <h4>{teksti2}</h4>
+            
             
         </>
 
