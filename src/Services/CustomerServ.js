@@ -17,18 +17,22 @@ const getAll = () => {
     return request.then(response => response.data)
 }
 
-//CREATE
+//CREATE Vaihe 4.
 // Nimetön funktio, jossa object on alias nimi customerille
 // Parametrina mihin osoitteeseen (baseUrl) pyyntö tehdään ja mitä dataa lähetetään
+// Tehdään POST-pyyntö baseUrl-osoitteeseen ja lähetetään mukana object-data
+// Eli minne lähetetään ja mitä lähetetään.
 
-//Vaihe 4.
 const addNew = (object) => {
-    // Tehdään POST-pyyntö baseUrl-osoitteeseen ja lähetetään mukana object-data
-    // Eli minne lähetetään ja mitä lähetetään.
-    const request = axios.post(baseUrl, object)
-    // Palautetaan pyyntö ja käsitellään vastaus, jolloin saadaan data
+    const request = axios.post(baseUrl, object)    
     return request.then(response => response.data)
 }
 
-// Exportataan getAll ja addNew funktiot, jotta niitä voidaan käyttää muualla sovelluksessa
-export default { getAll, addNew }
+//Delete
+// Poistaa asiakkaan tietokannasta. Parametreina url ja id
+const remove = id => {
+    return axios.delete(`${baseUrl}/${id}`)
+}
+
+// Exportataan  funktiot, jotta niitä voidaan käyttää muualla sovelluksessa
+export default { getAll, addNew, remove }

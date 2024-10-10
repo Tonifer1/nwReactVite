@@ -1,5 +1,6 @@
 import '../App.css'
 import { useState } from 'react'
+import CustomerService from '../Services/CustomerServ'
 // Täällä käsitellään yksittäisen asiakkaan tiedot. Siksi nimi customer.jsx yksikkömuodossa.
 // Jokaisen asiakkaan yksittäiset tiedot renderöidään tässä komponentissa.
 // Props on nimeltään customerprops, jonka se saa CustomerList-komponentilta.
@@ -8,19 +9,45 @@ import { useState } from 'react'
 // cust on yksittäinen asiakasobjekti, joka on peräisin CustomerList customers-taulukosta ja sisältää yhden asiakkaan tiedot.
 // Parametri on määritelty CustomerList tiedostossa näin: customerprops={cust}. Kuitenkin tässä tiedostossa se on {customerprops}.Eli hakasuluissa.
 
-const Customer = ({ customerprops }) => {
+const Customer = ({ customerprops, setIsPositive, setMessage, setShowMessage,reload, reloadNow }) => {
+
     // Komponentin tilan määritys
     const [showDetails, setShowDetails] = useState(false)
+
+    const deleteCustomer = (customer) => {
+        let vastaus = window.confirm(`Delete customer ${customer.companyName}?`)
+
+        if (vastaus === true) {
+            CustomerService.remove(customer.customerId)
+                .then(res => {
+                    if (res.status === 200) {
+                        setMessage(`Succesfully removed customer ${customer.companyName}`)
+                        setIsPositive(true)
+                        setShowMessage(true)
+                        window.scrollBy(0, -10000) // Scrollataan ylös jotta nähdään alert 
+                    }//if
+
+                })//then
+
+                setTimeout(() => {
+                    setShowMessage(false)
+                }, 5000)
+
+                reloadNow(!reload)
+
+        }//if
+
+    }//deleteCustomer
 
     return (
         <div className='customerDiv'>
             {/* Näytetään yksittäisen asiakkaan yrityksen nimi */}
             <h4>
-                {customerprops.companyName}
+                {customerprops.companyName} 
             </h4>
 
-            {/* Nappi, joka vaihtaa showDetails-tilan arvoa true/false */}
-            <button class="nappi" onClick={() => setShowDetails(!showDetails)}>
+            {/* Nappi, joka vaihtaa showDetails-tilan arvoa true/false. !showDetails vaihtaa käänteisesti järjestystä */}
+            <button className="nappi" onClick={() => setShowDetails(!showDetails)}>
                 
             {/* tämä ternäärinen operaattori tarkistaa showDetails-tilan arvon ja palauttaa 
             joko "Hide Details" tai "Show Details"
@@ -33,7 +60,7 @@ const Customer = ({ customerprops }) => {
                 <div className="customerDetails">
                     <h3>{customerprops.companyName}</h3>
                     <button style={{ marginRight: '10px' }}>Edit</button>
-                    <button>Delete</button>
+                    <button onClick={() =>deleteCustomer(customerprops)}>Delete</button>
                     <table>
                         <thead>
                             <tr>

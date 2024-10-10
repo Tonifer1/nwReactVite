@@ -5,7 +5,7 @@ import CustomerService from '../Services/CustomerServ'
 //Funktion nimi. Huom! On oltava isolla alkukirjaimella
 // setLisäystila ym. on propseja, jotka tulee CustomerList-komponentilta, jotta täältä päästään pois.
 
-const CustomerAdd = ({ setLisäystila, setIsPositive, setMessage, setShowmessage }) => {
+const CustomerAdd = ({ setLisäystila, setIsPositive, setMessage, setShowMessage }) => {
 
     //! ********************Tilan eli Staten määritys*************************************
     // Statet pitävät kirjaa sen hetken tilasta ja päivittävät sitä, joka kerta kun käyttäjä kirjoittaa jotain kenttään.
@@ -24,12 +24,13 @@ const CustomerAdd = ({ setLisäystila, setIsPositive, setMessage, setShowmessage
     const [newPhone, setNewPhone] = useState('')
     const [newFax, setNewFax] = useState('')
 
+    
+    // 2.  Syötetyt tiedot kerätään ja luodaan uusi asiakasobjekti(newCustomer), johon tiedot tallennetaan.
     //! ********************onSubmit tapahtumankäsittelijä funktio*****************************************************
     // event.preventDefault() estää lomakkeen lähettämisen yhteydessä kokokonaisen sivun uudelleen lataamisen.
-    // 2.  Syötetyt tiedot kerätään ja luodaan uusi asiakasobjekti(newCustomer), johon tiedot tallennetaan.
 
     const handleSubmit = (event) => {
-        alert('Customer added')
+        // alert('Customer added')
         event.preventDefault()
 
         // Luodaan uusi asiakasobjekti lomakkeen tiedoista. new Customer on itse keksitty nimi.
@@ -53,37 +54,56 @@ const CustomerAdd = ({ setLisäystila, setIsPositive, setMessage, setShowmessage
         // Ottaa parametriksi uuden asiakkaan (newCustomer) ja palauttaa vastauksen eli (responsen).
         //5. Kun onnistunut vastaus on saatu, päivittyy asiakaslista suoraan ilman sivun uudelleenlatausta funktion avulla.
 
+        // CustomerService.addNew(newCustomer)
+        //     .then(response => {
+        //         console.log("Vastaus:", response); // Tulostaa koko response-objektin konsoliin
+        //         if (response.status === 200) {
+        //             setShowMessage(true)
+        //             setMessage(`Lisätty new customer:${newCustomer.companyName}`)
+        //             setIsPositive(true)
+                    
+        //             console.log("Näytetäänkö viesti lisäyksestä? ")
+                    
+
+        //             setTimeout(() => {
+        //                 setShowMessage(false)
+        //             }, 5000)
+
+        //             setLisäystila(false)
+
+                    
+        //             setCustomers(prevCustomers => [...prevCustomers, newCustomer])
+        //         }//if 
+
+
+        //     })//.then
+        //     .catch(error => {
+        //         setMessage('Error in adding new customer')
+        //         setIsPositive(false)
+        //         setShowMessage(true)
+
+        //         setTimeout(() => {
+        //             setShowMessage(false)
+        //         }, 5000)
+
+        //     })//.catch
+
+
         CustomerService.addNew(newCustomer)
-            .then(response => {
-                if (response.status === 200) {
-                    setMessage('Added new customer' + newCustomer.companyName)
-                    setIsPositive(true)
-                    setShowmessage(true)
+        .then(response => {
+            setShowMessage(true);
+            setMessage (`Added new customer:${newCustomer.companyName}`)
+            console.log("Message set");
+    
+            setTimeout(() => {
+                setShowMessage(false);
+            }, 5000);
+        })
+        .catch(error => {
+            console.error("Error:", error);
+        });
+    
 
-                    setTimeout(() => {
-                        setShowmessage(false)
-                    }, 5000)
-
-                    setLisäystila(false)
-
-                    // # region Arrow-Funktio, joka on määritelty komponentin tilan päivittämiseksi. Se ottaa parametrina uuden tilan arvon.
-                    //    [...]:spread-operaattori, joka levittää/kopioi prevCustomers-taulukon alkiot uuteen taulukkoon.
-                    //    # endregion newCustomer:uusi asiakasobjekti, joka lisätään taulukon loppuun.
-                    setCustomers(prevCustomers => [...prevCustomers, newCustomer])
-                }//if 
-
-
-            })//.then
-            .catch(error => {
-                setMessage('Error in adding new customer')
-                setIsPositive(false)
-                setShowmessage(true)
-
-                setTimeout(() => {
-                    setShowmessage(false)
-                }, 5000)
-
-            })//.catch
 
 
 

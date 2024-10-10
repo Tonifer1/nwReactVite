@@ -15,7 +15,10 @@ import Customer from './customer'
 import CustomerAdd from './customerAdd';  
 
 // CustomerList-komponentti, joka renderöi asiakaslistan ja mahdollistaa asiakkaiden näyttämisen/piilottamisen
-function CustomerList(setIsPositive, setMessage, setShowMessage) {
+const CustomerList = ({setIsPositive, setMessage, setShowMessage}) => {
+
+
+//!#*****************************************Tilan määritys****************************************************
 
     // Määritellään tila eli state customers, joka sisältää asiakaslistan.Alempana tarkistetaan onko dataa renderöitäväksi.
     const [customers, setCustomers] = useState([])
@@ -25,6 +28,10 @@ function CustomerList(setIsPositive, setMessage, setShowMessage) {
 
     // Määritellään tila eli state lisäystila, joka määrittää näytetäänkö CustomerAdd vai ei.
     const [lisäystila, setLisäystila] = useState(false)
+
+    const [reload, reloadNow] = useState(false)
+
+    
 
     //useEffect-hook, joka hakee asiakastiedot CustomerService:ltä komponentin latautuessa. Tässä tulee Axios käyttöön.
     //Axios osaa konvertoida JSON datan suoraan JavaScriptiksi.
@@ -41,9 +48,9 @@ function CustomerList(setIsPositive, setMessage, setShowMessage) {
                 {/* Ensimmäinen span-elementti, joka sisältää tekstin "Show Customers" tai "Hide Customers" riippuen show-tilan arvosta */}
                 {/* nowrap estää tekstin rivittymisen (eli estää sen katkeamisen useammalle riville käyttäjälle). */}
                 {/* Näytetään "Hide Customers", jos show-tila on true, ja "Show Customers", jos show-tila on false */}
-                <h1>Customers</h1>
+                <h4>Customers</h4>
 
-                <span class="nowrap">
+                <span className="nowrap">
                     <button className="nappi" style={{ cursor: 'pointer' }} onClick={() => setShow(!show)}>                        
                         {show ? "Hide Customers" : "Show Customers"}</button>
                 </span>
@@ -67,7 +74,9 @@ function CustomerList(setIsPositive, setMessage, setShowMessage) {
              {/* Alla oleva customer (punaisella) on propsi joka lähetetään Customer-komponentille.Parametri on {cust}. */}
             
             {show && customers && customers.map(cust => (
-                <Customer key={cust.customerId} customerprops={cust} />
+                <Customer key={cust.customerId} customerprops={cust} reloadNow={reloadNow} reload={reload}  
+                setIsPositive={setIsPositive} setMessage={setMessage} setShowMessage={setShowMessage} />
+                 
             ))}
         </>
     )
