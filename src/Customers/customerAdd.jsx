@@ -5,7 +5,7 @@ import CustomerService from '../Services/CustomerServ'
 //Funktion nimi. Huom! On oltava isolla alkukirjaimella
 // setLisäystila ym. on propseja, jotka tulee CustomerList-komponentilta, jotta täältä päästään pois.
 
-const CustomerAdd = ({ setLisäystila, setIsPositive, setMessage, setShowMessage }) => {
+const CustomerAdd = ({ setLisäystila, setIsPositive, setCustomers, setMessage, setShowMessage, }) => {
 
     //! ********************Tilan eli Staten määritys*************************************
     // Statet pitävät kirjaa sen hetken tilasta ja päivittävät sitä, joka kerta kun käyttäjä kirjoittaa jotain kenttään.
@@ -56,13 +56,13 @@ const CustomerAdd = ({ setLisäystila, setIsPositive, setMessage, setShowMessage
 
         // CustomerService.addNew(newCustomer)
         //     .then(response => {
-        //         console.log("Vastaus:", response); // Tulostaa koko response-objektin konsoliin
+        //         console.log("Vastaus:", response);
         //         if (response.status === 200) {
         //             setShowMessage(true)
         //             setMessage(`Lisätty new customer:${newCustomer.companyName}`)
         //             setIsPositive(true)
                     
-        //             console.log("Näytetäänkö viesti lisäyksestä? ")
+        //             console.log("Näkyykö viesti lisäyksestä? ")
                     
 
         //             setTimeout(() => {
@@ -90,20 +90,27 @@ const CustomerAdd = ({ setLisäystila, setIsPositive, setMessage, setShowMessage
 
 
         CustomerService.addNew(newCustomer)
-        .then(response => {
-            setShowMessage(true);
-            setMessage (`Added new customer:${newCustomer.companyName}`)
-            console.log("Message set");
-    
-            setTimeout(() => {
-                setShowMessage(false);
-            }, 5000);
-        })
-        .catch(error => {
-            console.error("Error:", error);
-        });
-    
+            .then(() => {
+                setMessage(`Lisätty new customer:${newCustomer.companyName}`)
+                setIsPositive(true);
+                setShowMessage(true);
+                setCustomers(prevCustomers => [...prevCustomers, newCustomer])
 
+                //reloadNow(!reload);Tämän poisto auttoi.
+
+                setTimeout(() => {
+                    setShowMessage(false);
+                }, 3000);
+
+                setLisäystila(false);
+                
+            })//then
+
+            .catch(error => {
+                console.error("Error to Add New Customer:", error);
+            });
+    
+    
 
 
 

@@ -39,8 +39,8 @@ const CustomerList = ({setIsPositive, setMessage, setShowMessage}) => {
 
     useEffect(() => {
         CustomerService.getAll()
-            .then(data => setCustomers(data)) // Asetetaan haetut asiakastiedot customers-tilaan.(data) tulee CustomerServ.js tiedostosta.
-    }, [lisäystila]) // Tyhjä riippuvuuslista tarkoittaa, että tämä ajetaan vain kerran, komponentin latautuessa
+            .then(data =>  setCustomers(data)) // Asetetaan haetut asiakastiedot customers-tilaan.(data) tulee CustomerServ.js tiedostosta.
+    }, [customers,lisäystila, reload]) // Tyhjä riippuvuuslista tarkoittaa, että tämä ajetaan vain kerran, komponentin latautuessa
 
     return (
        <>
@@ -62,7 +62,7 @@ const CustomerList = ({setIsPositive, setMessage, setShowMessage}) => {
                 </span>
 
                 {/* Renderöidään CustomerAdd-komponentti, kun lisäystila on true. Mahdollistaa uuden asiakaan lisäyksen */}
-                {lisäystila && <CustomerAdd setLisäystila= {setLisäystila}
+                {lisäystila && <CustomerAdd setLisäystila= {setLisäystila} setCustomers={setCustomers}
                  setIsPositive={setIsPositive} setMessage={setMessage} setShowMessage={setShowMessage}/>}
             </h4>
 
@@ -74,7 +74,7 @@ const CustomerList = ({setIsPositive, setMessage, setShowMessage}) => {
              {/* Alla oleva customer (punaisella) on propsi joka lähetetään Customer-komponentille.Parametri on {cust}. */}
             
             {show && customers && customers.map(cust => (
-                <Customer key={cust.customerId} customerprops={cust} reloadNow={reloadNow} reload={reload}  
+                <Customer key={cust.customerId} customerprops={cust} setCustomers={setCustomers} reloadNow={reloadNow} reload={reload}  
                 setIsPositive={setIsPositive} setMessage={setMessage} setShowMessage={setShowMessage} />
                  
             ))}

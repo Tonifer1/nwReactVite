@@ -9,7 +9,7 @@ import CustomerService from '../Services/CustomerServ'
 // cust on yksittäinen asiakasobjekti, joka on peräisin CustomerList customers-taulukosta ja sisältää yhden asiakkaan tiedot.
 // Parametri on määritelty CustomerList tiedostossa näin: customerprops={cust}. Kuitenkin tässä tiedostossa se on {customerprops}.Eli hakasuluissa.
 
-const Customer = ({ customerprops, setIsPositive, setMessage, setShowMessage,reload, reloadNow }) => {
+const Customer = ({ customerprops,setCustomers, setIsPositive, setMessage, setShowMessage,reload, reloadNow }) => {
 
     // Komponentin tilan määritys
     const [showDetails, setShowDetails] = useState(false)
@@ -24,16 +24,25 @@ const Customer = ({ customerprops, setIsPositive, setMessage, setShowMessage,rel
                         setMessage(`Succesfully removed customer ${customer.companyName}`)
                         setIsPositive(true)
                         setShowMessage(true)
-                        window.scrollBy(0, -10000) // Scrollataan ylös jotta nähdään alert 
+                        window.scrollBy(0, -10000) // Scrollataan ylös jotta nähdään alert
+                        setCustomers(prevCustomers => 
+                            prevCustomers.filter(c => c.customerId !== customer.customerId)
+                        ); 
                     }//if
+
+                    setTimeout(() => {
+                        setShowMessage(false)
+                    }, 5000)
+                    
+                    // setTimeout(() => {
+                    //     window.location.reload();
+                    // }, 5000);
 
                 })//then
 
-                setTimeout(() => {
-                    setShowMessage(false)
-                }, 5000)
 
-                reloadNow(!reload)
+
+                //reloadNow(!reload)
 
         }//if
 
