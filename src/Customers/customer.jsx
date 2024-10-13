@@ -9,18 +9,20 @@ import CustomerService from '../Services/CustomerServ'
 // cust on yksittäinen asiakasobjekti, joka on peräisin CustomerList customers-taulukosta ja sisältää yhden asiakkaan tiedot.
 // Parametri on määritelty CustomerList tiedostossa näin: customerprops={cust}. Kuitenkin tässä tiedostossa se on {customerprops}.Eli hakasuluissa.
 
-const Customer = ({ customerprops,setCustomers, setIsPositive, setMessage, setShowMessage,reload, reloadNow }) => {
+                  //Ikäänkuin import. Tulee CustomerList  tiedostosta.
+const Customer = ({ customerprops,setCustomers, setIsPositive, setMessage, setShowMessage, }) => {
 
     // Komponentin tilan määritys
     const [showDetails, setShowDetails] = useState(false)
 
     const deleteCustomer = (customer) => {
-        let vastaus = window.confirm(`Delete customer ${customer.companyName}?`)
+        let vastaus = window.confirm(`Delete customer window.confirm osio ${customer.companyName}?`)
 
         if (vastaus === true) {
             CustomerService.remove(customer.customerId)
                 .then(res => {
                     if (res.status === 200) {
+                        console.log("Poisto tehty: viesti näkyy? If lohko");
                         setMessage(`Succesfully removed customer ${customer.companyName}`)
                         setIsPositive(true)
                         setShowMessage(true)
@@ -31,20 +33,40 @@ const Customer = ({ customerprops,setCustomers, setIsPositive, setMessage, setSh
                     }//if
 
                     setTimeout(() => {
-                        setShowMessage(false)
+                    setShowMessage(false)
                     }, 5000)
                     
-                    // setTimeout(() => {
-                    //     window.location.reload();
-                    // }, 5000);
-
                 })//then
 
+            .catch(error => {
+                setMessage(`Error: ${error}`)
+                setIsPositive(false)
+                setShowMessage(true)
+                setTimeout(() => {
+                setShowMessage(false)
+                window.scrollBy(0, -10000)
+                }, 5000)
+            })
+        }//if               
+            else {
+                
+                console.log("Poisto peruttu konsolissa. Näkyykö? Else haara ");
+                setMessage('Poisto peruttu onnistuneesti.')
+                    setIsPositive(true)
+                    setShowMessage(true)
+                    
+                     window.scrollBy(0, -5000) // Scrollataan ylös jotta nähdään alert :)
+            
+                    // Ilmoituksen piilotus
+                    setTimeout(() => {
+                    setShowMessage(false)},
+                    3000
+                    )
+                }
 
+               
 
-                //reloadNow(!reload)
-
-        }//if
+        
 
     }//deleteCustomer
 
@@ -97,3 +119,5 @@ const Customer = ({ customerprops,setCustomers, setIsPositive, setMessage, setSh
 }
 
 export default Customer
+
+

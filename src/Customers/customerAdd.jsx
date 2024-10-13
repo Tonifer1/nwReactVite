@@ -5,6 +5,7 @@ import CustomerService from '../Services/CustomerServ'
 //Funktion nimi. Huom! On oltava isolla alkukirjaimella
 // setLisäystila ym. on propseja, jotka tulee CustomerList-komponentilta, jotta täältä päästään pois.
 
+//Ikäänkuin import toiminto. Tulee CustomerList  tiedostosta.
 const CustomerAdd = ({ setLisäystila, setIsPositive, setCustomers, setMessage, setShowMessage, }) => {
 
     //! ********************Tilan eli Staten määritys*************************************

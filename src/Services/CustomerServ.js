@@ -19,7 +19,7 @@ const getAll = () => {
 
 //CREATE Vaihe 4.
 // Nimetön funktio, jossa object on alias nimi customerille
-// Parametrina mihin osoitteeseen (baseUrl) pyyntö tehdään ja mitä dataa lähetetään
+// Parametrina MIHIN osoitteeseen (baseUrl) pyyntö tehdään ja MITÄ dataa lähetetään
 // Tehdään POST-pyyntö baseUrl-osoitteeseen ja lähetetään mukana object-data
 // Eli minne lähetetään ja mitä lähetetään.
 

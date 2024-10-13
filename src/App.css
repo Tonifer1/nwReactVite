@@ -138,7 +138,7 @@ Kolmas arvo: Alareunan marginaali*/
 .neg {
   color: red;
   background: lightgrey;
-  font-size: 36px;
+  font-size: 74px;
   font-weight: bold;
   border-style: solid;
   border-width: 3px;
@@ -153,7 +153,7 @@ Kolmas arvo: Alareunan marginaali*/
 .pos {
   color: green;
   background: lightgrey;
-  font-size: 36px;
+  font-size: 74px;
   font-weight: bold;
   border-style: solid;
   border-width: 3px;

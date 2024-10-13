@@ -21,6 +21,7 @@ const App = () => {
 
   // App komponentin tila 
   const [showLaskuri, setShowLaskuri] = useState(false)
+  
 
   // Statet messagen näyttämistä varten 
   const [showMessage, setShowMessage] = useState(false)
@@ -43,10 +44,13 @@ const App = () => {
   return (
     <div className="app">
       <h1>React</h1>
-      {/* Läheteään kaksi propsia Message-komponentille */}
-      { showMessage && <Message message={message} isPositive={isPositive} /> }
-      
+                          {/*PROPSIT 5 paikkaan --> CustomerList, Message, Posts,  Laskuri, Viesti */}
+                          { showMessage && <Message message={message} isPositive={isPositive} /> }
+     
       <CustomerList setIsPositive={setIsPositive} setMessage={setMessage} setShowMessage={setShowMessage} />
+
+      
+
       {/* <Posts />  */}
 
       {/* Jos 'showLaskuri' on true, näytetään Laskuri-komponentti */}

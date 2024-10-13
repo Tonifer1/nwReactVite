@@ -11,6 +11,8 @@ import './App.css'
 //mutta tiedot välittyvät vain yhden requestin ajan.
 //numeroita tai objekteja, kuten tässä esimerkissä, jossa tälle Viesti komponentille välitetään teksti:
 //Viesti.jsx-> app komponentista terve! ,joka tulee siis App.jsx tiedostosta.
+
+//Ikäänkuin import. Tulee App tiedostosta.
 const Viesti = ({teksti, teksti2}) => {
 
     // Palautetaan JSX,

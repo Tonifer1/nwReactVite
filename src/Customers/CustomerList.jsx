@@ -14,7 +14,9 @@ import Customer from './customer'
 // Tuodaan CustomerAdd-komponentti (Funktion nimi), joka mahdollistaa uuden asiakkaan lisäämisen
 import CustomerAdd from './customerAdd';  
 
-// CustomerList-komponentti, joka renderöi asiakaslistan ja mahdollistaa asiakkaiden näyttämisen/piilottamisen
+// CustomerList-komponentti 
+
+
 const CustomerList = ({setIsPositive, setMessage, setShowMessage}) => {
 
 
@@ -29,7 +31,7 @@ const CustomerList = ({setIsPositive, setMessage, setShowMessage}) => {
     // Määritellään tila eli state lisäystila, joka määrittää näytetäänkö CustomerAdd vai ei.
     const [lisäystila, setLisäystila] = useState(false)
 
-    const [reload, reloadNow] = useState(false)
+    const [reload, reloadNow] = useState(false) 
 
     
 
@@ -40,7 +42,7 @@ const CustomerList = ({setIsPositive, setMessage, setShowMessage}) => {
     useEffect(() => {
         CustomerService.getAll()
             .then(data =>  setCustomers(data)) // Asetetaan haetut asiakastiedot customers-tilaan.(data) tulee CustomerServ.js tiedostosta.
-    }, [customers,lisäystila, reload]) // Tyhjä riippuvuuslista tarkoittaa, että tämä ajetaan vain kerran, komponentin latautuessa
+    }, [lisäystila, ]) 
 
     return (
        <>
@@ -61,6 +63,7 @@ const CustomerList = ({setIsPositive, setMessage, setShowMessage}) => {
                     </button>
                 </span>
 
+                                {/* PROPSIT  kahteen tiedostoon. --> CustomerAdd, customer */}
                 {/* Renderöidään CustomerAdd-komponentti, kun lisäystila on true. Mahdollistaa uuden asiakaan lisäyksen */}
                 {lisäystila && <CustomerAdd setLisäystila= {setLisäystila} setCustomers={setCustomers}
                  setIsPositive={setIsPositive} setMessage={setMessage} setShowMessage={setShowMessage}/>}
@@ -73,8 +76,9 @@ const CustomerList = ({setIsPositive, setMessage, setShowMessage}) => {
              lisätty tai poistettu. Tämä auttaa Reactia optimoimaan uudelleenrenderöinnin ja parantaa sovelluksen suorituskykyä */}
              {/* Alla oleva customer (punaisella) on propsi joka lähetetään Customer-komponentille.Parametri on {cust}. */}
             
+                                {/* PROPSIT 5 kpl Funktion nimiä ylhäällä ---> customer.jsx*/}
             {show && customers && customers.map(cust => (
-                <Customer key={cust.customerId} customerprops={cust} setCustomers={setCustomers} reloadNow={reloadNow} reload={reload}  
+                <Customer key={cust.customerId} customerprops={cust} setCustomers={setCustomers}   
                 setIsPositive={setIsPositive} setMessage={setMessage} setShowMessage={setShowMessage} />
                  
             ))}
