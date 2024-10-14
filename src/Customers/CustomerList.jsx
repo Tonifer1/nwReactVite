@@ -12,12 +12,14 @@ import CustomerService from '../Services/CustomerServ'
 import Customer from './customer'
 
 // Tuodaan CustomerAdd-komponentti (Funktion nimi), joka mahdollistaa uuden asiakkaan lisäämisen
-import CustomerAdd from './customerAdd';  
+import CustomerAdd from './customerAdd';
+
+import CustomerEdit from './customerEdit'
 
 // CustomerList-komponentti 
 
 
-const CustomerList = ({setIsPositive, setMessage, setShowMessage}) => {
+const CustomerList = ({setIsPositive, setMessage, setShowMessage,}) => {
 
 
 //!#*****************************************Tilan määritys****************************************************
@@ -31,6 +33,10 @@ const CustomerList = ({setIsPositive, setMessage, setShowMessage}) => {
     // Määritellään tila eli state lisäystila, joka määrittää näytetäänkö CustomerAdd vai ei.
     const [lisäystila, setLisäystila] = useState(false)
 
+    const [muokkaustila, setMuokkaustila] = useState(false)
+
+    const [muokattavaCustomer, setMuokattavaCustomer] = useState(false)
+
     const [reload, reloadNow] = useState(false) 
 
     
@@ -42,11 +48,16 @@ const CustomerList = ({setIsPositive, setMessage, setShowMessage}) => {
     useEffect(() => {
         CustomerService.getAll()
             .then(data =>  setCustomers(data)) // Asetetaan haetut asiakastiedot customers-tilaan.(data) tulee CustomerServ.js tiedostosta.
-    }, [lisäystila, ]) 
+    }, [lisäystila, muokkaustila])
+    
+    const editCustomer = (customerprops) => {
+        setMuokattavaCustomer(customerprops)
+        setMuokkaustila(true)
+    }
 
     return (
        <>
-            <h4>
+            
                 {/* Ensimmäinen span-elementti, joka sisältää tekstin "Show Customers" tai "Hide Customers" riippuen show-tilan arvosta */}
                 {/* nowrap estää tekstin rivittymisen (eli estää sen katkeamisen useammalle riville käyttäjälle). */}
                 {/* Näytetään "Hide Customers", jos show-tila on true, ja "Show Customers", jos show-tila on false */}
@@ -63,11 +74,17 @@ const CustomerList = ({setIsPositive, setMessage, setShowMessage}) => {
                     </button>
                 </span>
 
-                                {/* PROPSIT  kahteen tiedostoon. --> CustomerAdd, customer */}
+                                {/* PROPSIT  kolmeen tiedostoon. --> customerAdd,customerEdit, customer */}
                 {/* Renderöidään CustomerAdd-komponentti, kun lisäystila on true. Mahdollistaa uuden asiakaan lisäyksen */}
-                {lisäystila && <CustomerAdd setLisäystila= {setLisäystila} setCustomers={setCustomers}
-                 setIsPositive={setIsPositive} setMessage={setMessage} setShowMessage={setShowMessage}/>}
-            </h4>
+
+                {lisäystila && ( <CustomerAdd setLisäystila= {setLisäystila} setCustomers={setCustomers}
+                 setIsPositive={setIsPositive} setMessage={setMessage} setShowMessage={setShowMessage}/>                  
+                )}
+
+                {muokkaustila && ( <CustomerEdit setMuokkaustila ={setMuokkaustila} 
+                 setIsPositive={setIsPositive} setMessage={setMessage} setShowMessage={setShowMessage}
+                  muokattavaCustomer={muokattavaCustomer} setCustomers={setCustomers} />                    
+                )}
 
 
           
@@ -79,9 +96,10 @@ const CustomerList = ({setIsPositive, setMessage, setShowMessage}) => {
                                 {/* PROPSIT 5 kpl Funktion nimiä ylhäällä ---> customer.jsx*/}
             {show && customers && customers.map(cust => (
                 <Customer key={cust.customerId} customerprops={cust} setCustomers={setCustomers}   
-                setIsPositive={setIsPositive} setMessage={setMessage} setShowMessage={setShowMessage} />
+                setIsPositive={setIsPositive} setMessage={setMessage} setShowMessage={setShowMessage} editCustomer={editCustomer} />
                  
             ))}
+            
         </>
     )
 }

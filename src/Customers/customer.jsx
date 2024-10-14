@@ -10,7 +10,7 @@ import CustomerService from '../Services/CustomerServ'
 // Parametri on määritelty CustomerList tiedostossa näin: customerprops={cust}. Kuitenkin tässä tiedostossa se on {customerprops}.Eli hakasuluissa.
 
                   //Ikäänkuin import. Tulee CustomerList  tiedostosta.
-const Customer = ({ customerprops,setCustomers, setIsPositive, setMessage, setShowMessage, }) => {
+const Customer = ({ customerprops,setCustomers, setIsPositive, setMessage, setShowMessage, editCustomer }) => {
 
     // Komponentin tilan määritys
     const [showDetails, setShowDetails] = useState(false)
@@ -90,7 +90,8 @@ const Customer = ({ customerprops,setCustomers, setIsPositive, setMessage, setSh
             {showDetails && (
                 <div className="customerDetails">
                     <h3>{customerprops.companyName}</h3>
-                    <button style={{ marginRight: '10px' }}>Edit</button>
+                    {/* <button style={{ marginRight: '10px' }}>Edit</button> */}
+                    <button onClick={() =>editCustomer(customerprops)} style={{ marginRight: '10px' }}>Edit</button>
                     <button onClick={() =>deleteCustomer(customerprops)}>Delete</button>
                     <table>
                         <thead>

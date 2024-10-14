@@ -34,5 +34,10 @@ const remove = id => {
     return axios.delete(`${baseUrl}/${id}`)
 }
 
+//Edit 
+const update = (object) => {
+    return axios.put(`${baseUrl}/${object.customerId}`, object)
+}
+
 // Exportataan  funktiot, jotta niitä voidaan käyttää muualla sovelluksessa
-export default { getAll, addNew, remove }
+export default { getAll, addNew, remove, update }
