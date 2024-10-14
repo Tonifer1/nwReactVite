@@ -57,7 +57,7 @@ const CustomerEdit= ({ setMuokkaustila, setCustomers, setIsPositive,  setMessage
                 setMessage(`Edited customer:${newCustomer.companyName}`)
                 setIsPositive(true)
                 setShowMessage(true);
-                //window.scrollBy(0, -10000)
+                window.scrollBy(0, -10000)
                 setCustomers(prevCustomers => [...prevCustomers, newCustomer])
 
                 //reloadNow(!reload);Tämän poisto auttoi.

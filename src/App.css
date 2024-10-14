@@ -33,7 +33,7 @@
   }
 } */
 
-/* App.css */
+/* App.css Siirtää pakettia ylemmäs */
  .app {
   margin-top: -100px; 
 } 
@@ -42,17 +42,11 @@
   margin-top: 100px; /* Säädä arvoa tarpeen mukaan */
 }
 
-
-
-
-
 @media screen and (max-width: 768px) {
   .app {
     margin-top: -20px;
   }
 }
-
-
 
 .card {
   padding: 2em;
@@ -118,16 +112,7 @@ Kolmas arvo: Alareunan marginaali*/
   margin: 0;
 }
 
-/* .customerDetails {
-  background-color: chocolate;
-  text-align: center;
-  border-style: solid;
-  width: 100%;
-  margin: auto;
-  margin-bottom: 50px;
-  border-radius: 30px;
-  padding-left: 10%;
-} */
+/*CustomerDetails-komponentin tyylit */
 
 .customerDetails {
   background-color: chocolate;
@@ -204,4 +189,34 @@ Kolmas arvo: Alareunan marginaali*/
   padding: 8px;
   box-sizing: border-box;
 } */
+
+/* input::placeholder {
+  color: #888; 
+  font-style: oblique 10deg;
+
+  opacity: 1; 
+} */
+
+input:focus::placeholder {
+  color: #555; /* Placeholderin väri, kun input on fokuksessa */
+}
+input {
+  border-radius: 4px; /* Pyöristää kentän kulmat */
+  padding: 10px; /* Lisää tilaa sisällön ympärille */
+  border: 1px solid #ccc; /* Määrittelee kentän reunuksen */
+  font-size: 16px; /* Muokkaa tekstin kokoa */
+}
+
+.inputsearch {
+  font-style: italic!important;
+}
+
+.inputsearch::-moz-placeholder { /* Firefox */
+  color: #888;
+  font-style: oblique 10deg;
+  opacity: 1;
+}
+
+
+
 

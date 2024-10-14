@@ -96,7 +96,7 @@ const Customer = ({ customerprops,setCustomers, setIsPositive, setMessage, setSh
                     <table>
                         <thead>
                             <tr>
-                                <th>Contact person</th>
+                                <th>Contact name</th>
                                 <th>Phone</th>
                                 <th>Address</th>
                                 <th>City</th>

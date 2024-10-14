@@ -22,7 +22,7 @@ import CustomerEdit from './customerEdit'
 const CustomerList = ({setIsPositive, setMessage, setShowMessage,}) => {
 
 
-//!#*****************************************Tilan määritys****************************************************
+//!#*****************************************Tilan määritys Hooks****************************************************
 
     // Määritellään tila eli state customers, joka sisältää asiakaslistan.Alempana tarkistetaan onko dataa renderöitäväksi.
     const [customers, setCustomers] = useState([])
@@ -37,6 +37,8 @@ const CustomerList = ({setIsPositive, setMessage, setShowMessage,}) => {
 
     const [muokattavaCustomer, setMuokattavaCustomer] = useState(false)
 
+    const [search, setSearch] = useState('')
+
     const [reload, reloadNow] = useState(false) 
 
     
@@ -49,6 +51,12 @@ const CustomerList = ({setIsPositive, setMessage, setShowMessage,}) => {
         CustomerService.getAll()
             .then(data =>  setCustomers(data)) // Asetetaan haetut asiakastiedot customers-tilaan.(data) tulee CustomerServ.js tiedostosta.
     }, [lisäystila, muokkaustila])
+
+    //Hakukentän onChange tapahtumankäsittelijä
+    const handleSearchInputChange = (event) => {
+        setShow(true)
+        setSearch(event.target.value.toLowerCase())
+    }
     
     const editCustomer = (customerprops) => {
         setMuokattavaCustomer(customerprops)
@@ -63,9 +71,14 @@ const CustomerList = ({setIsPositive, setMessage, setShowMessage,}) => {
                 {/* Näytetään "Hide Customers", jos show-tila on true, ja "Show Customers", jos show-tila on false */}
                 <h2>Customers</h2>
 
+                {!lisäystila && !muokkaustila &&
+                <input placeholder="Search by company name" value={search} className="inputsearch" onChange={handleSearchInputChange} />
+                }
+
                 <span className="nowrap">
+                {(!lisäystila && !muokkaustila) && (
                     <button className="nappi" style={{ cursor: 'pointer' }} onClick={() => setShow(!show)}>                        
-                        {show ? "Hide Customers" : "Show Customers"}</button>
+                        {show ? "Hide Customers" : "Show Customers"}</button>)}
                 </span>
 
                 <span className="nowrap">
@@ -99,18 +112,27 @@ const CustomerList = ({setIsPositive, setMessage, setShowMessage,}) => {
                 setIsPositive={setIsPositive} setMessage={setMessage} setShowMessage={setShowMessage} editCustomer={editCustomer} />
                  
             ))} */}
-
+                {/* Tässä kaksi && merkkiä tarkoittaa (ja) viimeinen && että mitä tehdään jos molemmat ovat tosia. */}
             {(!lisäystila && !muokkaustila && show) && (
-                customers.map(cust => (
-                    <Customer key={cust.customerId} customerprops={cust} setCustomers={setCustomers}
-                        setIsPositive={setIsPositive} setMessage={setMessage} setShowMessage={setShowMessage} editCustomer={editCustomer} />
-                ))
-            )}
+                customers.map(cust => {
+                    const lowerCaseName = cust.companyName.toLowerCase()
+                    if (lowerCaseName.indexOf(search) > -1) {
+                        return (
+                            <Customer key={cust.customerId} customerprops={cust} setCustomers={setCustomers}
+                                setIsPositive={setIsPositive} setMessage={setMessage} setShowMessage={setShowMessage} editCustomer={editCustomer} />
+                        )//return
 
-            
+                    }//if(lowerCaseName.indexOf(search) > -1)
+
+                    return null;
+
+                })//customers.map
+
+            )}  
         </>
-    )
-}
+    )//return
+    
+}//CustomerList
 
 // Exportataan CustomerList-komponentti, jotta sitä voidaan käyttää muualla sovelluksessa
 export default CustomerList
