@@ -43,7 +43,7 @@ const App = () => {
 
   return (
     <div className="app">
-      <h1>React</h1>
+      <h1>Welcome to React</h1>
                           {/*PROPSIT 5 paikkaan --> CustomerList, Message, Posts,  Laskuri, Viesti */}
                           { showMessage && <Message message={message} isPositive={isPositive} /> }
      

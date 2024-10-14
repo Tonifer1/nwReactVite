@@ -61,7 +61,7 @@ const CustomerList = ({setIsPositive, setMessage, setShowMessage,}) => {
                 {/* Ensimmäinen span-elementti, joka sisältää tekstin "Show Customers" tai "Hide Customers" riippuen show-tilan arvosta */}
                 {/* nowrap estää tekstin rivittymisen (eli estää sen katkeamisen useammalle riville käyttäjälle). */}
                 {/* Näytetään "Hide Customers", jos show-tila on true, ja "Show Customers", jos show-tila on false */}
-                <h4>Customers</h4>
+                <h2>Customers</h2>
 
                 <span className="nowrap">
                     <button className="nappi" style={{ cursor: 'pointer' }} onClick={() => setShow(!show)}>                        
@@ -94,11 +94,19 @@ const CustomerList = ({setIsPositive, setMessage, setShowMessage,}) => {
              {/* Alla oleva customer (punaisella) on propsi joka lähetetään Customer-komponentille.Parametri on {cust}. */}
             
                                 {/* PROPSIT 5 kpl Funktion nimiä ylhäällä ---> customer.jsx*/}
-            {show && customers && customers.map(cust => (
+            {/* {show && customers && customers.map(cust => (
                 <Customer key={cust.customerId} customerprops={cust} setCustomers={setCustomers}   
                 setIsPositive={setIsPositive} setMessage={setMessage} setShowMessage={setShowMessage} editCustomer={editCustomer} />
                  
-            ))}
+            ))} */}
+
+            {(!lisäystila && !muokkaustila && show) && (
+                customers.map(cust => (
+                    <Customer key={cust.customerId} customerprops={cust} setCustomers={setCustomers}
+                        setIsPositive={setIsPositive} setMessage={setMessage} setShowMessage={setShowMessage} editCustomer={editCustomer} />
+                ))
+            )}
+
             
         </>
     )

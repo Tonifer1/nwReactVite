@@ -34,7 +34,7 @@ const Customer = ({ customerprops,setCustomers, setIsPositive, setMessage, setSh
 
                     setTimeout(() => {
                     setShowMessage(false)
-                    }, 5000)
+                    }, 3000)
                     
                 })//then
 
