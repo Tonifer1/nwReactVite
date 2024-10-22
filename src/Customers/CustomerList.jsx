@@ -16,9 +16,9 @@ import CustomerAdd from './customerAdd';
 
 import CustomerEdit from './customerEdit'
 
+
+
 // CustomerList-komponentti 
-
-
 const CustomerList = ({setIsPositive, setMessage, setShowMessage,}) => {
 
 
@@ -43,7 +43,7 @@ const CustomerList = ({setIsPositive, setMessage, setShowMessage,}) => {
 
     
 
-    //useEffect-hook, joka hakee asiakastiedot CustomerService:ltä komponentin latautuessa. Tässä tulee Axios käyttöön.
+    //useEffect-hook, joka hakee heti asiakastiedot ohjelman käynnistyessä CustomerService:ltä komponentin latautuessa. Tässä tulee Axios käyttöön.
     //Axios osaa konvertoida JSON datan suoraan JavaScriptiksi.
     //getAll-funktio löytyy Customer.js tiedostosta.
 
@@ -52,7 +52,7 @@ const CustomerList = ({setIsPositive, setMessage, setShowMessage,}) => {
             .then(data =>  setCustomers(data)) // Asetetaan haetut asiakastiedot customers-tilaan.(data) tulee CustomerServ.js tiedostosta.
     }, [lisäystila, muokkaustila])
 
-    //Hakukentän onChange tapahtumankäsittelijä
+    //Hakukentän onChange tapahtumankäsittelijä. Parametrina event, joka edustaa input-kentän tapahtumaa. 
     const handleSearchInputChange = (event) => {
         setShow(true)
         setSearch(event.target.value.toLowerCase())
@@ -69,11 +69,14 @@ const CustomerList = ({setIsPositive, setMessage, setShowMessage,}) => {
                 {/* Ensimmäinen span-elementti, joka sisältää tekstin "Show Customers" tai "Hide Customers" riippuen show-tilan arvosta */}
                 {/* nowrap estää tekstin rivittymisen (eli estää sen katkeamisen useammalle riville käyttäjälle). */}
                 {/* Näytetään "Hide Customers", jos show-tila on true, ja "Show Customers", jos show-tila on false */}
+                
+            <div>
                 <h2>Customers</h2>
-
                 {!lisäystila && !muokkaustila &&
-                <input placeholder="Search by company name" value={search} className="inputsearch" onChange={handleSearchInputChange} />
+                <input placeholder="Search by company name" value={search} className="inputsearch"  onChange={handleSearchInputChange} />
                 }
+            </div>
+
 
                 <span className="nowrap">
                 {(!lisäystila && !muokkaustila) && (
@@ -114,7 +117,8 @@ const CustomerList = ({setIsPositive, setMessage, setShowMessage,}) => {
             ))} */}
                 {/* Tässä kaksi && merkkiä tarkoittaa (ja) viimeinen && että mitä tehdään jos molemmat ovat tosia. */}
             {(!lisäystila && !muokkaustila && show) && (
-                customers.map(cust => {
+                customers.map(cust => 
+                {
                     const lowerCaseName = cust.companyName.toLowerCase()
                     if (lowerCaseName.indexOf(search) > -1) {
                         return (

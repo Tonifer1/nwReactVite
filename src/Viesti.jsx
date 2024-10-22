@@ -1,5 +1,5 @@
 
-import './App.css'
+//import './App.css'
 
 //Määritellään funktionaalinen komponentti Viesti
 //Tekstin sisältö määritellään App.jsx tiedostossa <Viesti teksti= "Viesti.jsx-> app komponentista terve!" /> 
@@ -13,17 +13,17 @@ import './App.css'
 //Viesti.jsx-> app komponentista terve! ,joka tulee siis App.jsx tiedostosta.
 
 //Ikäänkuin import. Tulee App tiedostosta.
-const Viesti = ({teksti, teksti2}) => {
+// const Viesti = ({teksti, teksti2}) => {
 
-    // Palautetaan JSX,
-    return (
-        <>
-            <h3>{teksti}</h3>
+//     // Palautetaan JSX,
+//     return (
+//         <>
+//             <h3>{teksti}</h3>
             
             
-        </>
+//         </>
 
-    )
-}
-// Exportataan Viesti-komponentti, jotta sitä voidaan käyttää muualla sovelluksessa
-export default Viesti 
+//     )
+// }
+// // Exportataan Viesti-komponentti, jotta sitä voidaan käyttää muualla sovelluksessa
+// export default Viesti 

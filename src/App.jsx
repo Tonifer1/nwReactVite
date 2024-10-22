@@ -4,12 +4,15 @@
 //import React, { useState } from 'react'
 import './App.css'
 import Laskuri from './Laskuri.jsx'
-import Viesti from './Viesti.jsx'
 import Posts from './Posts.jsx'
 import CustomerList from './Customers/CustomerList.jsx'
 import {useState} from 'react'
 import Message from './Message.jsx'
-//
+import Navbar from 'react-bootstrap/Navbar'
+import Nav from 'react-bootstrap/Nav'
+import 'bootstrap/dist/css/bootstrap.min.css'
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
+
 //Määritellään / esitellään funktionaalinen "Äiti" komponentti App. Huom! Komponentit on aina oltava isolla alkukirjaimella!
 //Nimetön funktio arvoltaan.
 //Ei parametreja, joten sulut ovat tyhjät.
@@ -19,9 +22,7 @@ import Message from './Message.jsx'
 
 const App = () => {
 
-  // App komponentin tila 
-  const [showLaskuri, setShowLaskuri] = useState(false)
-  
+   // App komponentin tila 
 
   // Statet messagen näyttämistä varten 
   const [showMessage, setShowMessage] = useState(false)
@@ -30,46 +31,55 @@ const App = () => {
 
 
 
-  const huomio = () => {
-    alert('huomio!')
-  }
-
-
-
-  // Määritellään state 'showLaskuri' ja sen asettamiseen käytettävä funktio 'setShowLaskuri'
-  // Alustetaan 'showLaskuri' arvolla false
-  //State määrittää onko laskuri näkyvissä vai ei
-  //Tämä on ehdollinen renderöinti, jossa näytetään Laskuri-komponentti vain, jos 'showLaskuri' on true
-
   return (
-    <div className="app">
-      <h1>Welcome to React</h1>
-                          {/*PROPSIT 5 paikkaan --> CustomerList, Message, Posts,  Laskuri, Viesti */}
-                          { showMessage && <Message message={message} isPositive={isPositive} /> }
-     
-      <CustomerList setIsPositive={setIsPositive} setMessage={setMessage} setShowMessage={setShowMessage} />
+    <div className="App">
+      <Router>        
 
-      
+      <Navbar bg="dark" variant="dark">
+        <div class="container">
+            <Nav>
+                <Nav.Link href='/customers'>Customers</Nav.Link>
+                <Nav.Link href='/posts'>Posts</Nav.Link>
+                <Nav.Link href='/users'>Users</Nav.Link>
+                <Nav.Link href='/laskuri'>Laskuri</Nav.Link>
+            </Nav>
+        </div>
+        </Navbar>
+          
+          <h2>Northwind Traders</h2>
 
-      {/* <Posts />  */}
+          {showMessage && <Message message={message} isPositive={isPositive} />}
 
-      {/* Jos 'showLaskuri' on true, näytetään Laskuri-komponentti */}
-      {/* Läheteään huomio niminen props Laskuri komponentille, jonka sisältö on huomio funktion arvo */}
-      {/* {showLaskuri && <Laskuri huomio={huomio} attention={attention} />} */}
+          <Routes>
+                <Route path="/Customers"
+                element= {<CustomerList setMessage={setMessage} setIsPositive={setIsPositive} 
+                setShowMessage={setShowMessage} />} >
+                </Route>
 
-      {/* Jos 'showLaskuri' on true, näytetään button, joka (asettaa falsen) ja piilottaa Laskuri-komponentin */}
-      {/* {showLaskuri && <button onClick={() => setShowLaskuri(false)}>Piilota laskuri</button>} */}
+                {/* <Route path="/Users"
+                element={ <UserList setMessage={setMessage} setIsPositive={setIsPositive} 
+                  setShowMessage={setShowMessage} />} >
+                </Route> */}
 
-      {/* Jos 'showLaskuri' on false, näytetään button, joka (asettaa truen) ja näyttää Laskuri-komponentin */}
-      {/* {!showLaskuri && <button onClick={() => setShowLaskuri(true)}>Näytä laskuri</button>} */}
+                <Route path="/posts"
+                element={ <Posts />} >
+                </Route>
 
-      {/* Näytetään Viesti-komponentti, joka saa propsina(sisältönä) tekstin "tervehdys app komponentista" */}
-      {/* <Viesti teksti=" Viesti.jsx-> app komponentista terve!" teksti2="Toinen Viesti" /> */}
-      
-    </div>
+                <Route path="/laskuri"
+                element={ <Laskuri />}>                  
+                </Route>
 
-  )
-}
+          </Routes>
+           
+      </Router>
+          
+      </div>
+    
+    
+
+  )//return
+
+}//App
 
 //Exportataan App-komponentti, jotta sitä voidaan käyttää muualla sovelluksessa import komennolla
 //Tämä on importattu main.jsx-tiedostossa

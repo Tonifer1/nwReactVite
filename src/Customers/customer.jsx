@@ -90,7 +90,7 @@ const Customer = ({ customerprops,setCustomers, setIsPositive, setMessage, setSh
             {showDetails && (
                 <div className="customerDetails">
                     <h3>{customerprops.companyName}</h3>
-                    {/* <button style={{ marginRight: '10px' }}>Edit</button> */}
+                    
                     <button onClick={() =>editCustomer(customerprops)} style={{ marginRight: '10px' }}>Edit</button>
                     <button onClick={() =>deleteCustomer(customerprops)}>Delete</button>
                     <table>
