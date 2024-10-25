@@ -5,7 +5,6 @@ import CustomerService from '../Services/CustomerServ'
 // Jokaisen asiakkaan yksittäiset tiedot renderöidään tässä komponentissa.
 // Props on nimeltään customerprops, jonka se saa CustomerList-komponentilta.
 // Tämä tarkoittaa, että Customer-komponentti odottaa saavansa customerprops-nimisen propsin, joka sisältää asiakkaan tiedot.
-// Tässä Customer-komponentti ottaa vastaan propsit, jotka on määritelty { customerprops }-parametrina.
 // cust on yksittäinen asiakasobjekti, joka on peräisin CustomerList customers-taulukosta ja sisältää yhden asiakkaan tiedot.
 // Parametri on määritelty CustomerList tiedostossa näin: customerprops={cust}. Kuitenkin tässä tiedostossa se on {customerprops}.Eli hakasuluissa.
 
@@ -48,8 +47,7 @@ const Customer = ({ customerprops,setCustomers, setIsPositive, setMessage, setSh
                 }, 5000)
             })
         }//if               
-            else {
-                
+            else {                
                 console.log("Poisto peruttu konsolissa. Näkyykö? Else haara ");
                 setMessage('Poisto peruttu onnistuneesti.')
                     setIsPositive(true)
@@ -62,12 +60,7 @@ const Customer = ({ customerprops,setCustomers, setIsPositive, setMessage, setSh
                     setShowMessage(false)},
                     3000
                     )
-                }
-
-               
-
-        
-
+                }//else
     }//deleteCustomer
 
     return (

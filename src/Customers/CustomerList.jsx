@@ -43,7 +43,7 @@ const CustomerList = ({setIsPositive, setMessage, setShowMessage,}) => {
 
     //useEffect-hook, joka hakee asiakastiedot CustomerService:ltä komponentin latautuessa. Tässä tulee Axios käyttöön.
     //Axios osaa konvertoida JSON datan suoraan JavaScriptiksi.
-    //getAll-funktio löytyy Customer.js tiedostosta.
+    //getAll-funktio löytyy CustomerServ.js tiedostosta.
 
     useEffect(() => {
         CustomerService.getAll()
