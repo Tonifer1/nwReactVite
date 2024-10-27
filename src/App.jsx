@@ -6,6 +6,7 @@ import './App.css'
 import Laskuri from './Laskuri.jsx'
 import Posts from './Posts.jsx'
 import CustomerList from './Customers/CustomerList.jsx'
+import UserList from './Users/UserList.jsx'
 import {useState} from 'react'
 import Message from './Message.jsx'
 import Navbar from 'react-bootstrap/Navbar'
@@ -28,6 +29,7 @@ const App = () => {
   const [showMessage, setShowMessage] = useState(false)
   const [message, setMessage] = useState('')
   const [isPositive, setIsPositive] = useState(false)
+{/* <nav class="navbar navbar-expand-lg bg-primary" data-bs-theme="dark"> */}
 
 
 
@@ -35,15 +37,16 @@ const App = () => {
     <div className="App">
       <Router>        
 
-      <Navbar bg="dark" variant="dark">
-        <div class="container">
-            <Nav>
+      <Navbar className="navbar navbar-expand-lg bg-dark" data-bs-theme="dark">
+      {/* <div class="container"> */}
+            <Nav className="me-auto">
                 <Nav.Link href='/customers'>Customers</Nav.Link>
                 <Nav.Link href='/posts'>Posts</Nav.Link>
                 <Nav.Link href='/users'>Users</Nav.Link>
                 <Nav.Link href='/laskuri'>Laskuri</Nav.Link>
             </Nav>
-        </div>
+        {/* </div>  */}
+        
         </Navbar>
           
           <h2>Northwind Traders</h2>
@@ -51,15 +54,15 @@ const App = () => {
           {showMessage && <Message message={message} isPositive={isPositive} />}
 
           <Routes>
-                <Route path="/Customers"
+                <Route path="/customers"
                 element= {<CustomerList setMessage={setMessage} setIsPositive={setIsPositive} 
                 setShowMessage={setShowMessage} />} >
                 </Route>
 
-                {/* <Route path="/Users"
+                <Route path="/users"
                 element={ <UserList setMessage={setMessage} setIsPositive={setIsPositive} 
                   setShowMessage={setShowMessage} />} >
-                </Route> */}
+                </Route>
 
                 <Route path="/posts"
                 element={ <Posts />} >
@@ -70,7 +73,7 @@ const App = () => {
                 </Route>
 
           </Routes>
-           
+          
       </Router>
           
       </div>

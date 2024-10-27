@@ -49,9 +49,6 @@ const CustomerEdit= ({ setMuokkaustila, setCustomers, setIsPositive,  setMessage
             fax: newFax
         }//newCustomer
 
-        
-
-
         CustomerService.update(newCustomer)
             .then(() => {
                 setMessage(`Edited customer:${newCustomer.companyName}`)
@@ -74,11 +71,6 @@ const CustomerEdit= ({ setMuokkaustila, setCustomers, setIsPositive,  setMessage
             .catch(error => {
                 console.error("Error to Update New Customer:", error);
             });
-    
-    
-
-
-
     }//handleSubmit
 
 

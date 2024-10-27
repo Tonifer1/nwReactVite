@@ -1,46 +1,26 @@
 #root {
-  max-width: 1280px;
+  /* max-width: 1800px; */
   margin: 0 auto;
+  width: 100%;
   padding: 2rem;
   text-align: center;
 }
 
-/* .logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+.navbar {
+  width:100%;
+  margin: 0;
+  padding: 0;
+ 
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+/* 
+.app {
+  margin-top: -100px;
 } */
 
-/* App.css Siirtää pakettia ylemmäs */
- .app {
-  margin-top: -100px; 
-} 
-
-.app h1 {
-  margin-top: 100px; /* Säädä arvoa tarpeen mukaan */
-}
+/* .app h1 {
+  margin-top: 100px;
+} */
 
 @media screen and (max-width: 768px) {
   .app {
@@ -56,118 +36,60 @@
   color: #888;
 }
 
-
-
-/* App.css */
-
-/* Määritellään .post-luokan tyylit */
-.post {
-  /* Reunan määrittely: 1 pikselin leveä, yhtenäinen viiva, väriltään #ccc (vaaleanharmaa) */
+/* Post- ja Customer-tyylit */
+.post, .customer {
   border: 1px solid #ccc;
-  
-  /* Tekstin värin määrittely: #333 (tummanpunainen) */
-  color: #9e0909;
-  
-  /* Sisäisen täytön määrittely: 16 pikseliä kaikilla puolilla */
   padding: 16px;
-  
-  /* Ulkoisen marginaalin määrittely: 16 pikseliä ylä- ja alapuolella, 0 pikseliä oikealla ja vasemmalla */
   margin: 16px 0;
-  
-  /* Reunan pyöristyksen määrittely: 8 pikseliä */
   border-radius: 8px;
-  
-  /* Taustavärin määrittely: #f9f9f9 (vaaleanharmaa) */
   background-color: #f9f9f9;
 }
 
-/* Määritellään .post-luokan sisällä olevien h3-elementtien marginaalit */
-/*Ensimmäinen arvo: Yläreunan marginaali
-Toinen arvo: Oikean ja vasemman reunan marginaali
-Kolmas arvo: Alareunan marginaali*/
-.post h3 {
-  /* Yläreuna: 0 pikseliä, Oikea reuna: 0 pikseliä, Vasen reuna: 0 pikseliä Alareuna: 8 pikseliä,  */
+.post h3, .customer h3 {
   margin: 0 0 8px;
 }
 
-/* Määritellään .post-luokan sisällä olevien p-elementtien marginaalit */
-.post p {
-  /* Ei marginaalia missään reunassa (ylä-, oikea-, ala- tai vasemmalla puolella) */
+.post p, .customer p {
   margin: 0;
 }
 
-.customer {
-  border: 1px solid #ccc;
-  padding: 16px;
-  margin: 16px 0;
-  border-radius: 8px;
-  background-color: #ccaaaa;
-}
-
-.customer h3 {
-  margin: 0 0 8px;
-}
-
-.customer p {
-  margin: 0;
-}
-
-.nowrap {
-  white-space: nowrap;
-}
-
-/*CustomerDetails-komponentin tyylit */
-
+/* CustomerDetails-komponentti */
 .customerDetails {
-  background-color: chocolate;
-  text-align: center;     
+  background-color: #C4F0C5;
+  text-align: center;
   border-style: solid;
-  width: 100%;             
-  margin: auto;            
+  width: 50%;
+  margin: auto;
   border-radius: 30px;
-  padding: 20px;           
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-
-.nappi {
-  border-radius: 10px;
-  margin-left: 10px;
-  font-size: 16px;
-  background-color: chocolate;
-  color: white;
+/* Positiiviset ja negatiiviset viestit */
+.neg, .pos {
+  font-size: 36px;
+  font-weight: bold;
+  border-style: solid;
+  border-width: 3px;
+  border-radius: 5px;
+  padding: 10px;
+  margin-bottom: 10px;
+  margin-top: 10%;
+  width: 70%;
+  margin-left: 15%;
 }
 
 .neg {
   color: red;
   background: lightgrey;
-  font-size: 36px;
-  font-weight: bold;
-  border-style: solid;
-  border-width: 3px;
-  border-radius: 5px;
-  padding: 10px;
-  margin-bottom: 10px;
-  margin-top: 10%;
-  width: 70%;
-  margin-left: 15%;
 }
 
 .pos {
   color: rgb(14, 97, 14);
   background: lightgrey;
-  font-size: 36px;
-  font-weight: bold;
-  border-style: solid;
-  border-width: 3px;
-  border-radius: 5px;
-  padding: 10px;
-  margin-bottom: 10px;
-  margin-top: 10%;
-  width: 70%;
-  margin-left: 15%;
 }
-/* Tyylit customerEdit-komponentille */
+
+/* customer-edit-form */
 .customer-edit-form div {
   margin-bottom: 15px;
 }
@@ -183,45 +105,39 @@ Kolmas arvo: Alareunan marginaali*/
   box-sizing: border-box;
 }
 
-/* Tyylit customerAdd-komponentille */
-/* .customer-add-form div {
-  margin-bottom: 15px;
-}
-
-.customer-add-form input[type="text"] {
-  width: 100%;
-  padding: 8px;
-  box-sizing: border-box;
-} */
-
-/* input::placeholder {
-  color: #888; 
-  font-style: oblique 10deg;
-
-  opacity: 1; 
-} */
-
+/* Input ja haku */
 input:focus::placeholder {
-  color: #555; /* Placeholderin väri, kun input on fokuksessa */
+  color: #555;
 }
+
 input {
-  border-radius: 4px; /* Pyöristää kentän kulmat */
-  padding: 10px; /* Lisää tilaa sisällön ympärille */
-  border: 1px solid #ccc; /* Määrittelee kentän reunuksen */
-  font-size: 16px; /* Muokkaa tekstin kokoa */
+  border-radius: 4px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  font-size: 16px;
 }
 
 .inputsearch {
-  font-style: italic!important;
-   margin-Bottom: 10px ;
+  font-style: italic !important;
+  margin-bottom: 10px;
+  background-color: #E6E6FA;
 }
 
-.inputsearch::-moz-placeholder { /* Firefox */
-  color: #888;
+.inputsearch::-moz-placeholder {
+  color: black;
   font-style: oblique 10deg;
   opacity: 1;
 }
 
+/* Nappien tyylit */
+.nappi {
+  border-radius: 10px;
+  margin-left: 10px;
+  font-size: 16px;
+  background-color: #E6E6FA;
+  color: black;
+}
 
-
-
+input[type="text"] {
+  background-color: #E6E6FA;
+}
