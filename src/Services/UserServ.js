@@ -5,6 +5,12 @@ import axios from "axios"
 
 // Määritellään perus-URL, johon kaikki pyynnöt tehdään
 const baseUrl = 'https://localhost:7121/api/users'
+const loginUrl = 'https://localhost:7121/api/authentication'
+
+const Login = (object) => {
+    const request = axios.post(loginUrl, object)    
+    return request.then(response => response.data)
+}
 
 //GET
 // Nimetön funktio, joka palauttaa pyynnön vastauksen. Ei parametreja.
@@ -18,7 +24,7 @@ const getAll = () => {
 }
 
 //CREATE Vaihe 4.
-// Nimetön funktio, jossa object on alias nimi customerille
+// Nimetön funktio, jossa object on alias nimi userille
 // Parametrina MIHIN osoitteeseen (baseUrl) pyyntö tehdään ja MITÄ dataa lähetetään
 // Tehdään POST-pyyntö baseUrl-osoitteeseen ja lähetetään mukana object-data
 // Eli minne lähetetään ja mitä lähetetään.
@@ -40,4 +46,4 @@ const update = (object) => {
 }
 
 // Exportataan  funktiot, jotta niitä voidaan käyttää muualla sovelluksessa
-export default { getAll, addNew, remove, update }
+export default { getAll, addNew, remove, update , Login }

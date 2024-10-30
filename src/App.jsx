@@ -8,11 +8,13 @@ import Posts from './Posts.jsx'
 import CustomerList from './Customers/CustomerList.jsx'
 import UserList from './Users/UserList.jsx'
 import {useState} from 'react'
+import { useEffect } from 'react'
 import Message from './Message.jsx'
 import Navbar from 'react-bootstrap/Navbar'
 import Nav from 'react-bootstrap/Nav'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
+import Login from './login.jsx'
 
 //Määritellään / esitellään funktionaalinen "Äiti" komponentti App. Huom! Komponentit on aina oltava isolla alkukirjaimella!
 //Nimetön funktio arvoltaan.
@@ -29,9 +31,13 @@ const App = () => {
   const [showMessage, setShowMessage] = useState(false)
   const [message, setMessage] = useState('')
   const [isPositive, setIsPositive] = useState(false)
+  const [loggedIn, setloggedIn] = useState(false)
 {/* <nav class="navbar navbar-expand-lg bg-primary" data-bs-theme="dark"> */}
 
-
+// useEffect(() => {
+//   if localStorage.getItem('username') !== null {
+//     setloggedIn(true)
+//   }
 
   return (
     <div className="App">
@@ -53,6 +59,9 @@ const App = () => {
 
           {showMessage && <Message message={message} isPositive={isPositive} />}
 
+          {!loggedIn && <Login setMessage={setMessage} setIsPositive={setIsPositive} 
+                setShowMessage={setShowMessage} setloggedIn={setloggedIn} />}
+
           <Routes>
                 <Route path="/customers"
                 element= {<CustomerList setMessage={setMessage} setIsPositive={setIsPositive} 
@@ -70,6 +79,11 @@ const App = () => {
 
                 <Route path="/laskuri"
                 element={ <Laskuri />}>                  
+                </Route>
+
+                
+                <Route path="/laskuri"
+                element={ <Login />}>                  
                 </Route>
 
           </Routes>

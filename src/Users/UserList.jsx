@@ -22,7 +22,8 @@ const UserList = ({setIsPositive, setMessage, setShowMessage,}) => {
 
 //!#*****************************************Tilan määritys Hooks****************************************************
 
-    // Määritellään tila eli state users, joka sisältää userslistan.Alempana tarkistetaan onko dataa renderöitäväksi.
+    // Määritellään tila eli STATE USER, joka sisältää userslistan.Alempana tarkistetaan onko dataa renderöitäväksi.
+
     const [users, setUsers] = useState([])
 
     // Määritellään tila eli state lisäystila, joka määrittää näytetäänkö UserAdd vai ei.
@@ -40,6 +41,8 @@ const UserList = ({setIsPositive, setMessage, setShowMessage,}) => {
         UserService.getAll()
             .then(data =>  setUsers(data)) // Asetetaan haetut asiakastiedot users-tilaan.(data) tulee UserServ.js tiedostosta.
     }, [lisäystila, muokkaustila])
+
+    
     //Hakukentän onChange tapahtumankäsittelijä. Parametrina event, joka edustaa input-kentän tapahtumaa. 
     const handleSearchInputChange = (event) => {        
         setSearch(event.target.value.toLowerCase())

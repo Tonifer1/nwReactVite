@@ -1,22 +1,20 @@
-import '../App.css'
+import './App.css'
 import React, { useState } from 'react'
-import UserService from '../Services/UserServ'
+import UserService from './Services/UserServ'
 import md5 from 'md5'
 
-const UserAdd = ({ setLisäystila, setIsPositive, setUsers, setMessage, setShowMessage, }) => {
+const Login = ({ setIsPositive, setMessage, setShowMessage, setloggedIn }) => {
 
     //! ********************Tilan eli Staten määritys*************************************
     // Statet pitävät kirjaa sen hetken tilasta ja päivittävät sitä, joka kerta kun käyttäjä kirjoittaa jotain kenttään.
     // Esim Id kenttään kirjoitettaessa, kutsutaan setNewCustomerId funktiota(alla returnissa), joka päivittää tilan newCustomerId arvon.
 
     
-    const [newFirstName, setNewFirstName] = useState('')
-    const [newLastName, setNewLastname] = useState('')
-    const [newEmail, setNewEmail] = useState('')
-    const [newAcceslevelId, setNewAcceslevelId] = useState(0)
+
 
     const [newUsername, setNewUsername] = useState('')
     const [newPassword, setNewPassword] = useState('')
+    
     
     
     // 2.  Syötetyt tiedot kerätään ja luodaan uusi userobjekti(newUser), johon tiedot tallennetaan.
@@ -26,38 +24,33 @@ const UserAdd = ({ setLisäystila, setIsPositive, setUsers, setMessage, setShowM
     const handleSubmit = (event) => {
         event.preventDefault()
         // Alla olevat kentät täytyy olla nimeltään samat kuin back-endissä olevat kentät. Huom! camelCase.
-        var newUser = {
-            firstname: newFirstName,
-            lastname: newLastName,
-            email: newEmail,
-            acceslevelId:newAcceslevelId,
+        var user = {
+
             username: newUsername,
             password: md5(newPassword)
         }//newUser
 
-        
-        console.log("newAcceslevelId ennen Userserviceä:", newAcceslevelId);
-
-        UserService.addNew(newUser)
-            .then(() => {
-                console.log("Sending new user to backend:", newUser);
-                setMessage(`Lisätty new user:${newUser.firstname} ${newUser.lastname}`)
+        UserService.Login(user)
+            .then(response => {
+                
+                setMessage(`Welcome ${response.username}`);
                 setIsPositive(true);
                 setShowMessage(true);
-                setUsers(prevUsers => [...prevUsers, newUser])
-                console.log("Lisattu uusi luuseri Servicen sisällä:",)
                 
-
                 setTimeout(() => {
                     setShowMessage(false);
                 }, 3000);
+             localStorage.setItem('username', response.username);
+            localStorage.setItem('acceslevelId', response.acceslevelId);
+            localStorage.setItem('token', response.token);
+            //Muutetaan App komponentin tilaa trueksi.   
+            setloggedIn(true)
 
-                setLisäystila(false);
-                
             })//then
 
+            
             .catch(error => {
-                console.error("Error to Add New User:", error);
+                console.error("failed to login:", error);
             });
     
     }//handleSubmit
@@ -65,24 +58,9 @@ const UserAdd = ({ setLisäystila, setIsPositive, setUsers, setMessage, setShowM
     //! ****************************return*************************************
     return (
         <div id="addNew">
-            <h2>User add</h2>
+            <h2>Login</h2>
             <form onSubmit={handleSubmit}>
-                <div>
-                    <input type="text" value={newFirstName} placeholder="First name"
-                        onChange={({ target }) => setNewFirstName (target.value)} required />
-                </div>
-                <div>
-                    <input type="text" value={newLastName} placeholder="Last name"
-                        onChange={({ target }) => setNewLastname (target.value)} required />
-                </div>
-                <div>
-                    <input type="email" value={newEmail} placeholder="Email"
-                        onChange={({ target }) => setNewEmail(target.value)} />
-                </div>
-                <div>
-                    <input type="number" value={newAcceslevelId} placeholder="AcceslevelId"
-                        onChange={({ target }) => setNewAcceslevelId(Number(target.value))} />
-                </div>
+                
                 <div>
                     <input type="text" value={newUsername} placeholder="Username"
                         onChange={({ target }) => setNewUsername(target.value)} />
@@ -102,7 +80,7 @@ const UserAdd = ({ setLisäystila, setIsPositive, setUsers, setMessage, setShowM
                     <input type='submit' value='save' style={{ marginRight: '10px' }} />
 
                     {/* Tämä on tavallinen button-tyyppinen input-elementti, joka ei lähetä lomaketta */}
-                    <input type='button' value='back' onClick={() => setLisäystila(false)} />
+                    <input type='button' value='back' />
                 </div>
             </form>
 
@@ -112,4 +90,4 @@ const UserAdd = ({ setLisäystila, setIsPositive, setUsers, setMessage, setShowM
 
 }//UserAdd
 
-export default UserAdd
+export default Login

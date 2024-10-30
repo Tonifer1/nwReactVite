@@ -115,6 +115,7 @@ input {
   padding: 10px;
   border: 1px solid #ccc;
   font-size: 16px;
+  background-color: #E6E6FA;
 }
 
 .inputsearch {
@@ -138,6 +139,4 @@ input {
   color: black;
 }
 
-input[type="text"] {
-  background-color: #E6E6FA;
-}
+
