@@ -44,9 +44,17 @@ const CustomerList = ({setIsPositive, setMessage, setShowMessage,}) => {
     //getAll-funktio löytyy CustomerServ.js tiedostosta.
 
     useEffect(() => {
+        console.log("Fetching customers data with getAll request");
         CustomerService.getAll()
-            .then(data =>  setCustomers(data)) // Asetetaan haetut asiakastiedot customers-tilaan.(data) tulee CustomerServ.js tiedostosta.
-    }, [lisäystila, muokkaustila])//reload olisi tässä 
+            .then(data => {
+                console.log("Customers data:", data);
+                setCustomers(data); // Asetetaan haetut asiakastiedot customers-tilaan.
+            })
+            .catch(error => {
+                console.error("Failed to fetch customers:", error);
+            });
+    }, [lisäystila, muokkaustila]);
+    
 
     //Hakukentän onChange tapahtumankäsittelijä. Parametrina event, joka edustaa input-kentän tapahtumaa. 
     const handleSearchInputChange = (event) => {

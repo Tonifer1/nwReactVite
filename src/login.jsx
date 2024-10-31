@@ -1,60 +1,49 @@
 import './App.css'
 import React, { useState } from 'react'
 import UserService from './Services/UserServ'
+import CustomerService from './Services/CustomerServ'; 
+import Auth from './Services/Auth'
 import md5 from 'md5'
 
 const Login = ({ setIsPositive, setMessage, setShowMessage, setloggedIn }) => {
 
     //! ********************Tilan eli Staten määritys*************************************
-    // Statet pitävät kirjaa sen hetken tilasta ja päivittävät sitä, joka kerta kun käyttäjä kirjoittaa jotain kenttään.
-    // Esim Id kenttään kirjoitettaessa, kutsutaan setNewCustomerId funktiota(alla returnissa), joka päivittää tilan newCustomerId arvon.
-
-    
-
-
     const [newUsername, setNewUsername] = useState('')
     const [newPassword, setNewPassword] = useState('')
-    
-    
-    
-    // 2.  Syötetyt tiedot kerätään ja luodaan uusi userobjekti(newUser), johon tiedot tallennetaan.
-    //! ********************onSubmit tapahtumankäsittelijä funktio*****************************************************
-    // event.preventDefault() estää lomakkeen lähettämisen yhteydessä kokokonaisen sivun uudelleen lataamisen.
 
     const handleSubmit = (event) => {
-        event.preventDefault()
-        // Alla olevat kentät täytyy olla nimeltään samat kuin back-endissä olevat kentät. Huom! camelCase.
-        var user = {
-
+        event.preventDefault();
+        const user = {
             username: newUsername,
             password: md5(newPassword)
-        }//newUser
+        };
 
-        UserService.Login(user)
-            .then(response => {
-                
-                setMessage(`Welcome ${response.username}`);
-                setIsPositive(true);
-                setShowMessage(true);
-                
-                setTimeout(() => {
-                    setShowMessage(false);
-                }, 3000);
-             localStorage.setItem('username', response.username);
-            localStorage.setItem('acceslevelId', response.acceslevelId);
-            localStorage.setItem('token', response.token);
-            //Muutetaan App komponentin tilaa trueksi.   
-            setloggedIn(true)
-
-            })//then
-
-            
-            .catch(error => {
-                console.error("failed to login:", error);
-            });
+        // Kutsutaan Auth.authenticate eikä UserService.Login
+        Auth.authenticate(user)
+        .then(response => {
+            localStorage.setItem('username', response.username);
+            localStorage.setItem('accesslevelId', response.accesslevelId);
+            localStorage.setItem('token', response.token); // Tallenna token ensin
+            console.log('Token set to localStorage:', localStorage.getItem('token')); // Varmistus tulostuksen sijoittaminen nyt tähän
+            UserService.setToken(response.token); // Tämä asettaa tokenin
+            CustomerService.setToken(response.token); // Aseta token CustomerServille
+            setMessage(`Welcome ${response.username}`);
+            setIsPositive(true);
+            setShowMessage(true);
     
-    }//handleSubmit
+            setTimeout(() => {
+                setShowMessage(false);
+            }, 3000);
+            console.log('Muutetaan App komponentin tilaa trueksi.');
+            setloggedIn(true);
+        })
+        .catch(error => {
+            console.error("failed to login:", error);
+        });
+    
 
+    }//handleSubmit
+    
     //! ****************************return*************************************
     return (
         <div id="addNew">
@@ -77,7 +66,7 @@ const Login = ({ setIsPositive, setMessage, setShowMessage, setloggedIn }) => {
 
                     {/* Ohjelman suoritus siirtyy tästä ylhäällä olevaan handleSubmit-funktioon */}
 
-                    <input type='submit' value='save' style={{ marginRight: '10px' }} />
+                    <input type='submit' value='login' style={{ marginRight: '10px' }} />
 
                     {/* Tämä on tavallinen button-tyyppinen input-elementti, joka ei lähetä lomaketta */}
                     <input type='button' value='back' />
@@ -88,6 +77,6 @@ const Login = ({ setIsPositive, setMessage, setShowMessage, setloggedIn }) => {
 
     )//return
 
-}//UserAdd
+}//Login
 
 export default Login

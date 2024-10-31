@@ -13,7 +13,7 @@ import Message from './Message.jsx'
 import Navbar from 'react-bootstrap/Navbar'
 import Nav from 'react-bootstrap/Nav'
 import 'bootstrap/dist/css/bootstrap.min.css'
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
+import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom'
 import Login from './login.jsx'
 
 //Määritellään / esitellään funktionaalinen "Äiti" komponentti App. Huom! Komponentit on aina oltava isolla alkukirjaimella!
@@ -34,23 +34,25 @@ const App = () => {
   const [loggedIn, setloggedIn] = useState(false)
 {/* <nav class="navbar navbar-expand-lg bg-primary" data-bs-theme="dark"> */}
 
-// useEffect(() => {
-//   if localStorage.getItem('username') !== null {
-//     setloggedIn(true)
-//   }
+useEffect(() => {
+  if (localStorage.getItem('username') !== null) {
+    setloggedIn(true);
+  }
+}, []);
+
 
   return (
     <div className="App">
       <Router>        
 
-      <Navbar className="navbar navbar-expand-lg bg-dark" data-bs-theme="dark">
-      {/* <div class="container"> */}
-            <Nav className="me-auto">
-                <Nav.Link href='/customers'>Customers</Nav.Link>
-                <Nav.Link href='/posts'>Posts</Nav.Link>
-                <Nav.Link href='/users'>Users</Nav.Link>
-                <Nav.Link href='/laskuri'>Laskuri</Nav.Link>
-            </Nav>
+        <Navbar className="navbar navbar-expand-lg bg-dark" data-bs-theme="dark">
+          {/* <div class="container"> */}
+          <Nav className="me-auto">
+            <Nav.Link as={Link} to='/customers'>Customers</Nav.Link>
+            <Nav.Link as={Link} to='/posts'>Posts</Nav.Link>
+            <Nav.Link as={Link} to='/users'>Users</Nav.Link>
+            <Nav.Link as={Link} to='/laskuri'>Laskuri</Nav.Link>
+          </Nav>
         {/* </div>  */}
         
         </Navbar>
