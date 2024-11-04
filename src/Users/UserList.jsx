@@ -79,11 +79,12 @@ return (
         
         </span> */}
 
-        {/*
+        
         {muokkaustila && ( <CustomerEdit setMuokkaustila ={setMuokkaustila} 
         setIsPositive={setIsPositive} setMessage={setMessage} setShowMessage={setShowMessage}
         muokattavaCustomer={muokattavaCustomer} setCustomers={setCustomers} />                    
-        )} */}
+        )}
+        
         {!lisäystila && !muokkaustila && (
     <div className="text-center table-responsive">
         <table className="table table-striped table-bordered table-hover mx-auto">

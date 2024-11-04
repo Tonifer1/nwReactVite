@@ -15,6 +15,7 @@ import Customer from './customer'
 import CustomerAdd from './customerAdd';
 
 import CustomerEdit from './customerEdit'
+import Login from '../login';
 
 // CustomerList-komponentti 
 const CustomerList = ({setIsPositive, setMessage, setShowMessage,}) => {
@@ -100,6 +101,10 @@ return (
                     setIsPositive={setIsPositive} setMessage={setMessage} setShowMessage={setShowMessage}
                     muokattavaCustomer={muokattavaCustomer} setCustomers={setCustomers} />                    
                     )}
+
+                    {/* { (<Login 
+                     setCustomers={setCustomers} />
+                    )} */}
             
                     {/* Tässä kaksi && merkkiä tarkoittaa (ja) viimeinen && että mitä tehdään jos molemmat ovat tosia. */}
                 {

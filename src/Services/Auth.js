@@ -1,17 +1,10 @@
-// import axios from 'axios';
-
-// const baseUrl = 'https://localhost:7121/api/Authentication'; // Huomaa isolla alkava "Authentication"
-
-// const authenticate = (userForAuth) => {
-//     const request = axios.post(baseUrl, userForAuth);
-//     return request.then(response => response.data); // Voit palauttaa `response` tai `response.data` tarpeen mukaan
-// };
-
-// export default { authenticate };
-
 import axios from 'axios';
 
 const baseUrl = 'https://localhost:7121/api/Authentication';
+
+//2.Funktio lähettää POST-pyynnön backend-palvelimelle osoitteeseen https://localhost:7121/api/authentication
+//Backend palauttaa tokenin, jos tunnukset ovat oikein.
+//JWT (JSON Web Token)sisältää tietoa käyttäjästä ja hänen käyttöoikeuksistaan. 
 
 const authenticate = (userForAuth) => {
     return axios.post(baseUrl, userForAuth).then(response => response.data); // Palautetaan suoraan response.data

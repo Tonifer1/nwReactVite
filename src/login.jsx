@@ -4,12 +4,22 @@ import UserService from './Services/UserServ'
 import CustomerService from './Services/CustomerServ'; 
 import Auth from './Services/Auth'
 import md5 from 'md5'
+import { useNavigate } from 'react-router-dom';
 
-const Login = ({ setIsPositive, setMessage, setShowMessage, setloggedIn }) => {
+const Login = ({ setIsPositive, setMessage, setShowMessage, setloggedIn, setCustomers }) => {
 
     //! ********************Tilan eli Staten määritys*************************************
     const [newUsername, setNewUsername] = useState('')
     const [newPassword, setNewPassword] = useState('')
+     
+
+    const navigate = useNavigate();
+    const handleBack = () => {
+        navigate(-1); // Siirtää käyttäjän takaisin edelliselle sivulle
+    };
+
+    //1.handleSubmit-funktio käsittelee lomakkeen lähetyksen, ja tunnistetiedot lähetetään Auth.authenticate-funktiolle,
+   // joka tekee POST-pyynnön backend-palvelimelle osoitteeseen https://localhost:7121/api/authentication
 
     const handleSubmit = (event) => {
         event.preventDefault();
@@ -18,28 +28,38 @@ const Login = ({ setIsPositive, setMessage, setShowMessage, setloggedIn }) => {
             password: md5(newPassword)
         };
 
-        // Kutsutaan Auth.authenticate eikä UserService.Login
+        //then-lohkon sisällä tallennetaan käyttäjän tiedot ja token paikalliseen localStorageen.
+        //Tämän jälkeen asetetaan token UserServiceen ja CustomerServiceen.
         Auth.authenticate(user)
         .then(response => {
             localStorage.setItem('username', response.username);
             localStorage.setItem('accesslevelId', response.accesslevelId);
-            localStorage.setItem('token', response.token); // Tallenna token ensin
+            localStorage.setItem('token', response.token);
             console.log('Token set to localStorage:', localStorage.getItem('token')); // Varmistus tulostuksen sijoittaminen nyt tähän
             UserService.setToken(response.token); // Tämä asettaa tokenin
             CustomerService.setToken(response.token); // Aseta token CustomerServille
+            // setCustomers(prevCustomers => [...prevCustomers, newCustomer])
             setMessage(`Welcome ${response.username}`);
             setIsPositive(true);
             setShowMessage(true);
     
             setTimeout(() => {
-                setShowMessage(false);
+            setShowMessage(false);
             }, 3000);
             console.log('Muutetaan App komponentin tilaa trueksi.');
             setloggedIn(true);
         })
         .catch(error => {
-            console.error("failed to login:", error);
+             setMessage('Wrong username or password');
+             setIsPositive(false);
+             setShowMessage(true);
+             console.error("failed to do login:", error);
+             setTimeout(() => {
+                setShowMessage(false);
+                }, 3000);
+            
         });
+            
     
 
     }//handleSubmit
@@ -69,7 +89,7 @@ const Login = ({ setIsPositive, setMessage, setShowMessage, setloggedIn }) => {
                     <input type='submit' value='login' style={{ marginRight: '10px' }} />
 
                     {/* Tämä on tavallinen button-tyyppinen input-elementti, joka ei lähetä lomaketta */}
-                    <input type='button' value='back' />
+                    <input type='button' value='back' onClick={handleBack}/>
                 </div>
             </form>
 

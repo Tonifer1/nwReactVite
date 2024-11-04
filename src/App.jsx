@@ -25,20 +25,30 @@ import Login from './login.jsx'
 
 const App = () => {
 
-   // App komponentin tila 
-
-  // Statet messagen näyttämistä varten 
+   // App komponentin tila (state) muuttujat
   const [showMessage, setShowMessage] = useState(false)
   const [message, setMessage] = useState('')
   const [isPositive, setIsPositive] = useState(false)
   const [loggedIn, setloggedIn] = useState(false)
-{/* <nav class="navbar navbar-expand-lg bg-primary" data-bs-theme="dark"> */}
+
 
 useEffect(() => {
   if (localStorage.getItem('username') !== null) {
     setloggedIn(true);
   }
 }, []);
+
+const handleLogout = () => {
+  localStorage.removeItem('username');
+  setloggedIn(false);
+  setMessage('Logged out successfully');
+  setIsPositive(true);
+  setShowMessage(true);
+  setTimeout(() => {
+    setShowMessage(false);
+  }, 3000);
+};
+
 
 
   return (
@@ -48,27 +58,36 @@ useEffect(() => {
         <Navbar className="navbar navbar-expand-lg bg-dark" data-bs-theme="dark">
           {/* <div class="container"> */}
           <Nav className="me-auto">
-            <Nav.Link as={Link} to='/customers'>Customers</Nav.Link>
+          <Nav.Link as={Link} to='/'>Home</Nav.Link>
+            <Nav.Link as={Link} to={loggedIn ? '/customers' : '/login'}>
+              Customers
+            </Nav.Link>
             <Nav.Link as={Link} to='/posts'>Posts</Nav.Link>
             <Nav.Link as={Link} to='/users'>Users</Nav.Link>
+            {/* Ehdollinen näyttö Login/Logout-painikkeelle */}
+            {loggedIn ? (
+              <Nav.Link onClick={handleLogout}>Logout</Nav.Link>
+            ) :
+             (
+                <Nav.Link as={Link} to='/login'>Login</Nav.Link>
+            )}
             <Nav.Link as={Link} to='/laskuri'>Laskuri</Nav.Link>
           </Nav>
-        {/* </div>  */}
+        
         
         </Navbar>
           
           <h2>Northwind Traders</h2>
 
-          {showMessage && <Message message={message} isPositive={isPositive} />}
-
-          {!loggedIn && <Login setMessage={setMessage} setIsPositive={setIsPositive} 
-                setShowMessage={setShowMessage} setloggedIn={setloggedIn} />}
+            {showMessage && <Message message={message} isPositive={isPositive} />}
+          
 
           <Routes>
-                <Route path="/customers"
+                {loggedIn &&(
+                  <Route path="/customers"
                 element= {<CustomerList setMessage={setMessage} setIsPositive={setIsPositive} 
-                setShowMessage={setShowMessage} />} >
-                </Route>
+                setShowMessage={setShowMessage} />} />
+                )}
 
                 <Route path="/users"
                 element={ <UserList setMessage={setMessage} setIsPositive={setIsPositive} 
@@ -83,13 +102,21 @@ useEffect(() => {
                 element={ <Laskuri />}>                  
                 </Route>
 
-                
-                <Route path="/laskuri"
-                element={ <Login />}>                  
+                {/* <Routes>
+                  <Route path="/" element={<Home />} />
+                </Routes> */}
+
+                {!loggedIn &&(
+                <Route path="/login"
+                element={ <Login setMessage={setMessage} setShowMessage={setShowMessage} setloggedIn={setloggedIn}
+                setIsPositive={setIsPositive}/>}>                  
                 </Route>
+                )}
 
           </Routes>
-          
+
+
+         
       </Router>
           
       </div>

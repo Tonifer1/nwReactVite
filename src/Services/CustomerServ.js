@@ -9,6 +9,7 @@ const api = axios.create({
 
 let token = null;
 
+//3.Token  Auth.authenticate funktiosta login.jsx tiedostosta
 const setToken = (newToken) => {
     token = `Bearer ${newToken}`;
     api.defaults.headers.common['Authorization'] = token; // Asetetaan oletusotsikko

@@ -10,6 +10,7 @@ const api = axios.create({
 
 let token = null
 
+//3.Token  Auth.authenticate funktiosta login.jsx tiedostosta
 const setToken = (newToken) => {
     token = `Bearer ${newToken}`;
     api.defaults.headers.common['Authorization'] = token; // Asetetaan oletusotsikko
@@ -41,8 +42,8 @@ const remove = id => {
 
 //Edit 
 const update = (object) => {
-    // return axios.put(`${baseUrl}/${object.UserId}`, object)
-    return api.put(`/${object.customerId}`, object)
+    // return axios.put(`${baseUrl}/${object.userId}`, object)
+    return api.put(`/${object.userId}`, object)
 }
 
 
