@@ -17,6 +17,8 @@ const UserAdd = ({ setLisäystila, setIsPositive, setUsers, setMessage, setShowM
 
     const [newUsername, setNewUsername] = useState('')
     const [newPassword, setNewPassword] = useState('')
+    const [confirmPassword, setConfirmPassword] = useState('');
+    const [passwordError, setPasswordError] = useState('');
     
     
     // 2.  Syötetyt tiedot kerätään ja luodaan uusi userobjekti(newUser), johon tiedot tallennetaan.
@@ -25,6 +27,10 @@ const UserAdd = ({ setLisäystila, setIsPositive, setUsers, setMessage, setShowM
 
     const handleSubmit = (event) => {
         event.preventDefault()
+        if (newPassword !== confirmPassword) {
+            setPasswordError('Passwords do not match');
+            return;
+          }
         // Alla olevat kentät täytyy olla nimeltään samat kuin back-endissä olevat kentät. Huom! camelCase.
         var newUser = {
             firstname: newFirstName,
@@ -57,8 +63,14 @@ const UserAdd = ({ setLisäystila, setIsPositive, setUsers, setMessage, setShowM
             })//then
 
             .catch(error => {
-                console.error("Error to Add New User:", error);
-            });
+                console.error("Error adding new user:", error);
+                setMessage('Error adding new user');
+                setIsPositive(false);
+                setShowMessage(true);
+                setTimeout(() => {
+                  setShowMessage(false);
+                }, 3000);
+              });
     
     }//handleSubmit
 
@@ -91,7 +103,11 @@ const UserAdd = ({ setLisäystila, setIsPositive, setUsers, setMessage, setShowM
                     <input type="password" value={newPassword} placeholder="Password"
                         onChange={({ target }) => setNewPassword(target.value)} />
                 </div>
-               
+                <div>
+                    <input type="password" value={confirmPassword} placeholder="Confirm Password"
+                        onChange={({ target }) => setConfirmPassword(target.value)} />
+                </div>
+                {passwordError && <p style={{ color: 'red' }}>{passwordError}</p>}
 
                 <div style={{ marginTop: '20px' }}>
                     {/* 1. */}

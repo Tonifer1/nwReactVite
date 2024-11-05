@@ -8,9 +8,12 @@ const api = axios.create({
     baseURL: baseUrl
 });
 
+//Tähän muuttujaan tallennetaan token, joka otetaan local storagesta.
 let token = null
 
 //3.Token  Auth.authenticate funktiosta login.jsx tiedostosta
+//Metodi jota kutsutaan aina ennen kuin tehdään pyyntö backendiin.
+//Parametrina annetaan token joka otetaan local storagesta.
 const setToken = (newToken) => {
     token = `Bearer ${newToken}`;
     api.defaults.headers.common['Authorization'] = token; // Asetetaan oletusotsikko
