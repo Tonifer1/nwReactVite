@@ -35,7 +35,7 @@ const CustomerAdd = ({ setLisäystila, setIsPositive, setCustomers, setMessage, 
         event.preventDefault()
 
         // Luodaan uusi asiakasobjekti lomakkeen tiedoista. new Customer on itse keksitty nimi.
-        // Alla olevat kentät täytyy olla nimeltään samat kuin back-endissä olevat kentät. Huom! camelCase.
+        // Alla olevat (vasemmat)kentät täytyy olla nimeltään samat kuin back-endissä olevat kentät. Huom! camelCase.
         var newCustomer = {
             customerId: newCustomerId.toUpperCase(), // Muutetaan ID isoiksi kirjaimiksi
             companyName: newCompanyName,

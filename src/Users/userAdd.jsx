@@ -33,8 +33,8 @@ const UserAdd = ({ setLisäystila, setIsPositive, setUsers, setMessage, setShowM
           }
         // Alla olevat kentät täytyy olla nimeltään samat kuin back-endissä olevat kentät. Huom! camelCase.
         var newUser = {
-            firstname: newFirstName,
-            lastname: newLastName,
+            firstName: newFirstName,
+            lastName: newLastName,
             email: newEmail,
             acceslevelId:newAcceslevelId,
             username: newUsername,
@@ -47,7 +47,7 @@ const UserAdd = ({ setLisäystila, setIsPositive, setUsers, setMessage, setShowM
         UserService.addNew(newUser)
             .then(() => {
                 console.log("Sending new user to backend:", newUser);
-                setMessage(`Lisätty new user:${newUser.firstname} ${newUser.lastname}`)
+                setMessage(`Lisätty new user:${newUser.firstName} ${newUser.lastName}`)
                 setIsPositive(true);
                 setShowMessage(true);
                 setUsers(prevUsers => [...prevUsers, newUser])

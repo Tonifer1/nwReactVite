@@ -1,6 +1,7 @@
 import axios from 'axios';
 
 const baseUrl = 'https://localhost:7121/api/Authentication';
+//const baseUrl = 'https://northwindrestapi20241105134531.azurewebsites.net/api/Authentication';
 
 //2.Funktio lähettää POST-pyynnön backend-palvelimelle osoitteeseen https://localhost:7121/api/authentication
 //Backend palauttaa tokenin, jos tunnukset ovat oikein.

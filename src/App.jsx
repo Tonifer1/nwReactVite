@@ -1,7 +1,7 @@
 //Täällä on funktionaalinen komponentti App, joka palauttaa divin, jonka sisäällä on html-elementtejä.
 //Sivun alaosassa on exportattu App-komponentti, joka on käytössä main.jsx-tiedostossa.
 //export pitää aina olla, jotta komponentti on käytettävissä muualla.
-//import React, { useState } from 'react'
+
 import './App.css'
 import Laskuri from './Laskuri.jsx'
 import Posts from './Posts.jsx'
@@ -13,7 +13,7 @@ import Message from './Message.jsx'
 import Navbar from 'react-bootstrap/Navbar'
 import Nav from 'react-bootstrap/Nav'
 import 'bootstrap/dist/css/bootstrap.min.css'
-import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom'
+import { BrowserRouter as Router, Route, Routes, Link, Navigate } from 'react-router-dom'
 import Login from './login.jsx'
 
 //Määritellään / esitellään funktionaalinen "Äiti" komponentti App. Huom! Komponentit on aina oltava isolla alkukirjaimella!
@@ -50,13 +50,11 @@ const handleLogout = () => {
 };
 
 
-
   return (
     <div className="App">
       <Router>        
 
         <Navbar className="navbar navbar-expand-lg bg-dark" data-bs-theme="dark">
-          {/* <div class="container"> */}
           <Nav className="me-auto">
           <Nav.Link as={Link} to='/'>Home</Nav.Link>
             <Nav.Link as={Link} to={loggedIn ? '/customers' : '/login'}>
@@ -64,36 +62,49 @@ const handleLogout = () => {
             </Nav.Link>
             <Nav.Link as={Link} to='/posts'>Posts</Nav.Link>
             <Nav.Link as={Link} to='/users'>Users</Nav.Link>
-            {/* Ehdollinen näyttö Login/Logout-painikkeelle */}
             {loggedIn ? (
               <Nav.Link onClick={handleLogout}>Logout</Nav.Link>
-            ) :
+            ) 
+            :
              (
                 <Nav.Link as={Link} to='/login'>Login</Nav.Link>
             )}
             <Nav.Link as={Link} to='/laskuri'>Laskuri</Nav.Link>
-          </Nav>
-        
-        
+          </Nav>        
         </Navbar>
           
-          <h2>Northwind Traders</h2>
+          {/* <h2>Northwind Traders</h2> */}
 
             {showMessage && <Message message={message} isPositive={isPositive} />}
-          
 
           <Routes>
-                {loggedIn &&(
-                  <Route path="/customers"
-                element= {<CustomerList setMessage={setMessage} setIsPositive={setIsPositive} 
-                setShowMessage={setShowMessage} />} />
-                )}
+                <Route path="/" element={<h1>Welcome to ReactApp</h1>} />
 
-                <Route path="/users"
-                element={ <UserList setMessage={setMessage} setIsPositive={setIsPositive} 
-                  setShowMessage={setShowMessage} />} >
-                </Route>
+          <Route path="/customers" element={
+            loggedIn ? (
+              <CustomerList
+                setMessage={setMessage}
+                setIsPositive={setIsPositive}
+                setShowMessage={setShowMessage}
+              />
+            ) 
+            : 
+            ( <Navigate to="/login" replace />)            
+          } />
 
+          <Route path="/users" element={
+            loggedIn ? 
+            (
+              <UserList
+                setMessage={setMessage}
+                setIsPositive={setIsPositive}
+                setShowMessage={setShowMessage}
+              />
+            ) 
+            : 
+            (<Navigate to="/login" replace />)
+          }/>
+          
                 <Route path="/posts"
                 element={ <Posts />} >
                 </Route>
@@ -102,32 +113,26 @@ const handleLogout = () => {
                 element={ <Laskuri />}>                  
                 </Route>
 
-                {/* <Routes>
-                  <Route path="/" element={<Home />} />
-                </Routes> */}
-
-                {!loggedIn &&(
-                <Route path="/login"
-                element={ <Login setMessage={setMessage} setShowMessage={setShowMessage} setloggedIn={setloggedIn}
-                setIsPositive={setIsPositive}/>}>                  
-                </Route>
-                )}
-
+                <Route path="/login" element={
+                 !loggedIn ? 
+                (
+                  <Login setMessage={setMessage} setShowMessage={setShowMessage} 
+                  setloggedIn={setloggedIn} setIsPositive={setIsPositive}/>
+                )
+                : 
+                (<Navigate to="/" replace />)
+                }/>
+                
           </Routes>
-
-
          
       </Router>
           
       </div>
     
-    
-
   )//return
 
 }//App
 
-//Exportataan App-komponentti, jotta sitä voidaan käyttää muualla sovelluksessa import komennolla
 //Tämä on importattu main.jsx-tiedostossa
 export default App
 

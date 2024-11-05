@@ -15,7 +15,7 @@ import Customer from './customer'
 import CustomerAdd from './customerAdd';
 
 import CustomerEdit from './customerEdit'
-import Login from '../login';
+//import Login from '../login';
 
 // CustomerList-komponentti 
 const CustomerList = ({setIsPositive, setMessage, setShowMessage,}) => {
