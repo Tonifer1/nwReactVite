@@ -9,7 +9,7 @@ import { useState, useEffect } from 'react'
 import UserService from '../Services/UserServ'
 
 // Tuodaan User-komponentti (Funktion nimi), joka renderöi yhden userin tiedot
-// import User from './user'
+ import User from './user'
 
 // Tuodaan CustomerAdd-komponentti (Funktion nimi), joka mahdollistaa uuden asiakkaan lisäämisen
  import UserAdd from './userAdd';
@@ -25,26 +25,36 @@ const UserList = ({setIsPositive, setMessage, setShowMessage,}) => {
     // Määritellään tila eli STATE USER, joka sisältää userslistan.Alempana tarkistetaan onko dataa renderöitäväksi.
 
     const [users, setUsers] = useState([])
+    // Määritellään tila eli state show, joka määrittää näytetäänkö userit vai ei.
+    const [show, setShow] = useState(false)
 
     // Määritellään tila eli state lisäystila, joka määrittää näytetäänkö UserAdd vai ei.
     const [lisäystila, setLisäystila] = useState(false)
-    const [muokkaustila, setMuokkaustila] = useState(false)
-    const [muokattavaUser, setMuokattavaUser] = useState(false)
-    const [search, setSearch] = useState('')
-    //const [reload, reloadNow] = useState(false) 
 
-    //useEffect-hook, joka hakee heti asiakastiedot ohjelman käynnistyessä CustomerService:ltä komponentin latautuessa. Tässä tulee Axios käyttöön.
-    //Axios osaa konvertoida JSON datan suoraan JavaScriptiksi.
-    //getAll-funktio löytyy CustomerServ.js tiedostosta.
+    const [muokkaustila, setMuokkaustila] = useState(false)
+
+    //const [muokattavaUser, setMuokattavaUser] = useState(false)
+
+    const [search, setSearch] = useState('')
+     
+    //useEffect-hook, joka hakee heti Usertiedot ohjelman käynnistyessä UserService:ltä komponentin latautuessa. Tässä tulee Axios käyttöön.
 
     useEffect(() => {
-        UserService.getAll()
-            .then(data =>  setUsers(data)) // Asetetaan haetut asiakastiedot users-tilaan.(data) tulee UserServ.js tiedostosta.
-    }, [lisäystila, muokkaustila])
+        if (show) {
+            UserService.getAll()
+            .then(data =>{
+             console.log("Fetched users:", data);    
+                 setUsers(data);
+            })
+            .catch(error => console.error("Error fetching users:", error));
+        }//if
+    }, [show, lisäystila,]);
+
 
     
     //Hakukentän onChange tapahtumankäsittelijä. Parametrina event, joka edustaa input-kentän tapahtumaa. 
-    const handleSearchInputChange = (event) => {        
+    const handleSearchInputChange = (event) => {
+        setShow(true)        
         setSearch(event.target.value.toLowerCase())
     }
     
@@ -56,67 +66,53 @@ const UserList = ({setIsPositive, setMessage, setShowMessage,}) => {
 return (
     <>                
         <div>
-            <h2>Users</h2>
+            <h2>UsersList</h2>
             {!lisäystila && !muokkaustila &&
             <input placeholder="Search by last name" value={search} className="inputsearch"  onChange={handleSearchInputChange} />
             }
         </div>
 
+        <span className="nowrap">
+            {(!lisäystila && !muokkaustila) && (
+                <button className="nappi" style={{ cursor: 'pointer' }} onClick={() => setShow(!show)}>
+                    {show ? "Hide UsersList" : "Show UsersList"}</button>)}
+        </span>
+
+        <span className="nowrap">
+            <button className="nappi" style={{ cursor: 'pointer' }} onClick={() => setLisäystila(!lisäystila)}>      
+                {lisäystila ? "Hide Add UserList" : "Show Add UserList"}
+            </button>
+        </span>
+
+        {/* Renderöidään UserAdd-komponentti, kun lisäystila on true. Mahdollistaa uuden Userin lisäyksen */}
+
         {lisäystila && ( <UserAdd setLisäystila= {setLisäystila} setUsers={setUsers}
          setIsPositive={setIsPositive} setMessage={setMessage} setShowMessage={setShowMessage}/>                  
         )}
 
-        <span className="nowrap">
-            <button className="nappi" style={{ cursor: 'pointer' }} onClick={() => setLisäystila(!lisäystila)}>      
-                {lisäystila ? "Hide Add User" : "Show Add User"}
-            </button>
-        </span>
 
-        {/* <span className="nowrap">
-        {(!lisäystila && !muokkaustila) && (
-            <button className="nappi" style={{ cursor: 'pointer' }} onClick={() => setShow(!show)}>                        
-                {show ? "Hide Customers" : "Show Customers"}</button>)}
-        
-        </span> */}
-
-        
-        {muokkaustila && ( <CustomerEdit setMuokkaustila ={setMuokkaustila} 
-        setIsPositive={setIsPositive} setMessage={setMessage} setShowMessage={setShowMessage}
-        muokattavaCustomer={muokattavaCustomer} setCustomers={setCustomers} />                    
+        {/* Jos show on true näytetään userslista */}
+        {(!lisäystila && !muokkaustila && show) && (
+            users.map(u => {
+                const lowerCaseName = u.lastName ? u.lastName.toLowerCase() : '';
+                if (lowerCaseName.indexOf(search) > -1) {
+                    return (
+                        <User
+                            key={u.userId || u.email || u.username}
+                            userprops={u}
+                            setUsers={setUsers}
+                            setMessage={setMessage}
+                            setIsPositive={setIsPositive}                            
+                            setShowMessage={setShowMessage}
+                            editUser={editUser}
+                        />
+                    );
+                }
+                return null;
+            })
         )}
-        
-        {!lisäystila && !muokkaustila && (
-    <div className="text-center table-responsive">
-        <table className="table table-striped table-bordered table-hover mx-auto">
-            <thead className="table-dark">
-                <tr>
-                    <th>First Name</th>
-                    <th>Last Name</th>
-                    <th>Username</th>
-                    <th>Email</th>                                
-                    <th>Acceslevel</th>
-                </tr>
-            </thead>
-            <tbody>                                           
-                {users && users.map(u => {
-                    const lowerCaseName = u.lastName ? u.lastName.toLowerCase() : '';
-                    if (lowerCaseName.indexOf(search) > -1) {
-                        return (
-                            <tr key={u.userId || u.email || u.username}>
-                                <td>{u.firstName}</td>
-                                <td>{u.lastName}</td>
-                                <td>{u.username}</td>
-                                <td>{u.email}</td>
-                                <td>{u.acceslevelId}</td>
-                            </tr>
-                        ); 
-                    } 
-                    return null;
-                })}
-            </tbody>
-        </table>
-    </div>
-)}
+
+
 
     
                

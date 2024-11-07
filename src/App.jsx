@@ -16,6 +16,7 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import { BrowserRouter as Router, Route, Routes, Link, Navigate } from 'react-router-dom'
 import Login from './login.jsx'
 
+
 //Määritellään / esitellään funktionaalinen "Äiti" komponentti App. Huom! Komponentit on aina oltava isolla alkukirjaimella!
 //Nimetön funktio arvoltaan.
 //Ei parametreja, joten sulut ovat tyhjät.
@@ -78,7 +79,7 @@ const handleLogout = () => {
             {showMessage && <Message message={message} isPositive={isPositive} />}
 
           <Routes>
-                <Route path="/" element={<h1>Welcome to ReactApp</h1>} />
+            <Route path="/" element={<h1>Welcome to App component</h1>} />
 
           <Route path="/customers" element={
             loggedIn ? (

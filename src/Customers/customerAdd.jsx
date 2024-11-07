@@ -6,7 +6,7 @@ import CustomerService from '../Services/CustomerServ'
 // setLisäystila ym. on propseja, jotka tulee CustomerList-komponentilta, jotta täältä päästään pois.
 
 //Ikäänkuin import toiminto. Tulee CustomerList  tiedostosta.
-const CustomerAdd = ({ setLisäystila, setIsPositive, setCustomers, setMessage, setShowMessage, }) => {
+const CustomerAdd = ({ setLisäystila, setCustomers, setMessage, setIsPositive, setShowMessage, }) => {
 
     //! ********************Tilan eli Staten määritys*************************************
     // Statet pitävät kirjaa sen hetken tilasta ja päivittävät sitä, joka kerta kun käyttäjä kirjoittaa jotain kenttään.
@@ -49,47 +49,6 @@ const CustomerAdd = ({ setLisäystila, setIsPositive, setCustomers, setMessage, 
             fax: newFax
         }//newCustomer
 
-        //3.
-        // Uusi asiakas (newCustomer) lähetetään back-endille kutsumalla CustomerService.addNew-funktiota -> (CustomerServ.js),    
-        // joka tekee POST-pyynnön ja lähettää uuden asiakasobjektin.
-        // Ottaa parametriksi uuden asiakkaan (newCustomer) ja palauttaa vastauksen eli (responsen).
-        //5. Kun onnistunut vastaus on saatu, päivittyy asiakaslista suoraan ilman sivun uudelleenlatausta funktion avulla.
-
-        // CustomerService.addNew(newCustomer)
-        //     .then(response => {
-        //         console.log("Vastaus:", response);
-        //         if (response.status === 200) {
-        //             setShowMessage(true)
-        //             setMessage(`Lisätty new customer:${newCustomer.companyName}`)
-        //             setIsPositive(true)
-                    
-        //             console.log("Näkyykö viesti lisäyksestä? ")
-                    
-
-        //             setTimeout(() => {
-        //                 setShowMessage(false)
-        //             }, 5000)
-
-        //             setLisäystila(false)
-
-                    
-        //             setCustomers(prevCustomers => [...prevCustomers, newCustomer])
-        //         }//if 
-
-
-        //     })//.then
-        //     .catch(error => {
-        //         setMessage('Error in adding new customer')
-        //         setIsPositive(false)
-        //         setShowMessage(true)
-
-        //         setTimeout(() => {
-        //             setShowMessage(false)
-        //         }, 5000)
-
-        //     })//.catch
-
-
         CustomerService.addNew(newCustomer)
             .then(() => {
                 setMessage(`Lisätty new customer:${newCustomer.companyName}`)
@@ -111,17 +70,13 @@ const CustomerAdd = ({ setLisäystila, setIsPositive, setCustomers, setMessage, 
                 console.error("Error to Add New Customer:", error);
             });
     
-    
-
-
-
     }//handleSubmit
 
 
     //! ****************************return*************************************
     return (
         <div id="addNew">
-            <h2>Customer add</h2>
+            <h2>From Customer add</h2>
 
             {/* Lomake eli Form uuden asiakkaan lisäämistä varten */}
             {/* Normaalisti ei anneta Id kenttää käyttäjän täytettäväksi, mutta tässä annetaan, koska Id on string. */}

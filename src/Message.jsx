@@ -1,6 +1,6 @@
 import './App.css'
 // Tätä komponenttia voidaan käyttää missä vain komponentissa, jossa halutaan näyttää viesti käyttäjälle.
-// Tämä komponentti ottaa propsina viestin ja sen tyypin (positiivinen tai negatiivinen).
+// Tämä komponentti ottaa propsina messagen ja sen tyypin (positiivinen tai negatiivinen).
 
 const Message = ({ message, isPositive }) => {
 

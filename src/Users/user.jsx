@@ -1,6 +1,6 @@
 import '../App.css'
 import { useState } from 'react'
-import UserServive from '../Services/UserServ'
+import UserService from '../Services/UserServ'
 // Täällä käsitellään yksittäisen käyttäjän tiedot. Siksi nimi user.jsx yksikkömuodossa.
 // Jokaisen userin yksittäiset tiedot renderöidään tässä komponentissa.
 // Props on nimeltään userprops, jonka se saa CustomerList-komponentilta.
@@ -9,80 +9,69 @@ import UserServive from '../Services/UserServ'
 // u on yksittäinen asiakasobjekti, joka on peräisin UserList users-taulukosta ja sisältää yhden userin tiedot.
 // Parametri on määritelty UserList tiedostossa näin: userprops={u}. Kuitenkin tässä tiedostossa se on {userprops}.Eli hakasuluissa.
 
-                  //Ikäänkuin import. Tulee CustomerList  tiedostosta.
-const User = ({ userprops,setUser, setIsPositive, setMessage, setShowMessage, editUser }) => {
+                  //Ikäänkuin import. Tulee (User)List  tiedostosta.
+const User = ({ setUsers, userprops, setMessage, setIsPositive, setShowMessage, editUser }) => {
 
     // Komponentin tilan määritys
     const [showDetails, setShowDetails] = useState(false)
 
-    const deleteUser = (user) => {
-        let vastaus = window.confirm(`Delete customer window.confirm osio ${user.userName}?`)
-
+    const deleteUser = (userprops) => {
+        let vastaus = window.confirm(`Delete user ${userprops.username}?`);
+    
         if (vastaus === true) {
-            UserServive.remove(user.userId)
-                .then(res => {
-                    if (res.status === 200) {
-                        console.log("Poisto tehty: viesti näkyy? If lohko");
-                        setMessage(`Succesfully removed user ${user.userName}`)
-                        setIsPositive(true)
-                        setShowMessage(true)
-                        window.scrollBy(0, -10000) // Scrollataan ylös jotta nähdään alert
-                        setUsers(prevUsers => 
-                            prevUsers.filter(u => u.userId !== user.userId)
-                        ); 
-                    }//if
+            UserService.remove(userprops.userId)
+            .then(res => {
+                if (res.status === 200 || res.status === 204) {
+                    setMessage(`Successfully removed user ${userprops.username}`);
+                    setIsPositive(true);
+                    setShowMessage(true);
+                    window.scrollBy(0, -10000);
+                    setUsers(prevUsers => prevUsers.filter(u => u.userId !== userprops.userId));
+                }
+                setTimeout(() => {
+                    setShowMessage(false);
+                }, 3000);
 
-                    setTimeout(() => {
-                    setShowMessage(false)
-                    }, 3000)
-                    
                 })//then
 
-            .catch(error => {
-                setMessage(`Error: ${error}`)
-                setIsPositive(false)
-                setShowMessage(true)
-                setTimeout(() => {
-                setShowMessage(false)
-                window.scrollBy(0, -10000)
-                }, 5000)
-            })
-        }//if               
-            else {
-                
-                console.log("Poisto peruttu konsolissa. Näkyykö? Else haara ");
-                setMessage('Poisto peruttu onnistuneesti.')
-                    setIsPositive(true)
-                    setShowMessage(true)
-                    
-                     window.scrollBy(0, -5000) // Scrollataan ylös jotta nähdään alert :)
-            
-                    // Ilmoituksen piilotus
+                .catch(error => {
+                    setMessage(`Error: ${error}`);
+                    setIsPositive(false);
+                    setShowMessage(true);
                     setTimeout(() => {
-                    setShowMessage(false)},
-                    3000
-                    )
-                }
-
-               
-
+                    setShowMessage(false);
+                    window.scrollBy(0, -10000);
+                    }, 5000);
+                });
+        }//if
+        else {
+                
+            console.log("Poisto peruttu konsolissa. Näkyykö? Else haara ");
+            setMessage('Poisto peruttu onnistuneesti.')
+                setIsPositive(true)
+                setShowMessage(true)
+                
+                 window.scrollBy(0, -5000) // Scrollataan ylös jotta nähdään alert :)
         
-
+                // Ilmoituksen piilotus
+                setTimeout(() => {
+                setShowMessage(false)},
+                3000
+                )
+            }//else
     }//deleteUser
+    
+    
 
     return (
-        <div className='customerDiv'>
-            {/* Näytetään yksittäisen asiakkaan yrityksen nimi */}
+        <div className='customerDiv' >
+            {/* Näytetään yksittäisen userin nimi */}
             <h4>
                 {userprops.username} 
             </h4>
 
-            {/* Nappi, joka vaihtaa showDetails-tilan arvoa true/false. !showDetails vaihtaa käänteisesti järjestystä */}
+            
             <button className="nappi" onClick={() => setShowDetails(!showDetails)}>
-                
-            {/* tämä ternäärinen operaattori tarkistaa showDetails-tilan arvon ja palauttaa 
-            joko "Hide Details" tai "Show Details"
-             sen mukaan, onko showDetails tosi vai epätosi.     */}
                 {showDetails ? "Hide Details" : "Show Details"}
             </button>
 
@@ -96,11 +85,12 @@ const User = ({ userprops,setUser, setIsPositive, setMessage, setShowMessage, ed
                     <table>
                         <thead>
                             <tr>
-                                <th>First name</th>
+                                <th>FirstnameUserjsx</th>
                                 <th>Last name</th>
                                 <th>E-mail</th>
                                 <th>Username</th>
                                 <th>Accesslevel</th>
+                                
                             </tr>
                         </thead>
                         <tbody>
@@ -110,6 +100,7 @@ const User = ({ userprops,setUser, setIsPositive, setMessage, setShowMessage, ed
                                 <td>{userprops.email}</td>
                                 <td>{userprops.username}</td>
                                 <td>{userprops.acceslevelId}</td>
+                                
                             </tr>
                         </tbody>
                     </table>

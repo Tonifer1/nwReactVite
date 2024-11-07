@@ -15,10 +15,10 @@ import Customer from './customer'
 import CustomerAdd from './customerAdd';
 
 import CustomerEdit from './customerEdit'
-//import Login from '../login';
+
 
 // CustomerList-komponentti 
-const CustomerList = ({setIsPositive, setMessage, setShowMessage,}) => {
+const CustomerList = ({ setMessage, setIsPositive, setShowMessage,  }) => {
 
 
 //!#*****************************************Tilan määritys Hooks****************************************************
@@ -37,24 +37,35 @@ const CustomerList = ({setIsPositive, setMessage, setShowMessage,}) => {
     const [muokattavaCustomer, setMuokattavaCustomer] = useState(false)
 
     const [search, setSearch] = useState('')
-
-    const [reload, reloadNow] = useState(false) 
-
-    //useEffect-hook, joka hakee heti asiakastiedot ohjelman käynnistyessä CustomerService:ltä komponentin latautuessa. Tässä tulee Axios käyttöön.
-    //Axios osaa konvertoida JSON datan suoraan JavaScriptiksi.
-    //getAll-funktio löytyy CustomerServ.js tiedostosta.
-
+    
     useEffect(() => {
-        console.log("Fetching customers data with getAll request");
-        CustomerService.getAll()
-            .then(data => {
-                console.log("Customers data:", data);
-                setCustomers(data); // Asetetaan haetut asiakastiedot customers-tilaan.
-            })
-            .catch(error => {
-                console.error("Failed to fetch customers:", error);
-            });
+        const token = localStorage.getItem('token');
+        if (token) {
+            CustomerService.setToken(token); // Asetetaan token jokaisessa latauksessa
+            console.log("Token asetettu, haetaan asiakkaat");
+    
+            CustomerService.getAll()
+                .then(data => {
+                    console.log("Customers data:", data);
+                    setCustomers(data); // Asetetaan haetut asiakastiedot customers-tilaan.
+                })
+                .catch(error => {
+                    console.error("Failed to fetch customers:", error);
+                    if (error.response && error.response.status === 401) {
+                        // Token saattaa olla vanhentunut
+                        alert("Session expired. Please log in again.");
+                        // Voit tässä tyhjentää tokenin ja ohjata käyttäjän kirjautumaan uudelleen
+                        localStorage.removeItem('token');
+                        window.location.href = '/login';
+                    }
+                });
+        } else {
+            console.log("Token puuttuu, käyttäjä ohjataan kirjautumaan");
+            window.location.href = '/login'; // Ohjaa käyttäjä kirjautumaan
+        }
     }, [lisäystila, muokkaustila]);
+    
+
     
 
     //Hakukentän onChange tapahtumankäsittelijä. Parametrina event, joka edustaa input-kentän tapahtumaa. 
@@ -71,9 +82,9 @@ const CustomerList = ({setIsPositive, setMessage, setShowMessage,}) => {
 return (
            <>                
                 <div>
-                    <h2>Customers</h2>
+                    <h2>CustomerList</h2>
                     {!lisäystila && !muokkaustila &&
-                    <input placeholder="Search by company name" value={search} className="inputsearch"  onChange={handleSearchInputChange} />
+                    <input placeholder="Search by company CList" value={search} className="inputsearch"  onChange={handleSearchInputChange} />
                     }
                 </div>
 
@@ -81,12 +92,12 @@ return (
                     <span className="nowrap">
                     {(!lisäystila && !muokkaustila) && (
                         <button className="nappi" style={{ cursor: 'pointer' }} onClick={() => setShow(!show)}>                        
-                            {show ? "Hide Customers" : "Show Customers"}</button>)}
+                            {show ? "Hide CustList" : "Show CustList"}</button>)}
                     </span>
 
                     <span className="nowrap">
                         <button className="nappi" style={{ cursor: 'pointer' }} onClick={() => setLisäystila(!lisäystila)}>      
-                            {lisäystila ? "Hide Add Customer" : "Show Add Customer"}
+                            {lisäystila ? "Hide Add CustList" : "Show Add CustList"}
                         </button>
                     </span>
 
@@ -102,9 +113,6 @@ return (
                     muokattavaCustomer={muokattavaCustomer} setCustomers={setCustomers} />                    
                     )}
 
-                    {/* { (<Login 
-                     setCustomers={setCustomers} />
-                    )} */}
             
                     {/* Tässä kaksi && merkkiä tarkoittaa (ja) viimeinen && että mitä tehdään jos molemmat ovat tosia. */}
                 {

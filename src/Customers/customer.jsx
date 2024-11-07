@@ -10,7 +10,7 @@ import CustomerService from '../Services/CustomerServ'
 // Parametri on määritelty CustomerList tiedostossa näin: customerprops={cust}. Kuitenkin tässä tiedostossa se on {customerprops}.Eli hakasuluissa.
 
                   //Ikäänkuin import. Tulee CustomerList  tiedostosta.
-const Customer = ({ customerprops,setCustomers, setIsPositive, setMessage, setShowMessage, editCustomer }) => {
+const Customer = ({ customerprops,setCustomers, setMessage, setIsPositive, setShowMessage, editCustomer }) => {
 
     // Komponentin tilan määritys
     const [showDetails, setShowDetails] = useState(false)
@@ -28,7 +28,7 @@ const Customer = ({ customerprops,setCustomers, setIsPositive, setMessage, setSh
                         setShowMessage(true)
                         window.scrollBy(0, -10000) // Scrollataan ylös jotta nähdään alert
                         setCustomers(prevCustomers => 
-                            prevCustomers.filter(c => c.customerId !== customer.customerId)
+                            prevCustomers.filter(c => c.customerId !== customerprops.customerId)
                         ); 
                     }//if
 
@@ -62,11 +62,7 @@ const Customer = ({ customerprops,setCustomers, setIsPositive, setMessage, setSh
                     setShowMessage(false)},
                     3000
                     )
-                }
-
-               
-
-        
+                }//else
 
     }//deleteCustomer
 
@@ -83,7 +79,7 @@ const Customer = ({ customerprops,setCustomers, setIsPositive, setMessage, setSh
             {/* tämä ternäärinen operaattori tarkistaa showDetails-tilan arvon ja palauttaa 
             joko "Hide Details" tai "Show Details"
              sen mukaan, onko showDetails tosi vai epätosi.     */}
-                {showDetails ? "Hide Details" : "Show Details"}
+                {showDetails ? "Hide Details cust" : "Show Details cust"}
             </button>
 
             {/* Jos showDetails on true, näytetään asiakkaan tiedot */}

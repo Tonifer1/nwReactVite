@@ -6,7 +6,7 @@ import CustomerService from '../Services/CustomerServ'
 // setMuokkaustila ym. on propseja, jotka tulee CustomerList-komponentilta, jotta täältä päästään pois.
 
 //Ikäänkuin import toiminto. Tulee CustomerList  tiedostosta.
-const CustomerEdit= ({ setMuokkaustila, setCustomers, setIsPositive,  setMessage, setShowMessage, muokattavaCustomer }) => {
+const CustomerEdit= ({ setMuokkaustila, setCustomers, setMessage, setIsPositive, setShowMessage, muokattavaCustomer }) => {
 
     //! ********************Tilan eli Staten määritys*************************************
     // Statet pitävät kirjaa sen hetken tilasta ja päivittävät sitä, joka kerta kun käyttäjä kirjoittaa jotain kenttään.
