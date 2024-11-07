@@ -74,8 +74,8 @@ const handleLogout = () => {
           </Nav>        
         </Navbar>
           
-          {/* <h2>Northwind Traders</h2> */}
-
+          
+            {/* Alla olevat propsit ovat arvoja, ei tilanmuutosfunktioita. */}
             {showMessage && <Message message={message} isPositive={isPositive} />}
 
           <Routes>
