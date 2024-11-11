@@ -6,6 +6,7 @@ import './App.css'
 import Laskuri from './Laskuri.jsx'
 import Posts from './Posts.jsx'
 import CustomerList from './Customers/CustomerList.jsx'
+import ProductList from './Products/ProductList.jsx'
 import UserList from './Users/UserList.jsx'
 import {useState} from 'react'
 import { useEffect } from 'react'
@@ -15,6 +16,7 @@ import Nav from 'react-bootstrap/Nav'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import { BrowserRouter as Router, Route, Routes, Link, Navigate } from 'react-router-dom'
 import Login from './login.jsx'
+
 
 
 //Määritellään / esitellään funktionaalinen "Äiti" komponentti App. Huom! Komponentit on aina oltava isolla alkukirjaimella!
@@ -61,6 +63,9 @@ const handleLogout = () => {
             <Nav.Link as={Link} to={loggedIn ? '/customers' : '/login'}>
               Customers
             </Nav.Link>
+            <Nav.Link as={Link} to={loggedIn ? '/products' : '/login'}>
+              Products
+            </Nav.Link>
             <Nav.Link as={Link} to='/posts'>Posts</Nav.Link>
             <Nav.Link as={Link} to='/users'>Users</Nav.Link>
             {loggedIn ? (
@@ -91,6 +96,18 @@ const handleLogout = () => {
             ) 
             : 
             ( <Navigate to="/login" replace />)            
+          } />
+
+          <Route path="/products" element={
+            loggedIn ? (
+              <ProductList
+                setMessage={setMessage}
+                setIsPositive={setIsPositive}
+                setShowMessage={setShowMessage}
+              />
+            )
+              :
+              (<Navigate to="/login" replace />)
           } />
 
           <Route path="/users" element={
