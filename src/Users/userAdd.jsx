@@ -101,11 +101,11 @@ const UserAdd = ({ setLisäystila, setIsPositive, setUsers, setMessage, setShowM
                 </div>
                 <div>
                     <input type="password" value={newPassword} placeholder="Password"
-                        onChange={({ target }) => setNewPassword(target.value)} />
+                        onChange={({ target }) => setNewPassword(target.value)} required />
                 </div>
                 <div>
                     <input type="password" value={confirmPassword} placeholder="Confirm Password"
-                        onChange={({ target }) => setConfirmPassword(target.value)} />
+                        onChange={({ target }) => setConfirmPassword(target.value)} required />
                 </div>
                 {passwordError && <p style={{ color: 'red' }}>{passwordError}</p>}
 

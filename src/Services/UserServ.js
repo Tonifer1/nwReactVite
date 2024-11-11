@@ -23,13 +23,23 @@ const setToken = (newToken) => {
 
 
 
-const getAll = () => {
+// const getAll = () => {
 
-    // const request = axios.get(baseUrl)
-    // return request.then(response => response.data)
-    console.log("Making getAll request with Authorization header:", api.defaults.headers.common['Authorization']); // Varmistus
-    return api.get('/').then(response => response.data)
-}
+//     // const request = axios.get(baseUrl)
+//     // return request.then(response => response.data)
+//     console.log("Making getAll request with Authorization header:", api.defaults.headers.common['Authorization']); // Varmistus
+//     return api.get('/').then(response => response.data)
+// }
+
+const getAll = () => {
+    const authToken = localStorage.getItem('token');
+    if (authToken) {
+        api.defaults.headers.common['Authorization'] = `Bearer ${authToken}`;
+    }
+    console.log("UserServ: Making getAll request with Authorization header:", api.defaults.headers.common['Authorization']); // Varmistus
+    return api.get('/').then(response => response.data);
+};
+
 
 
 const addNew = newUser => {

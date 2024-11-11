@@ -167,7 +167,7 @@ const CustomerEdit= ({ setMuokkaustila, setCustomers, setMessage, setIsPositive,
                     />
                 </div>
 
-                <div style={{ marginTop: '20px' }}>
+               
                     {/* 1. */}
                     {/* Tämä on submit-tyyppinen input-elementti, joka lähettää lomakkeen, kun sitä(save) klikataan */}
 
@@ -177,7 +177,7 @@ const CustomerEdit= ({ setMuokkaustila, setCustomers, setMessage, setIsPositive,
 
                     {/* Tämä on tavallinen button-tyyppinen input-elementti, joka ei lähetä lomaketta */}
                     <input type='button' value='back' onClick={() => setMuokkaustila(false)} />
-                </div>
+                
             </form>
 
         </div>

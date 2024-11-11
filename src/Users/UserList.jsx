@@ -14,7 +14,7 @@ import UserService from '../Services/UserServ'
 // Tuodaan CustomerAdd-komponentti (Funktion nimi), joka mahdollistaa uuden asiakkaan lisäämisen
  import UserAdd from './userAdd';
 
-// import UserEdit from './userEdit'
+ import UserEdit from './userEdit'
 
 // UserList-komponentti 
 const UserList = ({setIsPositive, setMessage, setShowMessage,}) => {
@@ -33,7 +33,7 @@ const UserList = ({setIsPositive, setMessage, setShowMessage,}) => {
 
     const [muokkaustila, setMuokkaustila] = useState(false)
 
-    //const [muokattavaUser, setMuokattavaUser] = useState(false)
+    const [muokattavaUser, setMuokattavaUser] = useState(false)
 
     const [search, setSearch] = useState('')
      
@@ -46,7 +46,15 @@ const UserList = ({setIsPositive, setMessage, setShowMessage,}) => {
              console.log("Fetched users:", data);    
                  setUsers(data);
             })
-            .catch(error => console.error("Error fetching users:", error));
+            .catch(error => {
+                console.error('Error fetching users:', error);
+                setMessage('Access denied or an error occurred while fetching users.');
+                setIsPositive(false);
+                setShowMessage(true);
+                setTimeout(() => {
+                    setShowMessage(false);
+                }, 3000);
+            });
         }//if
     }, [show, lisäystila,]);
 
@@ -88,6 +96,11 @@ return (
 
         {lisäystila && ( <UserAdd setLisäystila= {setLisäystila} setUsers={setUsers}
          setIsPositive={setIsPositive} setMessage={setMessage} setShowMessage={setShowMessage}/>                  
+        )}
+
+        {muokkaustila && (<UserEdit setMuokkaustila={setMuokkaustila}
+            setIsPositive={setIsPositive} setMessage={setMessage} setShowMessage={setShowMessage}
+            muokattavaUser={muokattavaUser} setUsers={setUsers} />
         )}
 
 
