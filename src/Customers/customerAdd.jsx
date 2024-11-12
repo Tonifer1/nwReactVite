@@ -54,9 +54,7 @@ const CustomerAdd = ({ setLisäystila, setCustomers, setMessage, setIsPositive, 
                 setMessage(`Lisätty new customer:${newCustomer.companyName}`)
                 setIsPositive(true);
                 setShowMessage(true);
-                setCustomers(prevCustomers => [...prevCustomers, newCustomer])
-
-                //reloadNow(!reload);Tämän poisto auttoi.
+                setCustomers(prevCustomers => [...prevCustomers, newCustomer])                
 
                 setTimeout(() => {
                     setShowMessage(false);

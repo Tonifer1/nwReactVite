@@ -22,7 +22,7 @@ const Customer = ({ customerprops,setCustomers, setMessage, setIsPositive, setSh
             CustomerService.remove(customer.customerId)
                 .then(res => {
                     if (res.status === 200) {
-                        console.log("Poisto tehty: viesti näkyy? If lohko");
+                        console.log("Poisto tehty customer: viesti näkyy? If lohko");
                         setMessage(`Succesfully removed customer ${customer.companyName}`)
                         setIsPositive(true)
                         setShowMessage(true)

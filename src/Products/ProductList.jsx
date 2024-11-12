@@ -14,9 +14,9 @@ import ProductService from '../Services/ProductServ'
 import Product from './product'
 
 // Tuodaan ProductAdd-komponentti (Funktion nimi), joka mahdollistaa uuden asiakkaan lisäämisen
-//import ProductAdd from './productAdd';
+import ProductAdd from './productAdd';
 
-//import ProductEdit from './productEdit'
+import ProductEdit from './productEdit'
 
 
 // ProductList-komponentti 
@@ -48,8 +48,10 @@ const ProductList = ({ setMessage, setIsPositive, setShowMessage,  }) => {
     
             ProductService.getAll()
                 .then(data => {
-                    console.log("Products data:", data);
-                    setProducts(data); // Asetetaan haetut productit products-tilaan.
+                    console.log("Products asettaa data:", data);
+                    if (JSON.stringify(data) !== JSON.stringify(products)) {
+                        setProducts(data); // Asetetaan haetut productit products-tilaan vain, jos se ei ole jo tehty
+                    }
                 })
                 .catch(error => {
                     console.error("Failed to fetch products:", error);
@@ -64,7 +66,7 @@ const ProductList = ({ setMessage, setIsPositive, setShowMessage,  }) => {
             console.log("Token puuttuu, käyttäjä ohjataan kirjautumaan");
             window.location.href = '/login'; // Ohjaa käyttäjä kirjautumaan
         }
-    }, [lisäystila, muokkaustila]);
+    }, []);
     
 
     
@@ -75,10 +77,10 @@ const ProductList = ({ setMessage, setIsPositive, setShowMessage,  }) => {
         setSearch(event.target.value.toLowerCase())
     }
     
-    // const editProduct = (productprops) => {
-    //     setMuokattavaProduct(productprops)
-    //     setMuokkaustila(true)
-    // }
+    const editProduct = (productprops) => {
+        setMuokattavaProduct(productprops)
+        setMuokkaustila(true)
+    }
 
 return (
            <>                
@@ -105,14 +107,14 @@ return (
                                     {/* PROPSIT  kolmeen tiedostoon. --> productAdd,productEdit, product */}
                     {/* Renderöidään ProductAdd-komponentti, kun lisäystila on true. Mahdollistaa uuden productin lisäyksen */}
 
-                    {/* {lisäystila && ( <ProductAdd setLisäystila= {setLisäystila} setProducts={setProducts}
+                    {lisäystila && ( <ProductAdd setLisäystila= {setLisäystila} setProducts={setProducts}
                     setIsPositive={setIsPositive} setMessage={setMessage} setShowMessage={setShowMessage}/>                  
-                    )} */}
+                    )}
 
-                    {/* {muokkaustila && ( <ProductEdit setMuokkaustila ={setMuokkaustila} 
+                    {muokkaustila && ( <ProductEdit setMuokkaustila ={setMuokkaustila} 
                     setIsPositive={setIsPositive} setMessage={setMessage} setShowMessage={setShowMessage}
                     muokattavaProduct={muokattavaProduct} setProducts={setProducts} />                    
-                    )} */}
+                    )}
 
             
                     {/* Tässä kaksi && merkkiä tarkoittaa (ja) viimeinen && että mitä tehdään jos molemmat ovat tosia. */}
@@ -122,9 +124,11 @@ return (
                         {
                             const lowerCaseName = prod.productName.toLowerCase()
                             if (lowerCaseName.indexOf(search) > -1) {
+                                console.log("Product ID:", prod.productId);
                                 return (
-                                    <Product key={prod.productId} productprops={prod} setProducts={setProducts}
-                                        setIsPositive={setIsPositive} setMessage={setMessage} setShowMessage={setShowMessage} editProduct={editProduct} />
+                                    <Product key={prod.productId || prod.productName} productprops={prod} setProducts={setProducts}
+                                        setIsPositive={setIsPositive} setMessage={setMessage} setShowMessage={setShowMessage} 
+                                         editProduct={editProduct} />
                                 )//return
 
                             }//if

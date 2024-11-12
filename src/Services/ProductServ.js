@@ -37,7 +37,7 @@ const remove = (id) => {
 };
 
 const update = (object) => {
-    return api.put(`/${object.customerId}`, object);
+    return api.put(`/${object.productId}`, object);
 };
 
 export default { getAll, addNew, remove, update, setToken };

@@ -21,12 +21,14 @@ const Product = ({ productprops,setProducts, setMessage, setIsPositive, setShowM
         if (vastaus === true) {
             ProductService.remove(product.productId)
                 .then(res => {
-                    if (res.status === 200) {
+                    if (res.status === 200 || res.status === 204) {
                         console.log("Poisto tehty: viesti näkyy? If lohko");
                         setMessage(`Succesfully removed product ${product.productName}`)
                         setIsPositive(true)
                         setShowMessage(true)
-                        window.scrollBy(0, -10000) // Scrollataan ylös jotta nähdään alert
+                        window.scrollTo({
+                            top: 0,                     
+                          });
                         setProducts(prevProducts => 
                             prevProducts.filter(p => p.productId !== productprops.productId)
                         ); 
@@ -34,17 +36,21 @@ const Product = ({ productprops,setProducts, setMessage, setIsPositive, setShowM
 
                     setTimeout(() => {
                     setShowMessage(false)
-                    }, 3000)
+                    }, 5000)
                     
                 })//then
 
             .catch(error => {
+                console.log("Poisto ei onnistunut. Error viesti näkyy? Catch lohko");
                 setMessage(`Error: ${error}`)
                 setIsPositive(false)
                 setShowMessage(true)
+                window.scrollTo({
+                    top: 0,                     
+                  });
                 setTimeout(() => {
                 setShowMessage(false)
-                window.scrollBy(0, -10000)
+
                 }, 5000)
             })
         }//if               
@@ -55,7 +61,7 @@ const Product = ({ productprops,setProducts, setMessage, setIsPositive, setShowM
                     setIsPositive(true)
                     setShowMessage(true)
                     
-                     window.scrollBy(0, -5000) // Scrollataan ylös jotta nähdään alert :)
+                     window.scrollBy(0, -10000) // Scrollataan ylös jotta nähdään alert :)
             
                     // Ilmoituksen piilotus
                     setTimeout(() => {
@@ -94,6 +100,8 @@ const Product = ({ productprops,setProducts, setMessage, setIsPositive, setShowM
                             <tr>
                                 <th>Product name</th>
                                 <th>Quantity per Unit</th>
+                                <th>SupplierId</th>
+                                <th>CategoryId</th>
                                 <th>Unit Price</th>
                                 <th>Units In Stock</th>
                                 <th>Units On Order</th>
@@ -106,10 +114,12 @@ const Product = ({ productprops,setProducts, setMessage, setIsPositive, setShowM
                             <tr>
                                 <td>{productprops.productName}</td>
                                 <td>{productprops.quantityPerUnit}</td>
+                                <td>{productprops.supplierId}</td>
+                                <td>{productprops.categoryId}</td>
                                 <td>{productprops.unitPrice}</td>
                                 <td>{productprops.unitsInStock}</td>
                                 <td>{productprops.unitsOnOrder}</td>
-                                <td>{productprops.recorderLevel}</td>
+                                <td>{productprops.reorderLevel}</td>
                                 <td>{productprops.discontinued}</td>
                                 <td>{productprops.imagelink}</td>
                             </tr>
