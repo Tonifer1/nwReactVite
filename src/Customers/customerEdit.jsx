@@ -6,7 +6,7 @@ import CustomerService from '../Services/CustomerServ'
 // setMuokkaustila ym. on propseja, jotka tulee CustomerList-komponentilta, jotta täältä päästään pois.
 
 //Ikäänkuin import toiminto. Tulee CustomerList  tiedostosta.
-const CustomerEdit= ({ setMuokkaustila, setCustomers, setMessage, setIsPositive, setShowMessage, muokattavaCustomer }) => {
+const CustomerEdit= ({ setMuokkaustila, setMessage, setIsPositive, setShowMessage, muokattavaCustomer }) => {
 
     //! ********************Tilan eli Staten määritys*************************************
     // Statet pitävät kirjaa sen hetken tilasta ja päivittävät sitä, joka kerta kun käyttäjä kirjoittaa jotain kenttään.
@@ -55,7 +55,7 @@ const CustomerEdit= ({ setMuokkaustila, setCustomers, setMessage, setIsPositive,
                 setIsPositive(true)
                 setShowMessage(true);
                 window.scrollBy(0, -10000)
-                setCustomers(prevCustomers => [...prevCustomers, newCustomer])
+                //setCustomers(prevCustomers => [...prevCustomers, newCustomer])
 
                 //reloadNow(!reload);Tämän poisto auttoi.
 

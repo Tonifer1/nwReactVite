@@ -6,7 +6,7 @@ import Auth from './Services/Auth'
 import md5 from 'md5'
 import { useNavigate } from 'react-router-dom';
 
-const Login = ({ setIsPositive, setMessage, setShowMessage, setloggedIn, setCustomers }) => {
+const Login = ({ setIsPositive, setMessage, setShowMessage, setloggedIn, }) => {
 
     //! ********************Tilan eli Staten määritys*************************************
     const [newUsername, setNewUsername] = useState('')
@@ -38,7 +38,7 @@ const Login = ({ setIsPositive, setMessage, setShowMessage, setloggedIn, setCust
             console.log('Token set to localStorage:', localStorage.getItem('token')); // Varmistus tulostuksen sijoittaminen nyt tähän
             UserService.setToken(response.token); // Tämä asettaa tokenin
             CustomerService.setToken(response.token); // Aseta token CustomerServille
-            // setCustomers(prevCustomers => [...prevCustomers, newCustomer])
+            
             setMessage(`Welcome ${response.username}`);
             setIsPositive(true);
             setShowMessage(true);

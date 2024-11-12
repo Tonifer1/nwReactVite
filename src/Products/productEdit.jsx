@@ -6,7 +6,7 @@ import ProductService from '../Services/ProductServ'
 // setMuokkaustila ym. on propseja, jotka tulee ProductList-komponentilta, jotta täältä päästään pois.
 
 //Ikäänkuin import toiminto. Tulee ProductList  tiedostosta.
-const ProductEdit= ({ setMuokkaustila, setProducts, setMessage, setIsPositive, setShowMessage, muokattavaProduct }) => {
+const ProductEdit= ({ setMuokkaustila, setMessage, setIsPositive, setShowMessage, muokattavaProduct }) => {
 
     //! ********************Tilan eli Staten määritys*************************************
     // Statet pitävät kirjaa sen hetken tilasta ja päivittävät sitä, joka kerta kun käyttäjä kirjoittaa jotain kenttään.
@@ -56,7 +56,7 @@ const ProductEdit= ({ setMuokkaustila, setProducts, setMessage, setIsPositive, s
                 setIsPositive(true)
                 setShowMessage(true);
                 window.scrollBy(0, -10000)
-                setProducts(prevProducts => [...prevProducts, newProduct])
+                //setProducts(prevProducts => [...prevProducts, newProduct])
 
                 setTimeout(() => {
                     console.log('setTimeout Osio')

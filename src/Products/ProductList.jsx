@@ -48,7 +48,7 @@ const ProductList = ({ setMessage, setIsPositive, setShowMessage,  }) => {
     
             ProductService.getAll()
                 .then(data => {
-                    console.log("Products asettaa data:", data);
+                    console.log("Products asettaa datan:", data);
                     if (JSON.stringify(data) !== JSON.stringify(products)) {
                         setProducts(data); // Asetetaan haetut productit products-tilaan vain, jos se ei ole jo tehty
                     }
@@ -66,7 +66,7 @@ const ProductList = ({ setMessage, setIsPositive, setShowMessage,  }) => {
             console.log("Token puuttuu, käyttäjä ohjataan kirjautumaan");
             window.location.href = '/login'; // Ohjaa käyttäjä kirjautumaan
         }
-    }, []);
+    }, [lisäystila, muokkaustila]) // useEffect;
     
 
     
@@ -113,7 +113,7 @@ return (
 
                     {muokkaustila && ( <ProductEdit setMuokkaustila ={setMuokkaustila} 
                     setIsPositive={setIsPositive} setMessage={setMessage} setShowMessage={setShowMessage}
-                    muokattavaProduct={muokattavaProduct} setProducts={setProducts} />                    
+                    muokattavaProduct={muokattavaProduct}  />                    
                     )}
 
             
@@ -124,7 +124,6 @@ return (
                         {
                             const lowerCaseName = prod.productName.toLowerCase()
                             if (lowerCaseName.indexOf(search) > -1) {
-                                console.log("Product ID:", prod.productId);
                                 return (
                                     <Product key={prod.productId || prod.productName} productprops={prod} setProducts={setProducts}
                                         setIsPositive={setIsPositive} setMessage={setMessage} setShowMessage={setShowMessage} 

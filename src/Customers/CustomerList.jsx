@@ -63,7 +63,7 @@ const CustomerList = ({ setMessage, setIsPositive, setShowMessage,  }) => {
             console.log("Token puuttuu, käyttäjä ohjataan kirjautumaan");
             window.location.href = '/login'; // Ohjaa käyttäjä kirjautumaan
         }
-    }, [lisäystila, muokkaustila]);
+    },   [lisäystila, muokkaustila]) // useEffect;
     
 
     
@@ -110,7 +110,7 @@ return (
 
                     {muokkaustila && ( <CustomerEdit setMuokkaustila ={setMuokkaustila} 
                     setIsPositive={setIsPositive} setMessage={setMessage} setShowMessage={setShowMessage}
-                    muokattavaCustomer={muokattavaCustomer} setCustomers={setCustomers} />                    
+                    muokattavaCustomer={muokattavaCustomer}  />                    
                     )}
 
             
