@@ -48,7 +48,7 @@ const UserList = ({setIsPositive, setMessage, setShowMessage,}) => {
             })
             .catch(error => {
                 console.error('Error fetching users:', error);
-                setMessage('Access denied or an error occurred while fetching users.');
+                setMessage('Access allowed only for Administrator.');
                 setIsPositive(false);
                 setShowMessage(true);
                 setTimeout(() => {
