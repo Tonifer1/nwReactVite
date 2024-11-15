@@ -87,15 +87,11 @@ return (
                     <input placeholder="Search by company CList" value={search} className="inputsearch"  onChange={handleSearchInputChange} />
                     }
                 </div>
-
-
                     <span className="nowrap">
                     {(!lisäystila && !muokkaustila) && (
                         <button className="nappi" style={{ cursor: 'pointer' }} onClick={() => setShow(!show)}>                        
                             {show ? "Hide CustList" : "Show CustList"}</button>)}
-                    </span>
 
-                    <span className="nowrap">
                         <button className="nappi" style={{ cursor: 'pointer' }} onClick={() => setLisäystila(!lisäystila)}>      
                             {lisäystila ? "Hide Add CustList" : "Show Add CustList"}
                         </button>

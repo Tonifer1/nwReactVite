@@ -66,7 +66,7 @@ const handleLogout = () => {
             <Nav.Link as={Link} to={loggedIn ? '/products' : '/login'}>
               Products
             </Nav.Link>
-            <Nav.Link as={Link} to='/posts'>Posts</Nav.Link>
+            {/* <Nav.Link as={Link} to='/posts'>Posts</Nav.Link> */}
             <Nav.Link as={Link} to='/users'>Users</Nav.Link>
             {loggedIn ? (
               <Nav.Link onClick={handleLogout}>Logout</Nav.Link>
@@ -75,7 +75,7 @@ const handleLogout = () => {
              (
                 <Nav.Link as={Link} to='/login'>Login</Nav.Link>
             )}
-            <Nav.Link as={Link} to='/laskuri'>Laskuri</Nav.Link>
+            {/* <Nav.Link as={Link} to='/laskuri'>Laskuri</Nav.Link> */}
           </Nav>        
         </Navbar>
           
@@ -84,7 +84,7 @@ const handleLogout = () => {
             {showMessage && <Message message={message} isPositive={isPositive} />}
 
           <Routes>
-            <Route path="/" element={<h1>Welcome to App component</h1>} />
+            <Route path="/" element={<h1>Welcome to app component</h1>} />
 
           <Route path="/customers" element={
             loggedIn ? (

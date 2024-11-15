@@ -68,31 +68,32 @@ const Login = ({ setIsPositive, setMessage, setShowMessage, setloggedIn, }) => {
     return (
         <div id="addNew">
             <h2>Login</h2>
-            <form onSubmit={handleSubmit}>
-                
-                <div>
-                    <input type="text" value={newUsername} placeholder="Username"
-                        onChange={({ target }) => setNewUsername(target.value)} />
-                </div>
-                <div>
-                    <input type="password" value={newPassword} placeholder="Password"
-                        onChange={({ target }) => setNewPassword(target.value)} />
-                </div>
-               
+            <div className="form-container">
+                <form onSubmit={handleSubmit}>
 
-                <div style={{ marginTop: '20px' }}>
-                    {/* 1. */}
-                    {/* Tämä on submit-tyyppinen input-elementti, joka lähettää lomakkeen, kun sitä(save) klikataan */}
+                    <div>
+                        <input type="text" value={newUsername} placeholder="Username"
+                            onChange={({ target }) => setNewUsername(target.value)} />
+                    </div>
+                    <div>
+                        <input type="password" value={newPassword} placeholder="Password"
+                            onChange={({ target }) => setNewPassword(target.value)} />
+                    </div>
 
-                    {/* Ohjelman suoritus siirtyy tästä ylhäällä olevaan handleSubmit-funktioon */}
 
-                    <input type='submit' value='login' style={{ marginRight: '10px' }} />
+                    <div style={{ marginTop: '20px' }}>
+                        {/* 1. */}
+                        {/* Tämä on submit-tyyppinen input-elementti, joka lähettää lomakkeen, kun sitä(save) klikataan */}
 
-                    {/* Tämä on tavallinen button-tyyppinen input-elementti, joka ei lähetä lomaketta */}
-                    <input type='button' value='back' onClick={handleBack}/>
-                </div>
-            </form>
+                        {/* Ohjelman suoritus siirtyy tästä ylhäällä olevaan handleSubmit-funktioon */}
 
+                        <input type='submit' value='login' style={{ marginRight: '10px' }} />
+
+                        {/* Tämä on tavallinen button-tyyppinen input-elementti, joka ei lähetä lomaketta */}
+                        <input type='button' value='back' onClick={handleBack} />
+                    </div>
+                </form>
+            </div>
         </div>
 
     )//return

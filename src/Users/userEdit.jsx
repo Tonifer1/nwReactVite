@@ -62,8 +62,9 @@ const UserEdit = ({ setMuokkaustila, setUsers, setMessage, setIsPositive, setSho
   };
 
   return (
-    <div id="edit">
+    <>
       <h2>User Edit</h2>
+    <div className="form-container">
       <form onSubmit={handleSubmit} className="customer-edit-form">
         <div>
           <label htmlFor="userId">User ID</label>
@@ -139,11 +140,12 @@ const UserEdit = ({ setMuokkaustila, setUsers, setMessage, setIsPositive, setSho
         </div>
         {passwordError && <p style={{ color: 'red' }}>{passwordError}</p>}
         <div style={{ marginTop: '20px' }}>
-          <input type='submit' value='Save' style={{ marginRight: '10px' }} />
-          <input type='button' value='Cancel' onClick={() => setMuokkaustila(false)} />
+          <input type='submit' value='Save' style={{ marginRight: '10px', width: '150px',color: 'black' }} />
+          <input type='button' value='Cancel'  onClick={() => setMuokkaustila(false)} style={{ marginRight: '10px', width: '150px',color: 'black' }} />
         </div>
       </form>
     </div>
+    </>
   );
 };
 

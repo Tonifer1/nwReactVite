@@ -85,61 +85,62 @@ const CustomerAdd = ({ setLisäystila, setCustomers, setMessage, setIsPositive, 
             {/* required tarkoittaa, että kenttä on pakollinen ja se ei voi olla tyhjä */}
             {/* virheenkäsittely varten Id kenttä on pakollinen ja pituus 5 merkkiä: maxLength="5" minLength="5" */}
 
+            <div className="form-container">
+                <form onSubmit={handleSubmit}>
+                    <div>
+                        <input type="text" value={newCustomerId} placeholder="ID with 5 capital letters" maxLength="5" minLength="5"
+                            onChange={({ target }) => setNewCustomerId(target.value)} required />
+                    </div>
+                    <div>
+                        <input type="text" value={newCompanyName} placeholder="Company name"
+                            onChange={({ target }) => setNewCompanyName(target.value)} required />
+                    </div>
+                    <div>
+                        <input type="text" value={newContactName} placeholder="Contact name"
+                            onChange={({ target }) => setNewContactName(target.value)} />
+                    </div>
+                    <div>
+                        <input type="text" value={newContactTitle} placeholder="Contact title"
+                            onChange={({ target }) => setNewContactTitle(target.value)} />
+                    </div>
+                    <div>
+                        <input type="text" value={newCountry} placeholder="Country"
+                            onChange={({ target }) => setNewCountry(target.value)} />
+                    </div>
+                    <div>
+                        <input type="text" value={newAddress} placeholder="Address"
+                            onChange={({ target }) => setNewAddress(target.value)} />
+                    </div>
+                    <div>
+                        <input type="text" value={newCity} placeholder="City"
+                            onChange={({ target }) => setNewCity(target.value)} />
+                    </div>
+                    <div>
+                        <input type="text" value={newPostalCode} placeholder="Postal code"
+                            onChange={({ target }) => setNewPostalCode(target.value)} />
+                    </div>
+                    <div>
+                        <input type="text" value={newPhone} placeholder="Phone"
+                            onChange={({ target }) => setNewPhone(target.value)} />
+                    </div>
+                    <div>
+                        <input type="text" value={newFax} placeholder="Fax"
+                            onChange={({ target }) => setNewFax(target.value)} />
+                    </div>
 
-            <form onSubmit={handleSubmit}>
-                <div>
-                    <input type="text" value={newCustomerId} placeholder="ID with 5 capital letters" maxLength="5" minLength="5"
-                        onChange={({ target }) => setNewCustomerId(target.value)} required />
-                </div>
-                <div>
-                    <input type="text" value={newCompanyName} placeholder="Company name"
-                        onChange={({ target }) => setNewCompanyName(target.value)} required />
-                </div>
-                <div>
-                    <input type="text" value={newContactName} placeholder="Contact name"
-                        onChange={({ target }) => setNewContactName(target.value)} />
-                </div>
-                <div>
-                    <input type="text" value={newContactTitle} placeholder="Contact title"
-                        onChange={({ target }) => setNewContactTitle(target.value)} />
-                </div>
-                <div>
-                    <input type="text" value={newCountry} placeholder="Country"
-                        onChange={({ target }) => setNewCountry(target.value)} />
-                </div>
-                <div>
-                    <input type="text" value={newAddress} placeholder="Address"
-                        onChange={({ target }) => setNewAddress(target.value)} />
-                </div>
-                <div>
-                    <input type="text" value={newCity} placeholder="City"
-                        onChange={({ target }) => setNewCity(target.value)} />
-                </div>
-                <div>
-                    <input type="text" value={newPostalCode} placeholder="Postal code"
-                        onChange={({ target }) => setNewPostalCode(target.value)} />
-                </div>
-                <div>
-                    <input type="text" value={newPhone} placeholder="Phone"
-                        onChange={({ target }) => setNewPhone(target.value)} />
-                </div>
-                <div>
-                    <input type="text" value={newFax} placeholder="Fax"
-                        onChange={({ target }) => setNewFax(target.value)} />
-                </div>
+                    <div className="nowrap" style={{ marginTop: '20px' }}>
+                        {/* 1. */}
+                        {/* Tämä on submit-tyyppinen input-elementti, joka lähettää lomakkeen, kun sitä(save) klikataan */}
 
-                <div style={{ marginTop: '20px' }}>
-                    {/* 1. */}
-                    {/* Tämä on submit-tyyppinen input-elementti, joka lähettää lomakkeen, kun sitä(save) klikataan */}
+                        {/* Ohjelman suoritus siirtyy tästä ylhäällä olevaan handleSubmit-funktioon */}
 
-                    {/* Ohjelman suoritus siirtyy tästä ylhäällä olevaan handleSubmit-funktioon */}
+                        <input type='submit' value='save' className="nappi" style={{ marginRight: '10px' }} />
 
-                    <input type='submit' value='save' style={{ marginRight: '10px' }} />
-
-                    {/* Tämä on tavallinen button-tyyppinen input-elementti, joka ei lähetä lomaketta */}
-                    <input type='button' value='back' onClick={() => setLisäystila(false)} />
-                </div>
-            </form>
+                        {/* Tämä on tavallinen button-tyyppinen input-elementti, joka ei lähetä lomaketta */}
+                        <input type='button' value='back' className="nappi" onClick={() => setLisäystila(false)} />
+                    </div>
+                </form>
+            </div>
 
         </div>
 

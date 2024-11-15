@@ -76,7 +76,7 @@ const UserAdd = ({ setLisäystila, setIsPositive, setUsers, setMessage, setShowM
 
     //! ****************************return*************************************
     return (
-        <div id="addNew">
+        <div className="form-container">
             <h2>User add</h2>
             <form onSubmit={handleSubmit}>
                 <div>
@@ -115,10 +115,11 @@ const UserAdd = ({ setLisäystila, setIsPositive, setUsers, setMessage, setShowM
 
                     {/* Ohjelman suoritus siirtyy tästä ylhäällä olevaan handleSubmit-funktioon */}
 
-                    <input type='submit' value='save' style={{ marginRight: '10px' }} />
+                    <input type='submit' value='save' style={{ marginRight: '10px', width: '150px',color: 'black' }} />
 
                     {/* Tämä on tavallinen button-tyyppinen input-elementti, joka ei lähetä lomaketta */}
-                    <input type='button' value='back' onClick={() => setLisäystila(false)} />
+                    <input type='button' value='back' onClick={() => setLisäystila(false)} 
+                     style={{ marginRight: '10px', width: '150px',color: 'black' }} />
                 </div>
             </form>
 

@@ -77,74 +77,124 @@ const ProductAdd = ({ setLisäystila, setProducts, setMessage, setIsPositive, se
 
     //! ****************************return*************************************
     return (
-        <div id="addNew">
-            <h2>From Product add</h2>           
+        <div>
+            <h2>From Product add</h2>
             {/* Tietokanta huolehtii id:n lisäämisestä juoksevalla numerolla */}
             {/* value viittaa tilaan, joka on määritelty yläpuolella.*/}
-            {/*Eli alla {newCustomerId} = const [newCustomerId, setNewCustomerId] = useState('')  */}
+            {/*Eli alla {newProductId} = const [newProductId, setNewProductId] = useState('')  */}
             {/* onChange tapahtumankäsittelijä, joka päivittää tilaa, kun kenttään kirjoitetaan */}
-          
-            <form onSubmit={handleSubmit}>
-                <div>
-                    <input type="text" value={newProductId} placeholder="ID" 
-                        onChange={({ target }) => setNewProductId(target.value)}disabled />
-                </div>
-                <div>
-                    <input type="text" value={newProductName} placeholder="Product name"
-                        onChange={({ target }) => setNewProductName(target.value)} required />
-                </div>
-                <div>
-                    <input type="text" value={newSupplierId} placeholder="Supplier ID"
-                        onChange={({ target }) => setNewSupplierId(target.value)} required />
-                </div>
-                <div>
-                    <input type="text" value={newCategoryId} placeholder="Category ID"
-                        onChange={({ target }) => setNewCategoryId(target.value)} required />
-                </div>
+            <div className="form-container">
+                <form onSubmit={handleSubmit}>
+                    <div>
+                        <input
+                            type="text"
+                            value={newProductId}
+                            placeholder="ID"
+                            onChange={({ target }) => setNewProductId(target.value)}
+                            disabled
+                        />
+                    </div>
+                    <div>
+                        <input
+                            type="text"
+                            value={newProductName}
+                            placeholder="Product name"
+                            onChange={({ target }) => setNewProductName(target.value)}
+                            required
+                        />
+                    </div>
+                    <div>
+                        <input
+                            type="number"
+                            value={newSupplierId}
+                            placeholder="Supplier ID"
+                            onChange={({ target }) => setNewSupplierId(Number(target.value) || '')}
+                            required
+                        // min="1"
+                        // max="29"
+                        />
+                    </div>
+                    <div>
+                        <input
+                            type="number"
+                            value={newCategoryId}
+                            placeholder="Category ID"
+                            onChange={({ target }) => setNewCategoryId(Number(target.value) || '')}
+                            required
+                            min="1"
+                            max="8"
+                        />
+                    </div>
+                    <div>
+                        <input
+                            type="number"
+                            value={newQuantityPerUnit}
+                            placeholder="Quantity per unit"
+                            onChange={({ target }) => setNewQuantityPerUnit(Number(target.value) || '')}
+                            required
+                            min="0"
+                        />
+                    </div>
+                    <div>
+                        <input
+                            type="number"
+                            value={newUnitPrice}
+                            placeholder="Unit price"
+                            onChange={({ target }) => setNewUnitPrice(Number(target.value) || '')}
+                            pattern="\d*"
+                            title="Please enter a valid price"
+                            required
+                            min="1"
+                        />
+                    </div>
+                    <div>
+                        <input
+                            type="number"
+                            value={newUnitsInStock}
+                            placeholder="Units in stock"
+                            onChange={({ target }) => setNewUnitsInStock(Number(target.value) || '')}
+                            required
+                        />
+                    </div>
+                    <div>
+                        <input
+                            type="number"
+                            value={newUnitsOnOrder}
+                            placeholder="Units on order"
+                            onChange={({ target }) => setNewUnitsOnOrder(Number(target.value) || '')}
+                            required
+                        />
+                    </div>
+                    <div>
+                        <input
+                            type="number"
+                            value={newReorderLevel}
+                            placeholder="Reorder level"
+                            onChange={({ target }) => setNewReorderLevel(Number(target.value) || '')}
+                            required
+                        />
+                    </div>
 
-                <div>
-                    <input type="text" value={newQuantityPerUnit} placeholder="Quantity per unit"
-                        onChange={({ target }) => setNewQuantityPerUnit(target.value)} />
-                </div>
-                <div>
-                    <input type="text" value={newUnitPrice} placeholder="Unit price"
-                        onChange={({ target }) => setNewUnitPrice(target.value)} />
-                </div>
-                <div>
-                    <input type="text" value={newUnitsInStock} placeholder="Units in stock"
-                        onChange={({ target }) => setNewUnitsInStock(target.value)} />
-                </div>
-                <div>
-                    <input type="text" value={newUnitsOnOrder} placeholder="Units on order"
-                        onChange={({ target }) => setNewUnitsOnOrder(target.value)} />
-                </div>
-                <div>
-                    <input type="text" value={newReorderLevel} placeholder="Reorder level"
-                        onChange={({ target }) => setNewReorderLevel(target.value)} />
-                </div>
-                <div>
-                    <input type="text" value={newDiscontinued} placeholder="Discontinued"
-                        onChange={({ target }) => setNewDiscontinued(target.value)}disabled />
-                </div>
-                <div>
-                    <input type="text" value={newImageLink} placeholder="Image link"
-                        onChange={({ target }) => setNewImageLink(target.value)} />
-                </div>
+                    <div>
+                        <input type="text" value={newDiscontinued} placeholder="Discontinued"
+                            onChange={({ target }) => setNewDiscontinued(target.value)} disabled />
+                    </div>
 
+                    <div>
+                        <input
+                            type="text"
+                            value={newImageLink}
+                            placeholder="Image link"
+                            onChange={({ target }) => setNewImageLink(target.value)}
+                        />
+                    </div>
+                    <div className='nowrap' style={{ marginTop: '20px' }}>
+                        <input type='submit' value='Save' className='nappi' style={{ marginRight: '10px' }} />
+                        <input type='button' value='Back' className='nappi' onClick={() => setLisäystila(false)} />
+                    </div>
+                </form>
 
-                <div style={{ marginTop: '20px' }}>
-                    {/* 1. */}
-                    {/* Tämä on submit-tyyppinen input-elementti, joka lähettää lomakkeen, kun sitä(save) klikataan */}
-
-                    {/* Ohjelman suoritus siirtyy tästä ylhäällä olevaan handleSubmit-funktioon */}
-
-                    <input type='submit' value='save' style={{ marginRight: '10px' }} />
-
-                    {/* Tämä on tavallinen button-tyyppinen input-elementti, joka ei lähetä lomaketta */}
-                    <input type='button' value='back' onClick={() => setLisäystila(false)} />
-                </div>
-            </form>
-
+            </div>
         </div>
 
     )//return

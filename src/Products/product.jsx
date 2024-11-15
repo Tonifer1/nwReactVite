@@ -1,6 +1,43 @@
-import '../App.css'
+//import '../App.css'
+import styled,{keyframes} from 'styled-components';
 import { useState } from 'react'
 import ProductService from '../Services/ProductServ'
+import { Card, Button, Modal } from 'react-bootstrap';
+
+// Styled components
+const fadeIn = keyframes`
+  0% {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+`;
+
+const StyledCard = styled(Card)`
+  background-color: #f8f9fa;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  position: auto;  /* Ensuring card position context */
+  
+  &:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  }
+`;
+
+
+
+const ButtonContainer = styled.div`
+  margin-top: 10px;
+  display: flex;
+  justify-content: center;  /* Keskittää painikkeet */
+  gap: 10px;  /* Lisää tilaa painikkeiden väliin */
+`;
+
 // Täällä käsitellään yksittäisen productin tiedot. Siksi nimi product.jsx yksikkömuodossa.
 // Jokaisen productin yksittäiset tiedot renderöidään tässä komponentissa.
 // Props on nimeltään productprops, jonka se saa ProductList-komponentilta.
@@ -14,6 +51,7 @@ const Product = ({ productprops,setProducts, setMessage, setIsPositive, setShowM
 
     // Komponentin tilan määritys
     const [showDetails, setShowDetails] = useState(false)
+    const [showModal, setShowModal] = useState(false); 
 
     const deleteProduct = (product) => {
         let vastaus = window.confirm(`Delete product window.confirm osio ${product.productName}?`)
@@ -71,43 +109,51 @@ const Product = ({ productprops,setProducts, setMessage, setIsPositive, setShowM
                 }//else
 
     }//deleteProduct
+    const handleShowModal = () => setShowModal(true);  // Avaa modal
+    const handleCloseModal = () => setShowModal(false);  // Sulje modal
+
 
     return (
-        <div className='customerDiv'>
-            {/* Näytetään yksittäisen productin nimi */}
-            <h4>
-                {productprops.productName} 
-            </h4>
+        <StyledCard className="mb-4">
+            <Card.Body>
+                <Card.Title>{productprops.productName}</Card.Title>
+                <Card.Text>{productprops.quantityPerUnit}</Card.Text>
 
-            {/* Nappi, joka vaihtaa showDetails-tilan arvoa true/false. !showDetails vaihtaa käänteisesti järjestystä */}
-            <button className="nappi" onClick={() => setShowDetails(!showDetails)}>
-                
-            {/* tämä ternäärinen operaattori tarkistaa showDetails-tilan arvon ja palauttaa 
-            joko "Hide Details" tai "Show Details"
-             sen mukaan, onko showDetails tosi vai epätosi.     */}
-                {showDetails ? "Hide Details prod" : "Show Details prod"}
-            </button>
+                {/* Show Details button */}
+                <Button variant="primary" onClick={handleShowModal} style={{ marginBottom: '10px' }}>
+                    Show Details
+                </Button>
 
-            {/* Jos showDetails on true, näytetään productin tiedot */}
-            {showDetails && (
-                <div className="customerDetails">
-                    <h3>{productprops.productName}</h3>
-                    
-                    <button onClick={() =>editProduct(productprops)} style={{ marginRight: '10px' }}>Edit</button>
-                    <button onClick={() =>deleteProduct(productprops)}>Delete</button>
-                    <table>
+                {/* Edit and Delete buttons */}
+                <ButtonContainer>
+                    <Button variant="info" onClick={() => editProduct(productprops)}>
+                        Edit
+                    </Button>
+                    <Button variant="danger" onClick={() => deleteProduct(productprops)}>
+                        Delete
+                    </Button>
+                </ButtonContainer>
+            </Card.Body>
+
+            {/* Modal: Details pop-up */}
+            <Modal show={showModal} onHide={handleCloseModal} centered>
+                <Modal.Header closeButton>
+                    <Modal.Title>Product Details: {productprops.productName}</Modal.Title>
+                </Modal.Header>
+                <Modal.Body style={{ maxHeight: '60vh', overflowY: 'auto' }}>
+                    <table className="table">
                         <thead>
                             <tr>
-                                <th>Product name</th>
+                                <th>Product Name</th>
                                 <th>Quantity per Unit</th>
                                 <th>SupplierId</th>
                                 <th>CategoryId</th>
                                 <th>Unit Price</th>
                                 <th>Units In Stock</th>
                                 <th>Units On Order</th>
-                                <th>ReorderLevel</th>
+                                <th>Reorder Level</th>
                                 <th>Discontinued</th>
-                                <th>imagelink</th>
+                                <th>Image Link</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -120,17 +166,25 @@ const Product = ({ productprops,setProducts, setMessage, setIsPositive, setShowM
                                 <td>{productprops.unitsInStock}</td>
                                 <td>{productprops.unitsOnOrder}</td>
                                 <td>{productprops.reorderLevel}</td>
-                                <td>{productprops.discontinued}</td>
-                                <td>{productprops.imagelink}</td>
+                                <td>{productprops.discontinued ? 'Yes' : 'No'}</td>
+                                {/* Näytetään kuva suoraan img-tagilla */}
+                                <td>
+                                    <img src={productprops.imagelink} alt="Product" style={{ maxWidth: '100%', maxHeight: '200px' }} />
+                                </td>
                             </tr>
                         </tbody>
                     </table>
-                </div>
-            )}
-        </div>
-    )
-}
+                </Modal.Body>
+                <Modal.Footer>
+                    <Button variant="secondary" onClick={handleCloseModal}>
+                        Close
+                    </Button>
+                </Modal.Footer>
+            </Modal>
+        </StyledCard>
+    );
+};
 
-export default Product
+export default Product;     
 
 

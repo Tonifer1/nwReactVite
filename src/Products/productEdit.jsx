@@ -77,109 +77,118 @@ const ProductEdit= ({ setMuokkaustila, setMessage, setIsPositive, setShowMessage
     return (
         <div id="edit">
             <h2>Product Edit</h2>
+            <div className="form-container">
+                <form onSubmit={handleSubmit} className="customer-edit-form">
+                    <div>
+                        <label htmlFor="productId">Product ID</label>
+                        <input type="text" id="productId" value={newProductId} disabled />
+                    </div>
+                    <div>
+                        <label htmlFor="productName">Product Name</label>
+                        <input
+                            type="text"
+                            id="productName"
+                            value={newProductName}
+                            onChange={({ target }) => setNewProductName(target.value)}
+                            required
+                        />
+                    </div>
+                    <div>
+                        <label htmlFor="supplierId">Supplier Id</label>
+                        <input
+                            type="number"
+                            id="supplierId"
+                            value={newSupplierId}
+                            onChange={({ target }) => setNewSupplierId(Number(target.value) || '')}
+                            required
+                            min="1"
+                            max="29"
+                        />
+                    </div>
+                    <div>
+                        <label htmlFor="categoryId">Category Id</label>
+                        <input
+                            type="number"
+                            id="categoryId"
+                            value={newCategoryId}
+                            onChange={({ target }) => setNewCategoryId(Number(target.value) || '')}
+                            required
+                            min="1"
+                            max="8"
+                        />
+                    </div>
+                    <div>
+                        <label htmlFor="quantityPerUnit">Quantity per Unit</label>
+                        <input
+                            type="number"
+                            id="quantityPerUnit"
+                            value={newQuantityPerUnit}
+                            onChange={({ target }) => setNewQuantityPerUnit(Number(target.value) || '')}
+                            required
+                        />
+                    </div>
+                    <div>
+                        <label htmlFor="unitPrice">Unit Price</label>
+                        <input
+                            type="number"
+                            id="unitPrice"
+                            value={newUnitPrice}
+                            onChange={({ target }) => setNewUnitPrice(Number(target.value) || '')}
+                            required
+                        />
+                    </div>
+                    <div>
+                        <label htmlFor="unitsInStock">Units in Stock</label>
+                        <input
+                            type="number"
+                            id="unitsInStock"
+                            value={newUnitsInStock}
+                            onChange={({ target }) => setNewUnitsInStock(Number(target.value) || '')}
+                            required
+                        />
+                    </div>
+                    <div>
+                        <label htmlFor="unitsOnOrder">Units on Order</label>
+                        <input
+                            type="number"
+                            id="unitsOnOrder"
+                            value={newUnitsOnOrder}
+                            onChange={({ target }) => setNewUnitsOnOrder(Number(target.value) || '')}
+                            required
+                        />
+                    </div>
+                    <div>
+                        <label htmlFor="reorderLevel">Reorder Level</label>
+                        <input
+                            type="number"
+                            id="reorderLevel"
+                            value={newReorderLevel}
+                            onChange={({ target }) => setNewReorderLevel(Number(target.value) || '')}
+                            required
+                        />
+                    </div>
+                    <div>
+                        <label htmlFor="discontinued">Discontinued </label>
+                        <input
+                            type="text"
+                            id="discontinued"
+                            value={newDiscontinued}
+                            onChange={({ target }) => setNewDiscontinued(target.value)}
+                            disabled
+                        />
+                    </div>
+                    <div>
+                        <label htmlFor="imagelink">ImageLink</label>
+                        <input
+                            type="text"
+                            id="imagelink"
+                            value={newImageLink}
+                            onChange={({ target }) => setNewImageLink(target.value)}
+                        />
+                    </div>
 
-            <form onSubmit={handleSubmit} className="customer-edit-form">
-                <div>
-                    <label htmlFor="productId">Product ID</label>
-                    <input type="text" id="productId" value={newProductId} disabled />
-                </div>
-                <div>
-                    <label htmlFor="productName">Product Name</label>
-                    <input
-                        type="text"
-                        id="productName"
-                        value={newProductName}
-                        onChange={({ target }) => setNewProductName(target.value)}
-                        required
-                    />
-                </div>
-                <div>
-                    <label htmlFor="supplierId">Supplier Id</label>
-                    <input
-                        type="text"
-                        id="supplierId"
-                        value={newSupplierId}
-                        onChange={({ target }) => setNewSupplierId(target.value)}
-                        required
-                    />
-                </div>
-                <div>
-                    <label htmlFor="categoryId">Category Id</label>
-                    <input
-                        type="text"
-                        id="categoryId"
-                        value={newCategoryId}
-                        onChange={({ target }) => setNewCategoryId(target.value)}
-                        required
-                    />
-                </div>
-                <div>
-                    <label htmlFor="quantityPerUnit">Quantity per Unit</label>
-                    <input
-                        type="text"
-                        id="quantityPerUnit"
-                        value={newQuantityPerUnit}                        
-                        onChange={({ target }) => setNewQuantityPerUnit(target.value)}
-                    />
-                </div>
-                <div>
-                    <label htmlFor="unitPrice">Unit Price</label>
-                    <input
-                        type="text"
-                        id="unitPrice"
-                        value={newUnitPrice}
-                        onChange={({ target }) => setNewUnitPrice(target.value)}
-                    />
-                </div>
-                <div>
-                    <label htmlFor="unitsInStock">Units in Stock</label>
-                    <input
-                        type="text"
-                        id="unitsInStock"
-                        value={newUnitsInStock}
-                        onChange={({ target }) => setNewUnitsInStock(target.value)}
-                    />
-                </div>
-                <div>
-                    <label htmlFor="unitsOnOrder">Units on Order</label>
-                    <input
-                        type="text"
-                        id="unitsOnOrder"
-                        value={newUnitsOnOrder}
-                        onChange={({ target }) => setNewUnitsOnOrder(target.value)}
-                    />
-                </div>
-                <div>
-                    <label htmlFor="reorderLevel">Reorder Level</label>
-                    <input
-                        type="text"
-                        id="reorderLevel"
-                        value={newReorderLevel}
-                        onChange={({ target }) => setNewReorderLevel(target.value)}
-                    />
-                </div>
-                <div>
-                    <label htmlFor="discontinued">Discontinued </label>
-                    <input
-                        type="text"
-                        id="discontinued"
-                        value={newDiscontinued}
-                        onChange={({ target }) => setNewDiscontinued(target.value)}
-                        disabled
-                    />
-                </div>
-                <div>
-                    <label htmlFor="imagelink">ImageLink</label>
-                    <input
-                        type="text"
-                        id="imagelink"
-                        value={newImageLink}
-                        onChange={({ target }) => setNewImageLink(target.value)}
-                    />
-                </div>
 
 
-               
                     {/* 1. */}
                     {/* Tämä on submit-tyyppinen input-elementti, joka lähettää lomakkeen, kun sitä(save) klikataan */}
 
@@ -189,9 +198,9 @@ const ProductEdit= ({ setMuokkaustila, setMessage, setIsPositive, setShowMessage
 
                     {/* Tämä on tavallinen button-tyyppinen input-elementti, joka ei lähetä lomaketta */}
                     <input type='button' value='back' onClick={() => setMuokkaustila(false)} />
-                
-            </form>
 
+                </form>
+            </div>
         </div>
 
     )//return

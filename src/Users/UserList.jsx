@@ -84,9 +84,7 @@ return (
             {(!lisäystila && !muokkaustila) && (
                 <button className="nappi" style={{ cursor: 'pointer' }} onClick={() => setShow(!show)}>
                     {show ? "Hide UsersList" : "Show UsersList"}</button>)}
-        </span>
-
-        <span className="nowrap">
+                
             <button className="nappi" style={{ cursor: 'pointer' }} onClick={() => setLisäystila(!lisäystila)}>      
                 {lisäystila ? "Hide Add UserList" : "Show Add UserList"}
             </button>

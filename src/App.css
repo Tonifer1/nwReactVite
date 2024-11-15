@@ -61,7 +61,7 @@
   width: 50%;
   margin: auto;
   border-radius: 30px;
-  padding: 20px;
+  padding: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
@@ -107,8 +107,60 @@
 }
 
 /* Input ja haku */
-input:focus::placeholder {
-  color: #555;
+/* input:focus::placeholder {
+  color: #0e0101;
+} */
+
+
+
+/* Perusasetukset input-kentille */
+input[type="text"],
+input[type="number"],
+input[type="password"],
+input[type="email"] {
+  width: 100%;  /* Skaalautuu täysleveydelle sisältävässä divissä */
+  max-width: 600px; /* Maksimileveys, ettei kenttä veny liikaa */
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+  color: black;
+}
+
+/* Form container for overall width */
+.form-container {
+  max-width: 80%; 
+  margin: 0 auto;
+}
+
+/* Pienemmille näytöille */
+@media (max-width: 768px) {
+  input[type="text"],
+  input[type="number"],
+  input[type="password"],
+  input[type="email"] {
+    width: 100%; /* Vie täyden leveyden mobiilinäytöillä */
+  }
+}
+
+/* Keskisuurille näytöille */
+@media (min-width: 768px) and (max-width: 1200px) {
+  input[type="text"],
+  input[type="number"],
+  input[type="password"],
+  input[type="email"] {
+    width: 50%; /* Vie puolet leveydestä keskisuurilla näytöillä */
+  }
+}
+
+/* Suuremmille näytöille */
+@media (min-width: 1200px) {
+  input[type="text"],
+  input[type="number"],
+  input[type="password"],
+  input[type="email"] {
+    width: 30%; /* Vie 30% leveydestä suuremmilla näytöillä */
+  }
 }
 
 input {
@@ -119,25 +171,78 @@ input {
   background-color: #E6E6FA;
 }
 
+
 .inputsearch {
-  font-style: italic !important;
-  margin-bottom: 10px;
+  display: block;
+  margin: 0 auto; /* Keskittää input-kentän */
+  width: 30%; /* Aseta leveys sopivaksi */
+  font-style: oblique 10deg;
   background-color: #E6E6FA;
+  color: black !important;
+  margin-bottom: 20px;
 }
 
+
 .inputsearch::-moz-placeholder {
-  color: black;
+  color: black !important;
   font-style: oblique 10deg;
   opacity: 1;
 }
 
+/* Pienemmille näytöille (max-width: 768px) */
+@media (max-width: 768px) {
+  .inputsearch {
+    width: 70%;  /* Kenttä vie 80% leveydestä pienemmillä näytöillä */
+    font-size: 18px;  /* Pienempi fonttikoko */
+    padding: 8px;  /* Vähemmän paddingia pienemmillä näytöillä */
+  }
+}
+
+/* Vielä pienemmille näytöille (max-width: 480px) */
+@media (max-width: 480px) {
+  .inputsearch {
+    width: 70%;  /* Kenttä vie 90% leveydestä mobiilinäytöillä */
+    font-size: 15px;  /* Pienempi fonttikoko */
+    padding: 6px;  /* Vähemmän paddingia */
+  }
+}
+
+
+
 /* Nappien tyylit */
 .nappi {
   border-radius: 10px;
-  margin-left: 10px;
   font-size: 16px;
   background-color: #E6E6FA;
   color: black;
+  padding: 10px 20px;  /* Lisää tilaa buttonin sisään */
+  cursor: pointer;
+  white-space: nowrap;  /* Estetään tekstin jakaminen */
 }
+
+/* Säilytetään buttonien väli ja estetään päällekkäisyys */
+.nowrap {
+  display: flex;  /* Käytetään flexboxia */
+  gap: 10px;  /* Väli buttonien välillä */
+  justify-content: center;  /* Kohdistetaan buttonit vasemmalle */
+  align-items: center;  /* Kohdistetaan buttonit pystysuunnassa keskelle */
+  flex-wrap: wrap;  /* Jos tila loppuu, buttonit siirtyvät seuraavalle riville */
+}
+
+/* Varmistetaan, että pienillä näytöillä buttonit menevät alaspäin mutta niillä on riittävästi tilaa */
+@media (max-width: 768px) {
+  .nowrap {
+    justify-content: center;  /* Keskitetään buttonit pienillä näytöillä */
+  }
+}
+
+@media (max-width: 480px) {
+  .nappi {
+    width: 50%;  /* Buttonit vievät täyden leveyden mobiilinäytöillä */
+    margin-bottom: 10px;  /* Lisää väli buttonien väliin mobiilinäytöillä */
+  }
+}
+
+
 
 
