@@ -13,7 +13,7 @@ const UserAdd = ({ setLisäystila, setIsPositive, setUsers, setMessage, setShowM
     const [newFirstName, setNewFirstName] = useState('')
     const [newLastName, setNewLastname] = useState('')
     const [newEmail, setNewEmail] = useState('')
-    const [newAcceslevelId, setNewAcceslevelId] = useState(0)
+    const [newAcceslevelId, setNewAcceslevelId] = useState('')
 
     const [newUsername, setNewUsername] = useState('')
     const [newPassword, setNewPassword] = useState('')
@@ -92,8 +92,8 @@ const UserAdd = ({ setLisäystila, setIsPositive, setUsers, setMessage, setShowM
                         onChange={({ target }) => setNewEmail(target.value)} />
                 </div>
                 <div>
-                    <input type="number" value={newAcceslevelId} placeholder="AcceslevelId"
-                        onChange={({ target }) => setNewAcceslevelId(Number(target.value))} />
+                    <input type="text" value={newAcceslevelId} placeholder="AcceslevelId"
+                        onChange={({ target }) => setNewAcceslevelId(target.value)} />
                 </div>
                 <div>
                     <input type="text" value={newUsername} placeholder="Username"

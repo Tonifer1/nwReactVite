@@ -72,7 +72,7 @@ const UserList = ({setIsPositive, setMessage, setShowMessage,}) => {
     }
 
 return (
-    <>                
+    <div className='userList' >               
         <div>
             <h2>UsersList</h2>
             {!lisäystila && !muokkaustila &&
@@ -127,7 +127,7 @@ return (
 
     
                
-        </>
+    </div>
     )//return
     
 }//UserList

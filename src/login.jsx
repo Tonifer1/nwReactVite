@@ -87,10 +87,10 @@ const Login = ({ setIsPositive, setMessage, setShowMessage, setloggedIn, }) => {
 
                         {/* Ohjelman suoritus siirtyy tästä ylhäällä olevaan handleSubmit-funktioon */}
 
-                        <input type='submit' value='login' style={{ marginRight: '10px' }} />
+                        <input type='submit' value='login' className="nappi" style={{ marginRight: '10px' }} />
 
                         {/* Tämä on tavallinen button-tyyppinen input-elementti, joka ei lähetä lomaketta */}
-                        <input type='button' value='back' onClick={handleBack} />
+                        <input type='button' value='back' className="nappi" onClick={handleBack} />
                     </div>
                 </form>
             </div>

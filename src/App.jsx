@@ -54,7 +54,7 @@ const handleLogout = () => {
 
 
   return (
-    <div className="App">
+    <div className="app">
       <Router>        
 
         <Navbar className="navbar navbar-expand-lg bg-dark" data-bs-theme="dark">

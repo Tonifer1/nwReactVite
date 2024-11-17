@@ -120,10 +120,10 @@ const ProductEdit= ({ setMuokkaustila, setMessage, setIsPositive, setShowMessage
                     <div>
                         <label htmlFor="quantityPerUnit">Quantity per Unit</label>
                         <input
-                            type="number"
+                            type="text"
                             id="quantityPerUnit"
                             value={newQuantityPerUnit}
-                            onChange={({ target }) => setNewQuantityPerUnit(Number(target.value) || '')}
+                            onChange={({ target }) => setNewQuantityPerUnit(target.value) || ''}
                             required
                         />
                     </div>
@@ -194,10 +194,10 @@ const ProductEdit= ({ setMuokkaustila, setMessage, setIsPositive, setShowMessage
 
                     {/* Ohjelman suoritus siirtyy tästä ylhäällä olevaan handleSubmit-funktioon */}
 
-                    <input type='submit' value='save' style={{ marginRight: '10px' }} />
+                    <input type='submit' value='save' className="nappi" style={{ marginRight: '10px', marginBottom:'10px' }} />
 
                     {/* Tämä on tavallinen button-tyyppinen input-elementti, joka ei lähetä lomaketta */}
-                    <input type='button' value='back' onClick={() => setMuokkaustila(false)} />
+                    <input type='button' value='back' className="nappi" onClick={() => setMuokkaustila(false)} />
 
                 </form>
             </div>

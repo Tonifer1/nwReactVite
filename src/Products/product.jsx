@@ -17,25 +17,85 @@ const fadeIn = keyframes`
 `;
 
 const StyledCard = styled(Card)`
-  background-color: #f8f9fa;
-  border: 1px solid #ddd;
-  border-radius: 5px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  position: auto;  /* Ensuring card position context */
+//   background-color: #f8f9fa;
+//   border: 1px solid #ddd;
+//   border-radius: 5px;
+//   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+//   position: auto;
+background-color: #f7f1e1;  /* Vaaleanbeige */
+  border: 1px solid #d1b38a;  /* Vaaleanruskea reuna */
+  border-radius: 15px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  padding: 20px;
+  margin: 10px;
+  text-align: center;
+
   
   &:hover {
     transform: scale(1.05);
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    margin: 0 auto;
+    width: 80%;  /* Käyttää 80% leveyttä pienemmillä näytöillä */
+    max-width: 600px; /* Maksimileveys */
+    
+    /* Responsiiviset tyylit */
+  @media (max-width: 768px) {
+    width: 95%;  /* Vähentää leveyttä pienemmillä näytöillä */
+    padding: 15px;  /* Vähemmän paddingia pienemmillä näytöillä */
+  }
+
+  @media (max-width: 480px) {
+    width: 100%;  /* Täyttää koko leveys mobiilinäytöillä */
+    padding: 10px;  /* Vähemmän paddingia mobiilinäytöillä */
+  }
   }
 `;
-
-
 
 const ButtonContainer = styled.div`
   margin-top: 10px;
   display: flex;
   justify-content: center;  /* Keskittää painikkeet */
   gap: 10px;  /* Lisää tilaa painikkeiden väliin */
+`;
+
+const CustomButton = styled.button`
+  border-radius: 12px; /* Pyöristetyt kulmat */
+  font-weight: bold;
+  padding: 10px 20px; /* Lisää tilaa nappiin */
+  transition: background-color 0.3s, color 0.3s;
+  cursor: pointer; /* Kursori muuttuu osoittimeksi */
+  border: none; /* Poistetaan nappien reunat */
+`;
+
+// Erityiset tyylit kullakin napilla
+const InfoButton = styled(CustomButton)`
+  background-color: #f1c40f; /* Kultainen sävy */
+  border: 1px solid #d1b38a; /* Vaaleanruskea reuna */
+  color: #fff; /* Valkoinen teksti */
+
+  &:hover {
+    background-color: #e1b007; /* Tummempi kultainen hover-tilassa */
+  }
+`;
+
+const DangerButton = styled(CustomButton)`
+  background-color: #c0392b; /* Tumma punainen */
+  border: 1px solid #9e2a25; /* Tumma punainen reuna */
+  color: #fff; /* Valkoinen teksti */
+
+  &:hover {
+    background-color: #e74c3c; /* Vaaleampi punainen hover-tilassa */
+  }
+`;
+
+const PrimaryButton = styled(CustomButton)`
+  background-color: #3498db; /* Raikas sininen */
+  border: 1px solid #2980b9; /* Tummansininen reuna */
+  color: #fff; /* Valkoinen teksti */
+
+  &:hover {
+    background-color: #2980b9; /* Tummempi sininen hover-tilassa */
+  }
 `;
 
 // Täällä käsitellään yksittäisen productin tiedot. Siksi nimi product.jsx yksikkömuodossa.
@@ -118,20 +178,20 @@ const Product = ({ productprops,setProducts, setMessage, setIsPositive, setShowM
             <Card.Body>
                 <Card.Title>{productprops.productName}</Card.Title>
                 <Card.Text>{productprops.quantityPerUnit}</Card.Text>
-
-                {/* Show Details button */}
-                <Button variant="primary" onClick={handleShowModal} style={{ marginBottom: '10px' }}>
+                <PrimaryButton
+                
+                 onClick={handleShowModal} style={{ marginBottom: '10px' }}>
                     Show Details
-                </Button>
+                </PrimaryButton>
 
                 {/* Edit and Delete buttons */}
                 <ButtonContainer>
-                    <Button variant="info" onClick={() => editProduct(productprops)}>
+                <InfoButton onClick={() => editProduct(productprops)}>
                         Edit
-                    </Button>
-                    <Button variant="danger" onClick={() => deleteProduct(productprops)}>
+                    </InfoButton>
+                    <DangerButton onClick={() => deleteProduct(productprops)}>
                         Delete
-                    </Button>
+                    </DangerButton>
                 </ButtonContainer>
             </Card.Body>
 
@@ -146,13 +206,13 @@ const Product = ({ productprops,setProducts, setMessage, setIsPositive, setShowM
                             <tr>
                                 <th>Product Name</th>
                                 <th>Quantity per Unit</th>
-                                <th>SupplierId</th>
-                                <th>CategoryId</th>
+                                {/* <th>SupplierId</th> */}
+                                {/* <th>CategoryId</th> */}
                                 <th>Unit Price</th>
                                 <th>Units In Stock</th>
                                 <th>Units On Order</th>
-                                <th>Reorder Level</th>
-                                <th>Discontinued</th>
+                                {/* <th>Reorder Level</th> */}
+                                {/* <th>Discontinued</th> */}
                                 <th>Image Link</th>
                             </tr>
                         </thead>
@@ -160,13 +220,13 @@ const Product = ({ productprops,setProducts, setMessage, setIsPositive, setShowM
                             <tr>
                                 <td>{productprops.productName}</td>
                                 <td>{productprops.quantityPerUnit}</td>
-                                <td>{productprops.supplierId}</td>
-                                <td>{productprops.categoryId}</td>
+                                {/* <td>{productprops.supplierId}</td> */}
+                                {/* <td>{productprops.categoryId}</td> */}
                                 <td>{productprops.unitPrice}</td>
                                 <td>{productprops.unitsInStock}</td>
                                 <td>{productprops.unitsOnOrder}</td>
-                                <td>{productprops.reorderLevel}</td>
-                                <td>{productprops.discontinued ? 'Yes' : 'No'}</td>
+                                {/* <td>{productprops.reorderLevel}</td> */}
+                                {/* <td>{productprops.discontinued ? 'Yes' : 'No'}</td> */}
                                 {/* Näytetään kuva suoraan img-tagilla */}
                                 <td>
                                     <img src={productprops.imagelink} alt="Product" style={{ maxWidth: '100%', maxHeight: '200px' }} />

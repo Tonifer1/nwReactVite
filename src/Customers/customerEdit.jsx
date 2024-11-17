@@ -173,10 +173,10 @@ const CustomerEdit= ({ setMuokkaustila, setMessage, setIsPositive, setShowMessag
 
                     {/* Ohjelman suoritus siirtyy tästä ylhäällä olevaan handleSubmit-funktioon */}
 
-                    <input type='submit' value='save' style={{ marginRight: '10px' }} />
+                    <input type='submit' value='save' className="nappi" style={{ marginRight: '10px',marginBottom: '10px' }} />
 
                     {/* Tämä on tavallinen button-tyyppinen input-elementti, joka ei lähetä lomaketta */}
-                    <input type='button' value='back' onClick={() => setMuokkaustila(false)} />
+                    <input type='button' value='back'className="nappi" onClick={() => setMuokkaustila(false)} />
                 
             </form>
 

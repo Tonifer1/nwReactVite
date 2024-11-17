@@ -87,28 +87,39 @@ const Customer = ({ customerprops,setCustomers, setMessage, setIsPositive, setSh
                 <div className="customerDetails">
                     <h3>{customerprops.companyName}</h3>
                     
-                    <button onClick={() =>editCustomer(customerprops)} style={{ marginRight: '10px' }}>Edit</button>
-                    <button onClick={() =>deleteCustomer(customerprops)} >Delete</button>
+                    
                     <table>
                         <thead>
                             <tr>
                                 <th>Contact name</th>
+                               
                                 <th>Phone</th>
+                                
                                 <th>Address</th>
+                                
                                 <th>City</th>
+                                
                                 <th>Country</th>
+                                
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
                                 <td>{customerprops.contactName}</td>
+                                
                                 <td>{customerprops.phone}</td>
+                                
                                 <td>{customerprops.address}</td>
+                                
                                 <td>{customerprops.city}</td>
+                                
                                 <td>{customerprops.country}</td>
+                                
                             </tr>
                         </tbody>
                     </table>
+                    <button onClick={() =>editCustomer(customerprops)} style={{ marginRight: '10px' }}>Edit</button>
+                    <button onClick={() =>deleteCustomer(customerprops)} >Delete</button>
                 </div>
             )}
         </div>

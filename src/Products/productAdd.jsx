@@ -188,7 +188,7 @@ const ProductAdd = ({ setLisäystila, setProducts, setMessage, setIsPositive, se
                             onChange={({ target }) => setNewImageLink(target.value)}
                         />
                     </div>
-                    <div className='nowrap' style={{ marginTop: '20px' }}>
+                    <div className='nowrap' style={{ marginTop: '20px', marginBottom:'10px' }}>
                         <input type='submit' value='Save' className='nappi' style={{ marginRight: '10px' }} />
                         <input type='button' value='Back' className='nappi' onClick={() => setLisäystila(false)} />
                     </div>

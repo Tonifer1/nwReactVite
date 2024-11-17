@@ -80,7 +80,7 @@ const CustomerList = ({ setMessage, setIsPositive, setShowMessage,  }) => {
     }
 
 return (
-           <>                
+           <div className='customerList'>                
                 <div>
                     <h2>CustomerList</h2>
                     {!lisäystila && !muokkaustila &&
@@ -129,7 +129,7 @@ return (
                         })//customers.map
 
                 )}  
-            </>
+            </div>
         )//return
     
 }//CustomerList
