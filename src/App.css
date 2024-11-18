@@ -55,6 +55,10 @@
   width: 100%;
 }
 
+
+
+
+
 /* CustomerList-komponentin taustakuva */
 .customerList {
   background-image: url('./images/pastel2.png');
@@ -226,7 +230,23 @@
   background-color: #c82333;
 }
 
-/* Viestit */
+/* Message-komponentin tyylit */
+.message-container {
+  position: fixed;
+  top: 10%;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 9999; /* Message tulee kaikkien muiden elementtien päälle */
+  background-color: rgba(255, 255, 255, 0.9); /* Läpinäkyvä vaalea tausta */
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+  width: 80%;
+  max-width: 500px; /* Varmistaa, että viesti ei ole liian leveä pienillä näytöillä */
+  word-wrap: break-word; /* Pitää pitkät sanat murtumassa */
+}
+
+/* Positiiviset ja negatiiviset viestit */
 .neg, .pos {
   font-size: 36px;
   font-weight: bold;
@@ -235,9 +255,25 @@
   padding: 10px;
   margin-bottom: 10px;
   margin-top: 10%;
-  width: 50%;
+  width: 100%; /* Viesti voi ottaa koko tilan */
   margin: 0 auto;
   text-align: center;
+  box-sizing: border-box; /* Varmistaa, että padding ei venytä elementtiä */
+}
+
+/* Pienemmille näytöille skaalataan fonttikoko */
+@media (max-width: 768px) {
+  .neg, .pos {
+    font-size: 24px; /* Pienempi fonttikoko */
+    width: 90%; /* Viesti vie 90% leveydestä */
+  }
+}
+
+@media (max-width: 480px) {
+  .neg, .pos {
+    font-size: 18px; /* Vielä pienempi fonttikoko mobiililaitteilla */
+    width: 95%; /* Viesti vie lähes koko leveydeltään */
+  }
 }
 
 .neg {
@@ -249,6 +285,7 @@
   color: rgb(14, 97, 14);
   background: lightgrey;
 }
+
 
 /* Perusasetukset input-kentille */
 input[type="text"],

@@ -1,12 +1,14 @@
 import '../App.css'
-import React, { useState } from 'react'
+// import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react';
+
 import ProductService from '../Services/ProductServ'
 
 //Funktion nimi. Huom! On oltava isolla alkukirjaimella
 // setMuokkaustila ym. on propseja, jotka tulee ProductList-komponentilta, jotta täältä päästään pois.
 
 //Ikäänkuin import toiminto. Tulee ProductList  tiedostosta.
-const ProductEdit= ({ setMuokkaustila, setMessage, setIsPositive, setShowMessage, muokattavaProduct }) => {
+const ProductEdit= ({ setMuokkaustila, setMessage, setIsPositive, setShowMessage, muokattavaProduct, }) => {
 
     //! ********************Tilan eli Staten määritys*************************************
     // Statet pitävät kirjaa sen hetken tilasta ja päivittävät sitä, joka kerta kun käyttäjä kirjoittaa jotain kenttään.
@@ -30,8 +32,9 @@ const ProductEdit= ({ setMuokkaustila, setMessage, setIsPositive, setShowMessage
     //! ********************onSubmit tapahtumankäsittelijä funktio*****************************************************
     // event.preventDefault() estää lomakkeen lähettämisen yhteydessä kokokonaisen sivun uudelleen lataamisen.
 
+
+
     const handleSubmit = (event) => {
-         alert('Product edited')
         event.preventDefault()
 
         // Luodaan uusi asiakasobjekti lomakkeen tiedoista. newProduct on itse keksitty nimi.
@@ -50,13 +53,19 @@ const ProductEdit= ({ setMuokkaustila, setMessage, setIsPositive, setShowMessage
             imagelink: newImageLink,
         }//newProduct
 
+    
+          
+
         ProductService.update(newProduct)
             .then(() => {
                 setMessage(`Edited product:${newProduct.productName}`)
                 setIsPositive(true)
                 setShowMessage(true);
-                window.scrollBy(0, -10000)
-                //setProducts(prevProducts => [...prevProducts, newProduct])
+                // window.scrollBy(0, -10000)
+                window.scrollTo({
+                    top: 0,                     
+                  });
+                                
 
                 setTimeout(() => {
                     console.log('setTimeout Osio')
@@ -70,6 +79,7 @@ const ProductEdit= ({ setMuokkaustila, setMessage, setIsPositive, setShowMessage
             .catch(error => {
                 console.error("Error to Update New product:", error);
             });
+            
     }//handleSubmit
 
 

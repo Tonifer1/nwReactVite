@@ -14,7 +14,7 @@ const Message = ({ message, isPositive }) => {
     }
 
     return (
-        <div className={tyyli}>
+        <div className={`message-container ${tyyli}`}>
             {message}
         </div>
     )

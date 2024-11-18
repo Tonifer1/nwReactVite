@@ -12,7 +12,7 @@ const ProductList = ({ setMessage, setIsPositive, setShowMessage }) => {
     const [show, setShow] = useState(false);
     const [lisäystila, setLisäystila] = useState(false);
     const [muokkaustila, setMuokkaustila] = useState(false);
-    const [muokattavaProduct, setMuokattavaProduct] = useState(null);
+    const [muokattavaProduct, setMuokattavaProduct] = useState(false);
     const [search, setSearch] = useState('');
 
     useEffect(() => {
@@ -33,17 +33,22 @@ const ProductList = ({ setMessage, setIsPositive, setShowMessage }) => {
         } else {
             window.location.href = '/login';
         }
+
     }, [lisäystila, muokkaustila]);
+
+
 
     const handleSearchInputChange = (event) => {
         setSearch(event.target.value.toLowerCase());
         setShow(true);
     };
 
-    const editProduct = (productprops) => {
+    const editProduct = (productprops) => {        
         setMuokattavaProduct(productprops)
         setMuokkaustila(true)
     }
+
+    
 
     return (
         <div className="productList" >
@@ -112,12 +117,12 @@ const ProductList = ({ setMessage, setIsPositive, setShowMessage }) => {
                         setIsPositive={setIsPositive}
                         setMessage={setMessage}
                         setShowMessage={setShowMessage}
-                        muokattavaProduct={muokattavaProduct}
+                        muokattavaProduct={muokattavaProduct}                        
                     />
                 )}
 
                 {/* Näytetään tuotteet */}
-                {show && (
+                {!lisäystila && !muokkaustila && show  && (
                     <Row>
                         {products
                             .filter(product =>

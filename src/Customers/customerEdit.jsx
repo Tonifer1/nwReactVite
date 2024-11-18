@@ -55,9 +55,7 @@ const CustomerEdit= ({ setMuokkaustila, setMessage, setIsPositive, setShowMessag
                 setIsPositive(true)
                 setShowMessage(true);
                 window.scrollBy(0, -10000)
-                //setCustomers(prevCustomers => [...prevCustomers, newCustomer])
-
-                //reloadNow(!reload);Tämän poisto auttoi.
+                
 
                 setTimeout(() => {
                     console.log('setTimeout Osio')
