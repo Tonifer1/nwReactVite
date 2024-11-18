@@ -19,6 +19,7 @@ import Login from './login.jsx'
 
 
 
+
 //Määritellään / esitellään funktionaalinen "Äiti" komponentti App. Huom! Komponentit on aina oltava isolla alkukirjaimella!
 //Nimetön funktio arvoltaan.
 //Ei parametreja, joten sulut ovat tyhjät.
@@ -33,6 +34,7 @@ const App = () => {
   const [message, setMessage] = useState('')
   const [isPositive, setIsPositive] = useState(false)
   const [loggedIn, setloggedIn] = useState(false)
+
 
 
 useEffect(() => {
@@ -55,7 +57,7 @@ const handleLogout = () => {
 
   return (
     <div className="app">
-      <Router>        
+      <Router>
 
         <Navbar className="navbar navbar-expand-lg bg-dark" data-bs-theme="dark">
           <Nav className="me-auto">
@@ -84,7 +86,7 @@ const handleLogout = () => {
             {showMessage && <Message message={message} isPositive={isPositive} />}
 
           <Routes>
-            <Route path="/" element={<h1>Welcome to app component</h1>} />
+            <Route path="/" element={<h1>Northwind traders</h1>} />
 
           <Route path="/customers" element={
             loggedIn ? (

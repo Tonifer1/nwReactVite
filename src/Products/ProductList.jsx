@@ -53,7 +53,7 @@ const ProductList = ({ setMessage, setIsPositive, setShowMessage }) => {
     return (
         <div className="productList" >
             <div className="content">
-                <h2>Product List</h2>
+                <h1>Products</h1>
                 <Form.Control
                     type="text"
                     className="inputsearch"

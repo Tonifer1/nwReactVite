@@ -58,7 +58,7 @@ const ProductEdit= ({ setMuokkaustila, setMessage, setIsPositive, setShowMessage
 
         ProductService.update(newProduct)
             .then(() => {
-                setMessage(`Edited product:${newProduct.productName}`)
+                setMessage(`Edited product: ${newProduct.productName}`)
                 setIsPositive(true)
                 setShowMessage(true);
                 // window.scrollBy(0, -10000)

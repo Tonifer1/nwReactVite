@@ -82,7 +82,7 @@ const CustomerList = ({ setMessage, setIsPositive, setShowMessage,  }) => {
 return (
            <div className='customerList'>                
                 <div>
-                    <h2>CustomerList</h2>
+                    <h1>Customers</h1>
                     {!lisäystila && !muokkaustila &&
                     <input placeholder="Search by company CList" value={search} className="inputsearch"  onChange={handleSearchInputChange} />
                     }

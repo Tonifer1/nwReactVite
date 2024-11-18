@@ -64,7 +64,7 @@ const UserAdd = ({ setLisäystila, setIsPositive, setUsers, setMessage, setShowM
 
             .catch(error => {
                 console.error("Error adding new user:", error);
-                setMessage('Error adding new user');
+                setMessage('Adding only for Administrator.');
                 setIsPositive(false);
                 setShowMessage(true);
                 setTimeout(() => {

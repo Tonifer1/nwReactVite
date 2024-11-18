@@ -66,8 +66,8 @@ const Login = ({ setIsPositive, setMessage, setShowMessage, setloggedIn, }) => {
     
     //! ****************************return*************************************
     return (
-        <div id="addNew">
-            <h2>Login</h2>
+        <div className="login">
+            <h1>Login</h1>
             <div className="form-container">
                 <form onSubmit={handleSubmit}>
 

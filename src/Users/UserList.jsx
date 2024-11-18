@@ -72,13 +72,15 @@ const UserList = ({setIsPositive, setMessage, setShowMessage,}) => {
     }
 
 return (
-    <div className='userList' >               
+    <div className='userList' >
+              
         <div>
-            <h2>UsersList</h2>
+            <h1>Users</h1>
             {!lisäystila && !muokkaustila &&
             <input placeholder="Search by last name" value={search} className="inputsearch"  onChange={handleSearchInputChange} />
             }
         </div>
+
 
         <span className="nowrap">
             {(!lisäystila && !muokkaustila) && (

@@ -51,7 +51,7 @@ const CustomerEdit= ({ setMuokkaustila, setMessage, setIsPositive, setShowMessag
 
         CustomerService.update(newCustomer)
             .then(() => {
-                setMessage(`Edited customer:${newCustomer.companyName}`)
+                setMessage(`Edited customer: ${newCustomer.companyName}`)
                 setIsPositive(true)
                 setShowMessage(true);
                 window.scrollBy(0, -10000)
