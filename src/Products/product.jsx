@@ -17,11 +17,6 @@ const fadeIn = keyframes`
 `;
 
 const StyledCard = styled(Card)`
-//   background-color: #f8f9fa;
-//   border: 1px solid #ddd;
-//   border-radius: 5px;
-//   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-//   position: auto;
 background-color: #f7f1e1;  /* Vaaleanbeige */
   border: 1px solid #d1b38a;  /* Vaaleanruskea reuna */
   border-radius: 15px;
@@ -69,14 +64,15 @@ const CustomButton = styled.button`
 
 // Erityiset tyylit kullakin napilla
 const InfoButton = styled(CustomButton)`
-  background-color: #f1c40f; /* Kultainen sävy */
-  border: 1px solid #d1b38a; /* Vaaleanruskea reuna */
+  background-color: #2ecc71;  /* Vihreä sävy */
+  border: 1px solid #27ae60;  /* Tummempi vihreä reuna */
   color: #fff; /* Valkoinen teksti */
 
   &:hover {
-    background-color: #e1b007; /* Tummempi kultainen hover-tilassa */
+    background-color: #27ae60; /* Tummempi vihreä hover-tilassa */
   }
 `;
+
 
 const DangerButton = styled(CustomButton)`
   background-color: #c0392b; /* Tumma punainen */
@@ -89,14 +85,15 @@ const DangerButton = styled(CustomButton)`
 `;
 
 const PrimaryButton = styled(CustomButton)`
-  background-color: #3498db; /* Raikas sininen */
-  border: 1px solid #2980b9; /* Tummansininen reuna */
+  background-color: #95a5a6;  /* Vaaleanharmaa taustaväri */
+  border: 1px solid #7f8c8d;  /* Tumma harmaa reuna */
   color: #fff; /* Valkoinen teksti */
 
   &:hover {
-    background-color: #2980b9; /* Tummempi sininen hover-tilassa */
+    background-color: #7f8c8d; /* Tummempi harmaa hover-tilassa */
   }
 `;
+
 
 // Täällä käsitellään yksittäisen productin tiedot. Siksi nimi product.jsx yksikkömuodossa.
 // Jokaisen productin yksittäiset tiedot renderöidään tässä komponentissa.
@@ -110,7 +107,7 @@ const PrimaryButton = styled(CustomButton)`
 const Product = ({ productprops,setProducts, setMessage, setIsPositive, setShowMessage, editProduct }) => {
 
     // Komponentin tilan määritys
-    const [showDetails, setShowDetails] = useState(false)
+   
     const [showModal, setShowModal] = useState(false); 
 
     const deleteProduct = (product) => {

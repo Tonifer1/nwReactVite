@@ -85,10 +85,10 @@ return (
         <span className="nowrap">
             {(!lisäystila && !muokkaustila) && (
                 <button className="nappi" style={{ cursor: 'pointer' }} onClick={() => setShow(!show)}>
-                    {show ? "Hide UsersList" : "Show UsersList"}</button>)}
+                    {show ? "Hide Users" : "Show Users"}</button>)}
                 
             <button className="nappi" style={{ cursor: 'pointer' }} onClick={() => setLisäystila(!lisäystila)}>      
-                {lisäystila ? "Hide Add UserList" : "Show Add UserList"}
+                {lisäystila ? "Hide Add User" : "Show Add User"}
             </button>
         </span>
 

@@ -54,7 +54,7 @@
 
 /* App-komponentin taustakuva */
 .app {
-  background-image: url('./images/northwind3.png');
+  background-image: url('./images/northwind1.png');
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center center;
@@ -99,7 +99,7 @@
 
 /* UserList-komponentin taustakuva 1. */
 .userList {
-  background-image: url('./images/pastel2.png');
+  background-image: url('./images/pastel1.png');
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center center;
@@ -179,13 +179,13 @@
 
 /* Modaalin tyylit */
 .modal-content {
-  background-color: #ffffff;
+  background-color: #f4f4f4;  /* Vaalean harmaa tausta */
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .modal-header {
-  background-color: #d61e36d7;
+  background-color: #8e7c5a;  /* Maanläheinen ruskea sävy */
   color: white;
   font-weight: bold;
 }
@@ -221,29 +221,30 @@
 }
 
 .modal-body {
-  background-color: #d61e36d7;
+  background-color: #f4f4f4;  /* Vaalean harmaa tausta, sama kuin modal-content */
   opacity: 1;
   max-height: 70vh;
   overflow-y: auto;
 }
 
 .modal-footer .btn-info {
-  background-color: #28a745;  /* Vihreä */
+  background-color: #6a994e;  /* Maanläheinen vihreä */
   border: none;
 }
 
 .modal-footer .btn-danger {
-  background-color: #dc3545;  /* Punainen */
+  background-color: #b07f52;  /* Maanläheinen ruskea */
   border: none;
 }
 
 .modal-footer .btn-info:hover {
-  background-color: #218838;
+  background-color: #5b8c3a;  /* Tummempi vihreä hover-tilassa */
 }
 
 .modal-footer .btn-danger:hover {
-  background-color: #c82333;
+  background-color: #9c6f43;  /* Tummempi ruskea hover-tilassa */
 }
+
 
 /* Message-komponentin tyylit */
 .message-container {

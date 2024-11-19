@@ -79,7 +79,7 @@ const ProductList = ({ setMessage, setIsPositive, setShowMessage }) => {
                                 border: 'none'               // Poistetaan reunus
                             }}
                         >
-                            {show ? 'Hide Product List' : 'Show Product List'}
+                            {show ? 'Hide Products' : 'Show Products'}
                         </Button>
 
                         <Button
@@ -94,7 +94,7 @@ const ProductList = ({ setMessage, setIsPositive, setShowMessage }) => {
                                 color: '#495057',            // Tekstin väri tumman harmaa
                             }}
                         >
-                            {lisäystila ? 'Hide Add Product Form' : 'Show Add Product Form'}
+                            {lisäystila ? 'Hide Add Product ' : 'Show Add Product'}
                         </Button>
                     </Col>
                 </Row>

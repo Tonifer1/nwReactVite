@@ -15,6 +15,7 @@ import Customer from './customer'
 import CustomerAdd from './customerAdd';
 
 import CustomerEdit from './customerEdit'
+import { withTheme } from 'styled-components';
 
 
 // CustomerList-komponentti 
@@ -84,16 +85,16 @@ return (
                 <div>
                     <h1>Customers</h1>
                     {!lisäystila && !muokkaustila &&
-                    <input placeholder="Search by company CList" value={search} className="inputsearch"  onChange={handleSearchInputChange} />
+                    <input placeholder="Search by company" value={search} className="inputsearch"  onChange={handleSearchInputChange} />
                     }
                 </div>
                     <span className="nowrap">
                     {(!lisäystila && !muokkaustila) && (
                         <button className="nappi" style={{ cursor: 'pointer' }} onClick={() => setShow(!show)}>                        
-                            {show ? "Hide CustList" : "Show CustList"}</button>)}
+                            {show ? "Hide Customers" : "Show Customers"}</button>)}
 
                         <button className="nappi" style={{ cursor: 'pointer' }} onClick={() => setLisäystila(!lisäystila)}>      
-                            {lisäystila ? "Hide Add CustList" : "Show Add CustList"}
+                            {lisäystila ? "Hide Add" : "Show Add "}
                         </button>
                     </span>
 

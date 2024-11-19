@@ -79,7 +79,7 @@ const Customer = ({ customerprops,setCustomers, setMessage, setIsPositive, setSh
             {/* tämä ternäärinen operaattori tarkistaa showDetails-tilan arvon ja palauttaa 
             joko "Hide Details" tai "Show Details"
              sen mukaan, onko showDetails tosi vai epätosi.     */}
-                {showDetails ? "Hide Details cust" : "Show Details cust"}
+                {showDetails ? "Hide Details" : "Show Details "}
             </button>
 
             {/* Jos showDetails on true, näytetään asiakkaan tiedot */}
