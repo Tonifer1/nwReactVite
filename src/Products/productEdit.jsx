@@ -1,17 +1,8 @@
 import '../App.css'
-// import React, { useState } from 'react'
 import React, { useState, useEffect } from 'react';
-
 import ProductService from '../Services/ProductServ'
 
-//Funktion nimi. Huom! On oltava isolla alkukirjaimella
-// setMuokkaustila ym. on propseja, jotka tulee ProductList-komponentilta, jotta täältä päästään pois.
-
-//Ikäänkuin import toiminto. Tulee ProductList  tiedostosta.
 const ProductEdit= ({ setMuokkaustila, setMessage, setIsPositive, setShowMessage, muokattavaProduct, }) => {
-
-    //! ********************Tilan eli Staten määritys*************************************
-    // Statet pitävät kirjaa sen hetken tilasta ja päivittävät sitä, joka kerta kun käyttäjä kirjoittaa jotain kenttään.
     
     const [newProductId, setNewProductId] = useState(muokattavaProduct.productId)
     const [newProductName, setNewProductName] = useState(muokattavaProduct.productName)
@@ -27,18 +18,9 @@ const ProductEdit= ({ setMuokkaustila, setMessage, setIsPositive, setShowMessage
     const [newDiscontinued, setNewDiscontinued] = useState(muokattavaProduct.discontinued)
     const [newImageLink, setNewImageLink] = useState(muokattavaProduct.imagelink)
 
-    
-    // 2.  Syötetyt tiedot kerätään ja luodaan uusi asiakasobjekti(newCustomer), johon tiedot tallennetaan.
-    //! ********************onSubmit tapahtumankäsittelijä funktio*****************************************************
-    // event.preventDefault() estää lomakkeen lähettämisen yhteydessä kokokonaisen sivun uudelleen lataamisen.
-
-
-
     const handleSubmit = (event) => {
         event.preventDefault()
-
-        // Luodaan uusi asiakasobjekti lomakkeen tiedoista. newProduct on itse keksitty nimi.
-        // Alla olevat kentät täytyy olla nimeltään samat kuin back-endissä olevat kentät. Huom! camelCase.
+        
         var newProduct = {
             productId: newProductId, 
             productName: newProductName,
@@ -52,9 +34,6 @@ const ProductEdit= ({ setMuokkaustila, setMessage, setIsPositive, setShowMessage
             discontinued: newDiscontinued,
             imagelink: newImageLink,
         }//newProduct
-
-    
-          
 
         ProductService.update(newProduct)
             .then(() => {
@@ -83,7 +62,6 @@ const ProductEdit= ({ setMuokkaustila, setMessage, setIsPositive, setShowMessage
     }//handleSubmit
 
 
-    //! ****************************return*************************************
     return (
         <div id="edit">
             <h2>Product Edit</h2>
@@ -197,16 +175,7 @@ const ProductEdit= ({ setMuokkaustila, setMessage, setIsPositive, setShowMessage
                         />
                     </div>
 
-
-
-                    {/* 1. */}
-                    {/* Tämä on submit-tyyppinen input-elementti, joka lähettää lomakkeen, kun sitä(save) klikataan */}
-
-                    {/* Ohjelman suoritus siirtyy tästä ylhäällä olevaan handleSubmit-funktioon */}
-
                     <input type='submit' value='save' className="nappi" style={{ marginRight: '10px', marginBottom:'10px' }} />
-
-                    {/* Tämä on tavallinen button-tyyppinen input-elementti, joka ei lähetä lomaketta */}
                     <input type='button' value='back' className="nappi" onClick={() => setMuokkaustila(false)} />
 
                 </form>

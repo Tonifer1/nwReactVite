@@ -8,7 +8,6 @@ import { useNavigate } from 'react-router-dom';
 
 const Login = ({ setIsPositive, setMessage, setShowMessage, setloggedIn, }) => {
 
-    //! ********************Tilan eli Staten määritys*************************************
     const [newUsername, setNewUsername] = useState('')
     const [newPassword, setNewPassword] = useState('')
      
@@ -18,9 +17,6 @@ const Login = ({ setIsPositive, setMessage, setShowMessage, setloggedIn, }) => {
         navigate(-1); // Siirtää käyttäjän takaisin edelliselle sivulle
     };
 
-    //1.handleSubmit-funktio käsittelee lomakkeen lähetyksen, ja tunnistetiedot lähetetään Auth.authenticate-funktiolle,
-   // joka tekee POST-pyynnön backend-palvelimelle osoitteeseen https://localhost:7121/api/authentication
-
     const handleSubmit = (event) => {
         event.preventDefault();
         const user = {
@@ -28,8 +24,6 @@ const Login = ({ setIsPositive, setMessage, setShowMessage, setloggedIn, }) => {
             password: md5(newPassword)
         };
 
-        //then-lohkon sisällä tallennetaan käyttäjän tiedot ja token paikalliseen localStorageen.
-        //Tämän jälkeen asetetaan token UserServiceen ja CustomerServiceen.
         Auth.authenticate(user)
         .then(response => {
             localStorage.setItem('username', response.username);
@@ -64,7 +58,6 @@ const Login = ({ setIsPositive, setMessage, setShowMessage, setloggedIn, }) => {
 
     }//handleSubmit
     
-    //! ****************************return*************************************
     return (
         <div className="login">
             <h1>Login</h1>
@@ -82,14 +75,7 @@ const Login = ({ setIsPositive, setMessage, setShowMessage, setloggedIn, }) => {
 
 
                     <div style={{ marginTop: '20px' }}>
-                        {/* 1. */}
-                        {/* Tämä on submit-tyyppinen input-elementti, joka lähettää lomakkeen, kun sitä(save) klikataan */}
-
-                        {/* Ohjelman suoritus siirtyy tästä ylhäällä olevaan handleSubmit-funktioon */}
-
                         <input type='submit' value='login' className="nappi" style={{ marginRight: '10px' }} />
-
-                        {/* Tämä on tavallinen button-tyyppinen input-elementti, joka ei lähetä lomaketta */}
                         <input type='button' value='back' className="nappi" onClick={handleBack} />
                     </div>
                 </form>

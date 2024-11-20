@@ -2,16 +2,7 @@ import '../App.css'
 import React, { useState } from 'react'
 import CustomerService from '../Services/CustomerServ'
 
-//Funktion nimi. Huom! On oltava isolla alkukirjaimella
-// setMuokkaustila ym. on propseja, jotka tulee CustomerList-komponentilta, jotta täältä päästään pois.
-
-//Ikäänkuin import toiminto. Tulee CustomerList  tiedostosta.
 const CustomerEdit= ({ setMuokkaustila, setMessage, setIsPositive, setShowMessage, muokattavaCustomer }) => {
-
-    //! ********************Tilan eli Staten määritys*************************************
-    // Statet pitävät kirjaa sen hetken tilasta ja päivittävät sitä, joka kerta kun käyttäjä kirjoittaa jotain kenttään.
-    // Esim Id kenttään kirjoitettaessa, kutsutaan setNewCustomerId funktiota(alla returnissa), joka päivittää tilan newCustomerId arvon.
-
     const [newCustomerId, setNewCustomerId] = useState(muokattavaCustomer.customerId)
     const [newCompanyName, setNewCompanyName] = useState(muokattavaCustomer.companyName)
     const [newContactName, setNewContactName] = useState(muokattavaCustomer.contactName)
@@ -25,17 +16,9 @@ const CustomerEdit= ({ setMuokkaustila, setMessage, setIsPositive, setShowMessag
     const [newPhone, setNewPhone] = useState(muokattavaCustomer.phone)
     const [newFax, setNewFax] = useState(muokattavaCustomer.fax)
 
-    
-    // 2.  Syötetyt tiedot kerätään ja luodaan uusi asiakasobjekti(newCustomer), johon tiedot tallennetaan.
-    //! ********************onSubmit tapahtumankäsittelijä funktio*****************************************************
-    // event.preventDefault() estää lomakkeen lähettämisen yhteydessä kokokonaisen sivun uudelleen lataamisen.
-
     const handleSubmit = (event) => {
-        // alert('Customer added')
         event.preventDefault()
 
-        // Luodaan uusi asiakasobjekti lomakkeen tiedoista. new Customer on itse keksitty nimi.
-        // Alla olevat kentät täytyy olla nimeltään samat kuin back-endissä olevat kentät. Huom! camelCase.
         var newCustomer = {
             customerId: newCustomerId, 
             companyName: newCompanyName,
@@ -71,8 +54,6 @@ const CustomerEdit= ({ setMuokkaustila, setMessage, setIsPositive, setShowMessag
             });
     }//handleSubmit
 
-
-    //! ****************************return*************************************
     return (
         <div id="edit">
             <h2>Customer Edit</h2>
@@ -164,16 +145,7 @@ const CustomerEdit= ({ setMuokkaustila, setMessage, setIsPositive, setShowMessag
                         onChange={({ target }) => setNewFax(target.value)}
                     />
                 </div>
-
-               
-                    {/* 1. */}
-                    {/* Tämä on submit-tyyppinen input-elementti, joka lähettää lomakkeen, kun sitä(save) klikataan */}
-
-                    {/* Ohjelman suoritus siirtyy tästä ylhäällä olevaan handleSubmit-funktioon */}
-
                     <input type='submit' value='save' className="nappi" style={{ marginRight: '10px',marginBottom: '10px' }} />
-
-                    {/* Tämä on tavallinen button-tyyppinen input-elementti, joka ei lähetä lomaketta */}
                     <input type='button' value='back'className="nappi" onClick={() => setMuokkaustila(false)} />
                 
             </form>

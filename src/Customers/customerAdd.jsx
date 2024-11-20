@@ -2,15 +2,7 @@ import '../App.css'
 import React, { useState } from 'react'
 import CustomerService from '../Services/CustomerServ'
 
-//Funktion nimi. Huom! On oltava isolla alkukirjaimella
-// setLisäystila ym. on propseja, jotka tulee CustomerList-komponentilta, jotta täältä päästään pois.
-
-//Ikäänkuin import toiminto. Tulee CustomerList  tiedostosta.
 const CustomerAdd = ({ setLisäystila, setCustomers, setMessage, setIsPositive, setShowMessage, }) => {
-
-    //! ********************Tilan eli Staten määritys*************************************
-    // Statet pitävät kirjaa sen hetken tilasta ja päivittävät sitä, joka kerta kun käyttäjä kirjoittaa jotain kenttään.
-    // Esim Id kenttään kirjoitettaessa, kutsutaan setNewCustomerId funktiota(alla returnissa), joka päivittää tilan newCustomerId arvon.
 
     const [newCustomerId, setNewCustomerId] = useState('')
     const [newCompanyName, setNewCompanyName] = useState('')
@@ -25,19 +17,11 @@ const CustomerAdd = ({ setLisäystila, setCustomers, setMessage, setIsPositive, 
     const [newPhone, setNewPhone] = useState('')
     const [newFax, setNewFax] = useState('')
 
-    
-    // 2.  Syötetyt tiedot kerätään ja luodaan uusi asiakasobjekti(newCustomer), johon tiedot tallennetaan.
-    //! ********************onSubmit tapahtumankäsittelijä funktio*****************************************************
-    // event.preventDefault() estää lomakkeen lähettämisen yhteydessä kokokonaisen sivun uudelleen lataamisen.
 
     const handleSubmit = (event) => {
-        // alert('Customer added')
         event.preventDefault()
-
-        // Luodaan uusi asiakasobjekti lomakkeen tiedoista. new Customer on itse keksitty nimi.
-        // Alla olevat (vasemmat)kentät täytyy olla nimeltään samat kuin back-endissä olevat kentät. Huom! camelCase.
         var newCustomer = {
-            customerId: newCustomerId.toUpperCase(), // Muutetaan ID isoiksi kirjaimiksi
+            customerId: newCustomerId.toUpperCase(), 
             companyName: newCompanyName,
             contactName: newContactName,
             contactTitle: newContactTitle,
@@ -47,7 +31,7 @@ const CustomerAdd = ({ setLisäystila, setCustomers, setMessage, setIsPositive, 
             postalCode: newPostalCode,
             phone: newPhone,
             fax: newFax
-        }//newCustomer
+        }
 
         CustomerService.addNew(newCustomer)
             .then(() => {
@@ -70,21 +54,9 @@ const CustomerAdd = ({ setLisäystila, setCustomers, setMessage, setIsPositive, 
     
     }//handleSubmit
 
-
-    //! ****************************return*************************************
     return (
         <div id="addNew">
             <h2>From Customer add</h2>
-
-            {/* Lomake eli Form uuden asiakkaan lisäämistä varten */}
-            {/* Normaalisti ei anneta Id kenttää käyttäjän täytettäväksi, mutta tässä annetaan, koska Id on string. */}
-            {/* Tietokanta huolehtii id:n lisäämisestä juoksevalla numerolla */}
-            {/* value viittaa tilaan, joka on määritelty yläpuolella.*/}
-            {/*Eli alla {newCustomerId} = const [newCustomerId, setNewCustomerId] = useState('')  */}
-            {/* onChange tapahtumankäsittelijä, joka päivittää tilaa, kun kenttään kirjoitetaan */}
-            {/* required tarkoittaa, että kenttä on pakollinen ja se ei voi olla tyhjä */}
-            {/* virheenkäsittely varten Id kenttä on pakollinen ja pituus 5 merkkiä: maxLength="5" minLength="5" */}
-
             <div className="form-container">
                 <form onSubmit={handleSubmit}>
                     <div>
@@ -129,14 +101,7 @@ const CustomerAdd = ({ setLisäystila, setCustomers, setMessage, setIsPositive, 
                     </div>
 
                     <div className="nowrap" style={{ marginTop: '20px' }}>
-                        {/* 1. */}
-                        {/* Tämä on submit-tyyppinen input-elementti, joka lähettää lomakkeen, kun sitä(save) klikataan */}
-
-                        {/* Ohjelman suoritus siirtyy tästä ylhäällä olevaan handleSubmit-funktioon */}
-
-                        <input type='submit' value='save' className="nappi" style={{ marginRight: '10px' }} />
-
-                        {/* Tämä on tavallinen button-tyyppinen input-elementti, joka ei lähetä lomaketta */}
+                        <input type='submit' value='save' className="nappi" style={{ marginRight: '10px' }} />                      
                         <input type='button' value='back' className="nappi" onClick={() => setLisäystila(false)} />
                     </div>
                 </form>

@@ -1,15 +1,7 @@
 import '../App.css'
 import { useState } from 'react'
 import CustomerService from '../Services/CustomerServ'
-// Täällä käsitellään yksittäisen asiakkaan tiedot. Siksi nimi customer.jsx yksikkömuodossa.
-// Jokaisen asiakkaan yksittäiset tiedot renderöidään tässä komponentissa.
-// Props on nimeltään customerprops, jonka se saa CustomerList-komponentilta.
-// Tämä tarkoittaa, että Customer-komponentti odottaa saavansa customerprops-nimisen propsin, joka sisältää asiakkaan tiedot.
-// Tässä Customer-komponentti ottaa vastaan propsit, jotka on määritelty { customerprops }-parametrina.
-// cust on yksittäinen asiakasobjekti, joka on peräisin CustomerList customers-taulukosta ja sisältää yhden asiakkaan tiedot.
-// Parametri on määritelty CustomerList tiedostossa näin: customerprops={cust}. Kuitenkin tässä tiedostossa se on {customerprops}.Eli hakasuluissa.
 
-                  //Ikäänkuin import. Tulee CustomerList  tiedostosta.
 const Customer = ({ customerprops,setCustomers, setMessage, setIsPositive, setShowMessage, editCustomer }) => {
 
     // Komponentin tilan määritys
@@ -22,7 +14,6 @@ const Customer = ({ customerprops,setCustomers, setMessage, setIsPositive, setSh
             CustomerService.remove(customer.customerId)
                 .then(res => {
                     if (res.status === 200) {
-                        console.log("Poisto tehty customer: viesti näkyy? If lohko");
                         setMessage(`Succesfully removed customer ${customer.companyName}`)
                         setIsPositive(true)
                         setShowMessage(true)
@@ -50,12 +41,12 @@ const Customer = ({ customerprops,setCustomers, setMessage, setIsPositive, setSh
         }//if               
             else {
                 
-                console.log("Poisto peruttu konsolissa. Näkyykö? Else haara ");
+                
                 setMessage('Poisto peruttu onnistuneesti.')
                     setIsPositive(true)
                     setShowMessage(true)
                     
-                     window.scrollBy(0, -5000) // Scrollataan ylös jotta nähdään alert :)
+                     window.scrollBy(0, -5000) 
             
                     // Ilmoituksen piilotus
                     setTimeout(() => {
@@ -76,9 +67,7 @@ const Customer = ({ customerprops,setCustomers, setMessage, setIsPositive, setSh
             {/* Nappi, joka vaihtaa showDetails-tilan arvoa true/false. !showDetails vaihtaa käänteisesti järjestystä */}
             <button className="nappi" onClick={() => setShowDetails(!showDetails)}>
                 
-            {/* tämä ternäärinen operaattori tarkistaa showDetails-tilan arvon ja palauttaa 
-            joko "Hide Details" tai "Show Details"
-             sen mukaan, onko showDetails tosi vai epätosi.     */}
+           
                 {showDetails ? "Hide Details" : "Show Details "}
             </button>
 
@@ -91,30 +80,21 @@ const Customer = ({ customerprops,setCustomers, setMessage, setIsPositive, setSh
                     <table>
                         <thead>
                             <tr>
-                                <th>Contact name</th>
-                               
-                                <th>Phone</th>
-                                
-                                <th>Address</th>
-                                
-                                <th>City</th>
-                                
+                                <th>Contact name</th>                               
+                                <th>Phone</th>                                
+                                <th>Address</th>                                
+                                <th>City</th>                                
                                 <th>Country</th>
                                 
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
-                                <td>{customerprops.contactName}</td>
-                                
-                                <td>{customerprops.phone}</td>
-                                
-                                <td>{customerprops.address}</td>
-                                
-                                <td>{customerprops.city}</td>
-                                
-                                <td>{customerprops.country}</td>
-                                
+                                <td>{customerprops.contactName}</td>                                
+                                <td>{customerprops.phone}</td>                                
+                                <td>{customerprops.address}</td>                                
+                                <td>{customerprops.city}</td>                                
+                                <td>{customerprops.country}</td>                               
                             </tr>
                         </tbody>
                     </table>

@@ -130,7 +130,6 @@ const ProductList = ({ setMessage, setIsPositive, setShowMessage }) => {
                             )
                             .map(prod => (
                                 <Col key={prod.productId} sm={12} md={6} lg={4} xl={3} className="mb-4">
-                                    {/* Siirretään kortti renderöintiin Product-komponenttiin */}
                                     <Product
                                         productprops={prod}
                                         setProducts={setProducts}

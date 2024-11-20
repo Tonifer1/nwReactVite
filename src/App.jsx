@@ -1,10 +1,4 @@
-//Täällä on funktionaalinen komponentti App, joka palauttaa divin, jonka sisäällä on html-elementtejä.
-//Sivun alaosassa on exportattu App-komponentti, joka on käytössä main.jsx-tiedostossa.
-//export pitää aina olla, jotta komponentti on käytettävissä muualla.
-
 import './App.css'
-import Laskuri from './Laskuri.jsx'
-import Posts from './Posts.jsx'
 import CustomerList from './Customers/CustomerList.jsx'
 import ProductList from './Products/ProductList.jsx'
 import UserList from './Users/UserList.jsx'
@@ -16,16 +10,6 @@ import Nav from 'react-bootstrap/Nav'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import { BrowserRouter as Router, Route, Routes, Link, Navigate } from 'react-router-dom'
 import Login from './login.jsx'
-
-
-
-
-//Määritellään / esitellään funktionaalinen "Äiti" komponentti App. Huom! Komponentit on aina oltava isolla alkukirjaimella!
-//Nimetön funktio arvoltaan.
-//Ei parametreja, joten sulut ovat tyhjät.
-//ES 6 syntaksi: const App = () => {}
-//Ehdolliset renderöinnit kannattaa tehdä yhden (main) return palautuksen sisällä, jos mahdollista ilman erillisiä if lohkoja.
-//Reactin KOMPONENTEISSA  return osio on AINA pakollinen.Oltava vähintään NULL, jos ei ole muuta palautettavaa.
 
 const App = () => {
 
@@ -68,7 +52,7 @@ const handleLogout = () => {
             <Nav.Link as={Link} to={loggedIn ? '/products' : '/login'}>
               Products
             </Nav.Link>
-            {/* <Nav.Link as={Link} to='/posts'>Posts</Nav.Link> */}
+            
             <Nav.Link as={Link} to='/users'>Users</Nav.Link>
             {loggedIn ? (
               <Nav.Link onClick={handleLogout}>Logout</Nav.Link>
@@ -77,13 +61,11 @@ const handleLogout = () => {
              (
                 <Nav.Link as={Link} to='/login'>Login</Nav.Link>
             )}
-            {/* <Nav.Link as={Link} to='/laskuri'>Laskuri</Nav.Link> */}
+       
           </Nav>        
         </Navbar>
           
-          
-            {/* Alla olevat propsit ovat arvoja, ei tilanmuutosfunktioita. */}
-            {showMessage && <Message message={message} isPositive={isPositive} />}
+          {showMessage && <Message message={message} isPositive={isPositive} />}
 
           <Routes>
             <Route path="/" element={<h1>Northwind traders</h1>} />
@@ -124,14 +106,6 @@ const handleLogout = () => {
             : 
             (<Navigate to="/login" replace />)
           }/>
-          
-                <Route path="/posts"
-                element={ <Posts />} >
-                </Route>
-
-                <Route path="/laskuri"
-                element={ <Laskuri />}>                  
-                </Route>
 
                 <Route path="/login" element={
                  !loggedIn ? 
@@ -153,6 +127,5 @@ const handleLogout = () => {
 
 }//App
 
-//Tämä on importattu main.jsx-tiedostossa
 export default App
 

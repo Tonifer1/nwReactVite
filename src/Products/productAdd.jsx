@@ -2,44 +2,24 @@ import '../App.css'
 import React, { useState } from 'react'
 import ProductService from '../Services/ProductServ'
 
-//Funktion nimi. Huom! On oltava isolla alkukirjaimella
-// setLisäystila ym. on propseja, jotka tulee ProductList-komponentilta, jotta täältä päästään pois.
-
-//Ikäänkuin import toiminto. Tulee CustomerList  tiedostosta.
 const ProductAdd = ({ setLisäystila, setProducts, setMessage, setIsPositive, setShowMessage, }) => {
 
-    //! ********************Tilan eli Staten määritys*************************************
-    // Statet pitävät kirjaa sen hetken tilasta ja päivittävät sitä, joka kerta kun käyttäjä kirjoittaa jotain kenttään.
-    // Esim Id kenttään kirjoitettaessa, kutsutaan setNewCustomerId funktiota(alla returnissa), joka päivittää tilan newCustomerId arvon.
-
-    const [newProductId, setNewProductId] = useState('')
+    const [newProductId, setNewProductId] = useState(0)
     const [newProductName, setNewProductName] = useState('')
     const [newSupplierId, setNewSupplierId] = useState('')
     const [newCategoryId, setNewCategoryId] = useState('')
     const [newQuantityPerUnit, setNewQuantityPerUnit] = useState('')
     const [newUnitPrice, setNewUnitPrice] = useState('')
-
     const [newUnitsInStock, setNewUnitsInStock] = useState('')
     const [newUnitsOnOrder, setNewUnitsOnOrder] = useState('')
     const [newReorderLevel, setNewReorderLevel] = useState('')
-
     const [newDiscontinued, setNewDiscontinued] = useState('')
     const [newImageLink, setNewImageLink] = useState('')
   
-
-    
-    // 2.  Syötetyt tiedot kerätään ja luodaan uusi asiakasobjekti(newCustomer), johon tiedot tallennetaan.
-    //! ********************onSubmit tapahtumankäsittelijä funktio*****************************************************
-    // event.preventDefault() estää lomakkeen lähettämisen yhteydessä kokokonaisen sivun uudelleen lataamisen.
-
     const handleSubmit = (event) => {
-        // alert('Product added')
         event.preventDefault()
 
-        // Luodaan uusi productobjekti lomakkeen tiedoista. new Product on itse keksitty nimi.
-        // Alla olevat (vasemmat)kentät täytyy olla nimeltään samat kuin back-endissä olevat kentät. Huom! camelCase.
-        var newProduct = {
-            
+        var newProduct = {            
             productName: newProductName,
             supplierId: newSupplierId,
             categoryId: newCategoryId,
@@ -74,23 +54,17 @@ const ProductAdd = ({ setLisäystila, setProducts, setMessage, setIsPositive, se
     
     }//handleSubmit
 
-
-    //! ****************************return*************************************
     return (
         <div>
             <h2>From Product add</h2>
-            {/* Tietokanta huolehtii id:n lisäämisestä juoksevalla numerolla */}
-            {/* value viittaa tilaan, joka on määritelty yläpuolella.*/}
-            {/*Eli alla {newProductId} = const [newProductId, setNewProductId] = useState('')  */}
-            {/* onChange tapahtumankäsittelijä, joka päivittää tilaa, kun kenttään kirjoitetaan */}
             <div className="form-container">
                 <form onSubmit={handleSubmit}>
                     <div>
                         <input
-                            type="text"
+                            type="number"
                             value={newProductId}
                             placeholder="ID"
-                            onChange={({ target }) => setNewProductId(target.value)}
+                            onChange={({ target }) => setNewProductId(Number(target.value) || '')}
                             disabled
                         />
                     </div>
@@ -110,8 +84,8 @@ const ProductAdd = ({ setLisäystila, setProducts, setMessage, setIsPositive, se
                             placeholder="Supplier ID"
                             onChange={({ target }) => setNewSupplierId(Number(target.value) || '')}
                             required
-                        // min="1"
-                        // max="29"
+                         min="1"
+                         max="29"
                         />
                     </div>
                     <div>
@@ -127,10 +101,10 @@ const ProductAdd = ({ setLisäystila, setProducts, setMessage, setIsPositive, se
                     </div>
                     <div>
                         <input
-                            type="number"
+                            type="text"
                             value={newQuantityPerUnit}
                             placeholder="Quantity per unit"
-                            onChange={({ target }) => setNewQuantityPerUnit(Number(target.value) || '')}
+                            onChange={({ target }) => setNewQuantityPerUnit(target.value)}
                             required
                             min="0"
                         />
