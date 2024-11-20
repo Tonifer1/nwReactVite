@@ -54,7 +54,7 @@
 
 /* App-komponentin taustakuva */
 .app {
-  background-image: url('./images/northwind1.png');
+  background-image: url('/images/northwind1.png');
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center center;
@@ -63,7 +63,7 @@
 }
 
 .login{
-  background-image: url('./images/login4.png');
+  background-image: url('/images/login4.png');
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center center;
@@ -75,7 +75,7 @@
 
 /* CustomerList-komponentin taustakuva */
 .customerList {
-  background-image: url('./images/pastel2.png');
+  background-image: url('/images/pastel2.png');
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center center;
@@ -86,7 +86,7 @@
 
 /* ProductList-komponentin taustakuva */
 .productList {
-  background-image: url('./images/product1.png');
+  background-image: url('/images/product1.png');
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center center;
@@ -99,7 +99,7 @@
 
 /* UserList-komponentin taustakuva 1. */
 .userList {
-  background-image: url('./images/pastel1.png');
+  background-image: url('/images/pastel1.png');
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center center;
