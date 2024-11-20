@@ -2,8 +2,8 @@
 import axios from "axios"
 
 // Määritellään perus-URL, johon kaikki pyynnöt tehdään
-const baseUrl = 'https://localhost:7121/api/users'
-//const baseUrl = 'https://northwindrestapi20241105134531.azurewebsites.net/api/users'
+//const baseUrl = 'https://localhost:7121/api/users'
+const baseUrl = 'https://northwindrestapi20241105134531.azurewebsites.net/api/users'
 
 const api = axios.create({
     baseURL: baseUrl
@@ -22,11 +22,12 @@ const setToken = (newToken) => {
 };
 
 
+//Toinen tapa
 
 // const getAll = () => {
 
-//     // const request = axios.get(baseUrl)
-//     // return request.then(response => response.data)
+//      const request = axios.get(baseUrl)
+//      return request.then(response => response.data)
 //     console.log("Making getAll request with Authorization header:", api.defaults.headers.common['Authorization']); // Varmistus
 //     return api.get('/').then(response => response.data)
 // }
