@@ -64,7 +64,7 @@ const User = ({ setUsers, userprops, setMessage, setIsPositive, setShowMessage, 
     
 
     return (
-        <div className='customerDiv' >
+        < >
             {/* Näytetään yksittäisen userin nimi */}
             <h4>
                 {userprops.username} 
@@ -77,15 +77,15 @@ const User = ({ setUsers, userprops, setMessage, setIsPositive, setShowMessage, 
 
             {/* Jos showDetails on true, näytetään userin tiedot */}
             {showDetails && (
-                <div className="customerDetails">
+                <div>
                     <h3>{userprops.userName}</h3>
                     
                     <button onClick={() =>editUser(userprops)} style={{ marginRight: '10px' }}>Edit</button>
                     <button onClick={() =>deleteUser(userprops)}>Delete</button>
-                    <table>
+                    <table className= "table table-striped table-primary">
                         <thead>
                             <tr>
-                                <th>FirstnameUserjsx</th>
+                                <th>Firstname</th>
                                 <th>Last name</th>
                                 <th>E-mail</th>
                                 <th>Username</th>
@@ -106,7 +106,7 @@ const User = ({ setUsers, userprops, setMessage, setIsPositive, setShowMessage, 
                     </table>
                 </div>
             )}
-        </div>
+        </>
     )
 }
 

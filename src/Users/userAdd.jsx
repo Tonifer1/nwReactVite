@@ -80,7 +80,7 @@ const UserAdd = ({ setLisäystila, setIsPositive, setUsers, setMessage, setShowM
             <h2>User add</h2>
             <form onSubmit={handleSubmit}>
                 <div>
-                    <input type="text" value={newFirstName} placeholder="First nameUserAdd"
+                    <input type="text" value={newFirstName} placeholder="First name"
                         onChange={({ target }) => setNewFirstName (target.value)} required />
                 </div>
                 <div>

@@ -43,17 +43,21 @@ const handleLogout = () => {
     <div className="app">
       <Router>
 
-        <Navbar className="navbar navbar-expand-lg bg-dark" data-bs-theme="dark">
+        <Navbar className="navbar navbar-expand-lg" style={{ backgroundColor: '#343a40', color: 'white' }} data-bs-theme="dark">
           <Nav className="me-auto">
-          <Nav.Link as={Link} to='/'>Home</Nav.Link>
-            <Nav.Link as={Link} to={loggedIn ? '/customers' : '/login'}>
+            
+           <Nav.Link as={Link} to='/'>Home</Nav.Link>
+
+            <Nav.Link as={Link} to='/customers'>
               Customers
             </Nav.Link>
-            <Nav.Link as={Link} to={loggedIn ? '/products' : '/login'}>
+
+            <Nav.Link as={Link} to= '/products'>
               Products
             </Nav.Link>
             
-            <Nav.Link as={Link} to='/users'>Users</Nav.Link>
+            <Nav.Link as={Link} to='/users'>
+               Users</Nav.Link>
             {loggedIn ? (
               <Nav.Link onClick={handleLogout}>Logout</Nav.Link>
             ) 
@@ -68,7 +72,7 @@ const handleLogout = () => {
           {showMessage && <Message message={message} isPositive={isPositive} />}
 
           <Routes>
-            <Route path="/" element={<h1>Northwind traders</h1>} />
+            <Route path="/" element={<h1>Northwind Traders</h1>} />
 
           <Route path="/customers" element={
             loggedIn ? (
@@ -118,10 +122,14 @@ const handleLogout = () => {
                 }/>
                 
           </Routes>
+        {/* <footer style={{ backgroundColor: '#343a40', color: 'white', padding: '0px 0', textAlign: 'center' }}>
+          <p>Northwind Traders - All rights reserved &copy; 2024</p>       
+        </footer> */}
          
       </Router>
-          
-      </div>
+               
+
+    </div>    
     
   )//return
 

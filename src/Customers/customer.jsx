@@ -58,52 +58,44 @@ const Customer = ({ customerprops,setCustomers, setMessage, setIsPositive, setSh
     }//deleteCustomer
 
     return (
-        <div className='customerDiv'>
-            {/* Näytetään yksittäisen asiakkaan yrityksen nimi */}
-            <h4>
-                {customerprops.companyName} 
-            </h4>
-
-            {/* Nappi, joka vaihtaa showDetails-tilan arvoa true/false. !showDetails vaihtaa käänteisesti järjestystä */}
+        <div>
+            <h4>{customerprops.companyName}</h4>
+    
             <button className="nappi" onClick={() => setShowDetails(!showDetails)}>
-                
-           
-                {showDetails ? "Hide Details" : "Show Details "}
+                {showDetails ? "Hide Details" : "Show Details"}
             </button>
-
+    
             {/* Jos showDetails on true, näytetään asiakkaan tiedot */}
             {showDetails && (
-                <div className="customerDetails">
+                <>
                     <h3>{customerprops.companyName}</h3>
-                    
-                    
-                    <table>
+                    <table className="table table-striped">
                         <thead>
                             <tr>
-                                <th>Contact name</th>                               
-                                <th>Phone</th>                                
-                                <th>Address</th>                                
-                                <th>City</th>                                
+                                <th>Contact name</th>
+                                <th>Phone</th>
+                                <th>Address</th>
+                                <th>City</th>
                                 <th>Country</th>
-                                
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
-                                <td>{customerprops.contactName}</td>                                
-                                <td>{customerprops.phone}</td>                                
-                                <td>{customerprops.address}</td>                                
-                                <td>{customerprops.city}</td>                                
-                                <td>{customerprops.country}</td>                               
+                                <td>{customerprops.contactName}</td>
+                                <td>{customerprops.phone}</td>
+                                <td>{customerprops.address}</td>
+                                <td>{customerprops.city}</td>
+                                <td>{customerprops.country}</td>
                             </tr>
                         </tbody>
                     </table>
-                    <button onClick={() =>editCustomer(customerprops)} style={{ marginRight: '10px' }}>Edit</button>
-                    <button onClick={() =>deleteCustomer(customerprops)} >Delete</button>
-                </div>
+                    <button onClick={() => editCustomer(customerprops)} style={{ marginRight: '10px' }}>Edit</button>
+                    <button onClick={() => deleteCustomer(customerprops)}>Delete</button>
+                </>
             )}
         </div>
-    )
+    );
+    
 }
 
 export default Customer
