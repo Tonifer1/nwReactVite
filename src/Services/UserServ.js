@@ -2,8 +2,8 @@
 import axios from "axios"
 
 // Määritellään perus-URL, johon kaikki pyynnöt tehdään
-const baseUrl = 'https://localhost:7121/api/users'
-//const baseUrl = 'https://northwindrestapi20241105134531.azurewebsites.net/api/users'
+//const baseUrl = 'https://localhost:7121/api/users'
+const baseUrl = 'https://northwindrestapi20241105134531.azurewebsites.net/api/users'
 
 const api = axios.create({
     baseURL: baseUrl

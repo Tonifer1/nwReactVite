@@ -1,7 +1,7 @@
 import axios from 'axios';
 
-const baseUrl = 'https://localhost:7121/api/Authentication';
-//const baseUrl = 'https://northwindrestapi20241105134531.azurewebsites.net/api/Authentication';
+//const baseUrl = 'https://localhost:7121/api/Authentication';
+const baseUrl = 'https://northwindrestapi20241105134531.azurewebsites.net/api/Authentication';
 
 
 const authenticate = (userForAuth) => {
