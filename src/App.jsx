@@ -18,23 +18,40 @@ const App = () => {
   const [message, setMessage] = useState('')
   const [isPositive, setIsPositive] = useState(false)
   const [loggedIn, setloggedIn] = useState(false)
+  const [acceslevelId, setAcceslevelId] = useState(null);
+
+
+    useEffect(() => {
+      const storedUsername = localStorage.getItem('username');
+      const storedAcceslevelId = localStorage.getItem('acceslevelId');
+      
+      // Varmistetaan, että localStorage sisältää arvot
+      console.log('Stored username: (from App.jsx)', storedUsername);
+      console.log('Stored acceslevelId (from App.jsx):', storedAcceslevelId);
+  
+      if (storedUsername && storedAcceslevelId) {
+        setloggedIn(true);
+        setAcceslevelId(storedAcceslevelId); // Asetetaan acceslevelId tilaan
+      }
+      else {
+        setloggedIn(false);
+        setAcceslevelId(null);
+      }
+
+    }, [loggedIn, acceslevelId]); // Ajetaan vain kerran komponentin ladataessa
 
 
 
-useEffect(() => {
-  if (localStorage.getItem('username') !== null) {
-    setloggedIn(true);
-  }
-}, []);
 
 const handleLogout = () => {
   localStorage.removeItem('username');
+  localStorage.removeItem('acceslevelId');
   setloggedIn(false);
   setMessage('Logged out successfully');
   setIsPositive(true);
   setShowMessage(true);
   setTimeout(() => {
-    setShowMessage(false);
+  setShowMessage(false);
   }, 3000);
 };
 
@@ -56,8 +73,11 @@ const handleLogout = () => {
               Products
             </Nav.Link>
             
+            {acceslevelId === "2" &&(
             <Nav.Link as={Link} to='/users'>
-               Users</Nav.Link>
+               Users
+            </Nav.Link>)}
+
             {loggedIn ? (
               <Nav.Link onClick={handleLogout}>Logout</Nav.Link>
             ) 
@@ -99,23 +119,23 @@ const handleLogout = () => {
           } />
 
           <Route path="/users" element={
-            loggedIn ? 
-            (
+            acceslevelId === "2" ? (
               <UserList
                 setMessage={setMessage}
                 setIsPositive={setIsPositive}
                 setShowMessage={setShowMessage}
               />
-            ) 
-            : 
-            (<Navigate to="/login" replace />)
-          }/>
+            )
+             : 
+             (<Navigate to="/login" replace />
+            )
+          } />
 
                 <Route path="/login" element={
                  !loggedIn ? 
                 (
                   <Login setMessage={setMessage} setShowMessage={setShowMessage} 
-                  setloggedIn={setloggedIn} setIsPositive={setIsPositive}/>
+                  setloggedIn={setloggedIn} setIsPositive={setIsPositive}  />
                 )
                 : 
                 (<Navigate to="/" replace />)

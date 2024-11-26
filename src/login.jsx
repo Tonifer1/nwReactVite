@@ -26,10 +26,12 @@ const Login = ({ setIsPositive, setMessage, setShowMessage, setloggedIn, }) => {
 
         Auth.authenticate(user)
         .then(response => {
+            console.log("Authentication successful, response: (from login.jsx)", response);
             localStorage.setItem('username', response.username);
-            localStorage.setItem('accesslevelId', response.accesslevelId);
+            localStorage.setItem('acceslevelId', response.acceslevelId);
             localStorage.setItem('token', response.token);
-            console.log('Token set to localStorage:', localStorage.getItem('token')); // Varmistus tulostuksen sijoittaminen nyt tähän
+            console.log("Setting acceslevelId: (from login.jsx)", response.acceslevelId);
+            console.log('Token set to localStorage: (from login.jsx)', localStorage.getItem('token')); // Varmistus tulostuksen sijoittaminen nyt tähän
             UserService.setToken(response.token); // Tämä asettaa tokenin
             CustomerService.setToken(response.token); // Aseta token CustomerServille
             
