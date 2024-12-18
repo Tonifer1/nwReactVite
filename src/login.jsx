@@ -41,7 +41,7 @@ const Login = ({ setIsPositive, setMessage, setShowMessage, setloggedIn, }) => {
     
             setTimeout(() => {
             setShowMessage(false);
-            }, 3000);
+            }, 2000);
             console.log('Muutetaan App komponentin tilaa trueksi.');
             setloggedIn(true);
         })
@@ -52,7 +52,7 @@ const Login = ({ setIsPositive, setMessage, setShowMessage, setloggedIn, }) => {
              console.error("failed to do login:", error);
              setTimeout(() => {
                 setShowMessage(false);
-                }, 3000);
+                }, 2000);
             
         });
             
