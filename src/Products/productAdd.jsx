@@ -42,7 +42,7 @@ const ProductAdd = ({ setLisäystila, setProducts, setMessage, setIsPositive, se
 
                 setTimeout(() => {
                     setShowMessage(false);
-                }, 3000);
+                }, 5000);
 
                 setLisäystila(false);
                 
@@ -58,7 +58,7 @@ const ProductAdd = ({ setLisäystila, setProducts, setMessage, setIsPositive, se
         <div>
             <h2>From Product add</h2>
             <div className="form-container">
-                <form onSubmit={handleSubmit}>
+                <form id="add-product-form" onSubmit={handleSubmit}>
                     <div>
                         <input
                             type="number"

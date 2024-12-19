@@ -1,3 +1,20 @@
+
+  
+  
+
+//Alla oleva toimii. On korvattu Token autentikaatiolla
+Cypress.Commands.add('login', (username, password) => {
+    cy.visit('http://localhost:5173');
+    cy.contains('Login').click();
+    cy.get('input[placeholder="Username"]').type(username);
+    cy.get('input[placeholder="Password"]').type(password);
+    cy.contains('login').click();
+    cy.url().should('not.include', '/login'); // Varmista, että kirjautuminen onnistui
+    cy.contains(`Welcome ${username}`);
+  });
+  
+
+
 // ***********************************************
 // This example commands.js shows you how to
 // create various custom commands and overwrite
