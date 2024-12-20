@@ -1,3 +1,4 @@
+
 describe('Kirjautumisen testit', function () {
   it('Näyttää virheilmoituksen väärillä tunnuksilla', function () {
     cy.visit('http://localhost:5173'); // Avaa sovellus

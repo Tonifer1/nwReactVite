@@ -58,7 +58,7 @@ const CustomerAdd = ({ setLisäystila, setCustomers, setMessage, setIsPositive, 
         <div id="addNew">
             <h2>From Customer add</h2>
             <div className="form-container">
-                <form onSubmit={handleSubmit}>
+                <form id="add-customer-form" onSubmit={handleSubmit}>
                     <div>
                         <input type="text" value={newCustomerId} placeholder="ID with 5 capital letters" maxLength="5" minLength="5"
                             onChange={({ target }) => setNewCustomerId(target.value)} required />

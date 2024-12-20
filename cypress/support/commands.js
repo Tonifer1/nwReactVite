@@ -1,8 +1,3 @@
-
-  
-  
-
-//Alla oleva toimii. On korvattu Token autentikaatiolla
 Cypress.Commands.add('login', (username, password) => {
     cy.visit('http://localhost:5173');
     cy.contains('Login').click();
