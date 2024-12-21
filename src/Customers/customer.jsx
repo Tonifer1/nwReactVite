@@ -8,7 +8,7 @@ const Customer = ({ customerprops,setCustomers, setMessage, setIsPositive, setSh
     const [showDetails, setShowDetails] = useState(false)
 
     const deleteCustomer = (customer) => {
-        let vastaus = window.confirm(`Delete customer window.confirm osio ${customer.companyName}?`)
+        let vastaus = window.confirm(`Are you sure you want to delete customer ${customer.companyName}?`)
 
         if (vastaus === true) {
             CustomerService.remove(customer.customerId)
