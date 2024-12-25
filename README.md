@@ -1,8 +1,41 @@
-# React + Vite
+# Cypress Testit
+### End-to-End
+Testatut toiminnot:
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Kirjautuminen onnistuneesti:
+Käyttäjä voi kirjautua sovellukseen oikeilla tunnuksilla.
+Sovellus näyttää tervetuloviestin onnistuneen kirjautumisen jälkeen.
+Virheellisillä tunnuksilla kirjautuminen epäonnistuu, ja käyttäjälle näytetään virheilmoitus.
 
-Currently, two official plugins are available:
+Products-sivun testit:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Kirjautunut käyttäjä voi siirtyä Products-sivulle.
+Käyttäjä voi avata ja sulkea tuotelisäyslomakkeen.
+Lomakkeen avautuminen ja sulkeutuminen toimivat odotetusti.
+
+Customers-sivun testit:
+
+Käyttäjä voi avata lisäyslomakkeen ja täyttää sen tiedoilla.
+Asiakkaan lisäys onnistuu, ja käyttäjä saa onnistumisviestin.
+Käyttäjä voi päivittää sivunäkymän ja nähdä lisätyn asiakkaan.
+Asiakkaan tiedot näkyvät oikein sivunäkymässä.
+Käyttäjä voi poistaa asiakkaan onnistuneesti.
+Poiston jälkeen käyttäjä näkee onnistumisviestin, eikä asiakas enää näy listauksessa.
+
+### Komponenttitestaus - Vitest ja React Testing Library
+
+
+Testatut toiminnot:
+
+CustomerAdd-komponentti:
+Komponentti renderöi kaikki lomakekentät oikein.
+Käyttäjä voi täyttää lomakekentät ja lähettää lomakkeen.
+Lomakekenttien arvot päivittyvät oikein käyttäjän syötteiden mukaisesti.
+Lomake ei lähetä tietoja, jos pakollisia kenttiä ei ole täytetty.
+Virheellisen syötteen tapauksessa lomake näyttää virheilmoituksia.
+
+
+
+
+
+
