@@ -15,6 +15,9 @@ const App = () => {
 
    // App komponentin tila (state) muuttujat
   const [showMessage, setShowMessage] = useState(false)
+
+  //Message komponentti saa propsina message ja isPositive arvot.message siis sisältää viestin.
+  //setMessage-funktio tallentaa viestin, setIsPositive-funktio asettaa viestin tyypin (positiivinen/negatiivinen)
   const [message, setMessage] = useState('')
   const [isPositive, setIsPositive] = useState(false)
   const [loggedIn, setloggedIn] = useState(false)

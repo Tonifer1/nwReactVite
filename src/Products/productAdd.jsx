@@ -54,6 +54,9 @@ const ProductAdd = ({ setLisäystila, setProducts, setMessage, setIsPositive, se
     
     }//handleSubmit
 
+    //Css määritykset ovat form-containerissa App.css tiedostossa. Ei ole Bootstrap määritys
+    // add-customer-form viittaa products.cy.js tiedostoon.(testi)
+
     return (
         <div>
             <h2>From Product add</h2>

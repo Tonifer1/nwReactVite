@@ -99,7 +99,7 @@ const ProductList = ({ setMessage, setIsPositive, setShowMessage }) => {
                     </Col>
                 </Row>
 
-                {/* Renderöidään ProductAdd-komponentti */}
+                {/* Renderöidään productAdd-komponentti */}
                 {lisäystila && (
                     <ProductAdd
                         setLisäystila={setLisäystila}
@@ -110,7 +110,7 @@ const ProductList = ({ setMessage, setIsPositive, setShowMessage }) => {
                     />
                 )}
 
-                {/* Renderöidään ProductEdit-komponentti */}
+                {/* Renderöidään productEdit-komponentti */}
                 {muokkaustila && (
                     <ProductEdit
                         setMuokkaustila={setMuokkaustila}
@@ -121,7 +121,7 @@ const ProductList = ({ setMessage, setIsPositive, setShowMessage }) => {
                     />
                 )}
 
-                {/* Näytetään tuotteet */}
+                {/* Renderöidään products  */}
                 {!lisäystila && !muokkaustila && show  && (
                     <Row>
                         {products

@@ -2,9 +2,8 @@
 ### End-to-End
 Testatut toiminnot:
 
-Kirjautuminen onnistuneesti:
-Käyttäjä voi kirjautua sovellukseen oikeilla tunnuksilla.
-Sovellus näyttää tervetuloviestin onnistuneen kirjautumisen jälkeen.
+Login testi:
+
 Virheellisillä tunnuksilla kirjautuminen epäonnistuu, ja käyttäjälle näytetään virheilmoitus.
 
 Products-sivun testit:
