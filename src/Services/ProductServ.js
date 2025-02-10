@@ -1,7 +1,7 @@
 import axios from "axios";
 
-//const baseUrl = 'https://localhost:7121/api/products';
-const baseUrl = 'https://northwindrestapi20241105134531.azurewebsites.net/api/products'
+const baseUrl = 'https://localhost:7121/api/products';
+//const baseUrl = 'https://northwindrestapi20241105134531.azurewebsites.net/api/products'
 
 // Luodaan axios-olio
 const api = axios.create({

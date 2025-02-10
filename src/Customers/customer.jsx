@@ -2,13 +2,18 @@ import '../App.css'
 import { useState } from 'react'
 import CustomerService from '../Services/CustomerServ'
 
+/*Propsina saadaan customerprops(cust), joka sisältää yhden asiakkaan kaikki tiedot, setCustomers, setMessage, 
+setIsPositive ja setShowMessage-funktiot, sekä editCustomer-funktion, joka sijaitsee CustomerList osiossa.
+Tässä komponentissa hoidetaan myös Delete toiminto Axios kirjaston avulla Id:n perusteella
+*/
+
 const Customer = ({ customerprops,setCustomers, setMessage, setIsPositive, setShowMessage, editCustomer }) => {
 
     // Komponentin tilan määritys
     const [showDetails, setShowDetails] = useState(false)
 
     const deleteCustomer = (customer) => {
-        let vastaus = window.confirm(`Delete customer window.confirm osio ${customer.companyName}?`)
+        let vastaus = window.confirm(`Are you sure you want to delete customer ${customer.companyName}?`)
 
         if (vastaus === true) {
             CustomerService.remove(customer.customerId)
@@ -57,6 +62,9 @@ const Customer = ({ customerprops,setCustomers, setMessage, setIsPositive, setSh
 
     }//deleteCustomer
 
+        /*{customerprops} sisältää yhden asiakkaan kaikki tiedot, jotka on saatu loopista CustomerList-komponentista. 
+          Alias nimi on  CustomerList-komponentin loopisssa (cust), joka on siis Propsin arvo.
+          CSS määritykset ovat tablessa: className="table table-striped */
     return (
         <div>
             <h4>{customerprops.companyName}</h4>
@@ -65,7 +73,7 @@ const Customer = ({ customerprops,setCustomers, setMessage, setIsPositive, setSh
                 {showDetails ? "Hide Details" : "Show Details"}
             </button>
     
-            {/* Jos showDetails on true, näytetään asiakkaan tiedot */}
+            {/* Jos showDetails on true, näytetään asiakkaan tiedot, eli tämä komponentti renderöidään CustomerList komponentissa */} 
             {showDetails && (
                 <>
                     <h3>{customerprops.companyName}</h3>

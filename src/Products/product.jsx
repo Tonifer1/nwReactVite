@@ -3,6 +3,7 @@ import { useState } from 'react'
 import ProductService from '../Services/ProductServ'
 import { Card, Button, Modal } from 'react-bootstrap';
 
+
 const StyledCard = styled(Card)`
 background-color: #f7f1e1; 
   border: 1px solid #d1b38a;  
@@ -79,6 +80,7 @@ const PrimaryButton = styled(CustomButton)`
     background-color: #7f8c8d; 
   }
 `;
+
 
 const Product = ({ productprops,setProducts, setMessage, setIsPositive, setShowMessage, editProduct }) => {  
     const [showModal, setShowModal] = useState(false); 

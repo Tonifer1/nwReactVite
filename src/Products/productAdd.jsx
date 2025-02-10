@@ -42,7 +42,7 @@ const ProductAdd = ({ setLisäystila, setProducts, setMessage, setIsPositive, se
 
                 setTimeout(() => {
                     setShowMessage(false);
-                }, 3000);
+                }, 5000);
 
                 setLisäystila(false);
                 
@@ -54,11 +54,14 @@ const ProductAdd = ({ setLisäystila, setProducts, setMessage, setIsPositive, se
     
     }//handleSubmit
 
+    //Css määritykset ovat form-containerissa App.css tiedostossa. Ei ole Bootstrap määritys
+    // add-customer-form viittaa products.cy.js tiedostoon.(testi)
+
     return (
         <div>
             <h2>From Product add</h2>
             <div className="form-container">
-                <form onSubmit={handleSubmit}>
+                <form id="add-product-form" onSubmit={handleSubmit}>
                     <div>
                         <input
                             type="number"

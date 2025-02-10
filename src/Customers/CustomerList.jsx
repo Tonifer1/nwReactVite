@@ -1,4 +1,3 @@
-
 import '../App.css'
 import { useState, useEffect } from 'react'
 import CustomerService from '../Services/CustomerServ'
@@ -6,6 +5,17 @@ import Customer from './customer'
 import CustomerAdd from './customerAdd';
 import CustomerEdit from './customerEdit'
 //import { withTheme } from 'styled-components';
+
+/*Tässä CustomerList-komponentissa haetaan asiakastiedot CustomerServicen getAll-metodilla ja asetetaan ne customers-stateen.
+Käytetään useEffect-hookia, joka suorittaa haun vain kerran, kun komponentti latautuu.
+Kun lisäystila on true, näytetään CustomerAdd-komponentti.
+Kun muokkaustila on true, näytetään CustomerEdit-komponentti.
+Kun show on true, näytetään asiakkaat.
+Kun käyttäjä syöttää hakusanan, se tallennetaan search-stateen.
+Kun käyttäjä painaa nappia, joka kutsuu editCustomer-funktiota, asetetaan muokattava asiakas muokattavaCustomer-stateen ja muokkaustila trueksi.
+Kun käyttäjä syöttää hakusanan, se tallennetaan search-stateen.
+Täällä siis loopataan kaikki Customerit läpi. Ei yksittäiseessä Customer-komponentissa.
+CSS tiedostoon viitataan return osiossa className'customerList'. Säädetään ainoastaan taustakuvaa tähän komponenttiin.*/
 
 const CustomerList = ({ setMessage, setIsPositive, setShowMessage,  }) => {
    
@@ -22,7 +32,7 @@ const CustomerList = ({ setMessage, setIsPositive, setShowMessage,  }) => {
             CustomerService.setToken(token); // Asetetaan token jokaisessa latauksessa    
             CustomerService.getAll()
                 .then(data => {
-                    setCustomers(data); // Asetetaan haetut asiakastiedot customers-tilaan.
+                    setCustomers(data); // Asetetaan haetut asiakastiedot customers-stateen.(data on taulukko customers-olioita)
                 })
                 .catch(error => {
                     console.error("Failed to fetch customers:", error);
