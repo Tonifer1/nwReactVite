@@ -17,7 +17,7 @@ Utilizes React hooks (useState and useEffect) for dynamic state handling.
 Ensures consistent synchronization between the front-end and back-end.
 Search and Filtering:
 
-Search functionality for tables, allowing users to filter data based on specific criteria.
+Search functionality for tables,  allowing users to filter data based on specific criteria.
 Form Validation:
 
 User-friendly forms with validation to ensure accurate data input.
