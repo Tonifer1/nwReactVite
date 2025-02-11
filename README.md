@@ -6,7 +6,7 @@ Dynamic User Interface:
 
 Responsive and visually appealing interface using a combination of Bootstrap's responsive components 
 and custom CSS media queries for tailored adjustments.
-Intuitive navigation between various sections, such as Customers, Products, and Users.
+Intuitive navigation between various sections, such as Customers, Products, and  Users.
 CRUD Operations:
 
 Perform Create, Read, Update, and Delete operations efficiently.
