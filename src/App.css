@@ -263,6 +263,8 @@
 
 
 /* Message-komponentin tyylit */
+
+/*kehyksen tyyli*/
 .message-container {
   position: fixed;
   top: 10%;
@@ -270,27 +272,38 @@
   transform: translateX(-50%);
   z-index: 9999; /* Message tulee kaikkien muiden elementtien päälle */
   background-color: rgba(255, 255, 255, 0.9); /* Läpinäkyvä vaalea tausta */
-  padding: 20px;
-  border-radius: 10px;
-  text-align: center;
-  width: 80%;
+  padding: 20px; /* Sisennys viestin sisällä */
+  border-radius: 10px; /* Pyöristetyt kulmat */
+  text-align: center; /* Tekstin keskittäminen */
+  width: 80%;  /* Viestin leveys suhteessa näytön leveyteen */
   max-width: 500px; /* Varmistaa, että viesti ei ole liian leveä pienillä näytöillä */
   word-wrap: break-word; /* Pitää pitkät sanat murtumassa */
 }
 
 /* Positiiviset ja negatiiviset viestit */
+/* Viestin taustaväri ja fontin tyyli */
 .neg, .pos {
-  font-size: 36px;
-  font-weight: bold;
-  border: solid 3px;
-  border-radius: 5px;
-  padding: 10px;
-  margin-bottom: 10px;
-  margin-top: 10%;
+  font-size: 36px;  /* Tekstin koko */
+  font-weight: bold;  /* Lihavoitu teksti */
+  border: solid 3px; /* Reunus */
+  border-radius: 5px;  /* Pyöristetyt kulmat */
+  padding: 10px;  /* Sisennys viestin sisällä */
+  margin-bottom: 10px; /* Alareunan marginaali */
+  margin-top: 10%; /* Yläreunan marginaali */
   width: 100%; /* Viesti voi ottaa koko tilan */
-  margin: 0 auto;
-  text-align: center;
+  margin: 0 auto; /* Keskittää viestin */
+  text-align: center; /* Tekstin keskittäminen */
   box-sizing: border-box; /* Varmistaa, että padding ei venytä elementtiä */
+}
+
+.neg {
+  color: red;
+  background: lightgrey;
+}
+
+.pos {
+  color: rgb(14, 97, 14);
+  background: lightgrey;
 }
 
 /* Pienemmille näytöille skaalataan fonttikoko */
@@ -308,15 +321,7 @@
   }
 }
 
-.neg {
-  color: red;
-  background: lightgrey;
-}
 
-.pos {
-  color: rgb(14, 97, 14);
-  background: lightgrey;
-}
 
 
 /* Perusasetukset input-kentille */

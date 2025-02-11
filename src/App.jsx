@@ -14,6 +14,8 @@ import Login from './login.jsx'
 const App = () => {
 
    // App komponentin tila (state) muuttujat
+   //Ensimmäisessä on itse data ja toisessa on funktio, jolla dataa muutetaan.
+   //Esim message sisältää itse viestin sisällön ja setMessage on funktio, jolla viestiä muutetaan.
   const [showMessage, setShowMessage] = useState(false)
   const [message, setMessage] = useState('')
   const [isPositive, setIsPositive] = useState(false)
