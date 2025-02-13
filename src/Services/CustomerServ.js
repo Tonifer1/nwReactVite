@@ -32,7 +32,7 @@ const addNew = (object) => {
 const remove = (id) => {
     return api.delete(`/${id}`);
 };
-
+// Vaihe8. Axios lähettää PUT-pyynnön back-endiin, joka päivittää tietokannan. object sisältää siis newCustomer-olion.
 const update = (object) => {
     return api.put(`/${object.customerId}`, object);
 };

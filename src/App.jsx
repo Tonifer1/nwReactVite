@@ -14,7 +14,7 @@ import Login from './login.jsx'
 const App = () => {
 
    // App komponentin tila (state) muuttujat
-   //Ensimmäisessä on itse data ja toisessa on funktio, jolla dataa muutetaan.
+   //Ensimmäisessä on itse data ja toisessa on funktio, jolla dataa muutetaan ja joka lähetetään propsina muille komponenteille.
    //Esim message sisältää itse viestin sisällön ja setMessage on funktio, jolla viestiä muutetaan.
   const [showMessage, setShowMessage] = useState(false)
   const [message, setMessage] = useState('')
@@ -90,11 +90,14 @@ const handleLogout = () => {
        
           </Nav>        
         </Navbar>
-          
+
+          {/* Viestikomponentti tarvitsee {message} propsin, eli sisällön.  */}
           {showMessage && <Message message={message} isPositive={isPositive} />}
 
           <Routes>
             <Route path="/" element={<h1>Northwind Traders</h1>} />
+
+            {/* Login komonentti taas tarvitsee setMessagen,eli  itse viestin asettamiseen. */}
 
           <Route path="/customers" element={
             loggedIn ? (

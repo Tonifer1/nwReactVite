@@ -2,6 +2,12 @@ import '../App.css'
 import React, { useState } from 'react'
 import CustomerService from '../Services/CustomerServ'
 
+// Vaihe4. 
+// Lomake täyttyy valitun (ehjän) asiakkaan tiedoilla (muokattavaCustomer-arvoista, jotka saatiin CustomerListiltä propsina).
+//Ne menevät siis alla oleviin stateihin ja niitä voidaan muokata syöttökentissä.
+// Käyttäjä voi muokata tietoja syöttökentissä.
+
+//muokattavaCustomer on yksittäinen asiakas, joka on valittu muokattavaksi. 
 const CustomerEdit= ({ setMuokkaustila, setMessage, setIsPositive, setShowMessage, muokattavaCustomer }) => {
     const [newCustomerId, setNewCustomerId] = useState(muokattavaCustomer.customerId)
     const [newCompanyName, setNewCompanyName] = useState(muokattavaCustomer.companyName)
@@ -16,8 +22,10 @@ const CustomerEdit= ({ setMuokkaustila, setMessage, setIsPositive, setShowMessag
     const [newPhone, setNewPhone] = useState(muokattavaCustomer.phone)
     const [newFax, setNewFax] = useState(muokattavaCustomer.fax)
 
+    // Vaihe6.
+    //New customer olion luonti.
     const handleSubmit = (event) => {
-        event.preventDefault()
+        event.preventDefault() //Estetään lomakkeen oletustominto.(Uudelleen lataus)
 
         var newCustomer = {
             customerId: newCustomerId, 
@@ -32,6 +40,9 @@ const CustomerEdit= ({ setMuokkaustila, setMessage, setIsPositive, setShowMessag
             fax: newFax
         }//newCustomer
 
+        //Vaihe7.
+        //newCustomer-olio lähetetään CustomerService.update-funktiolle, joka päivittää asiakkaan tiedot tietokantaan.
+        //Parametrin nimi on axios kirjastossa object, joka on siis newCustomer-olio.
         CustomerService.update(newCustomer)
             .then(() => {
                 setMessage(`Edited customer: ${newCustomer.companyName}`)
@@ -53,6 +64,8 @@ const CustomerEdit= ({ setMuokkaustila, setMessage, setIsPositive, setShowMessag
                 console.error("Error to Update New Customer:", error);
             });
     }//handleSubmit
+
+    //Css tyylit määritelty App.css-tiedostossa .customer-edit-form
 
     return (
         <div id="edit">
@@ -145,7 +158,9 @@ const CustomerEdit= ({ setMuokkaustila, setMessage, setIsPositive, setShowMessag
                         onChange={({ target }) => setNewFax(target.value)}
                     />
                 </div>
+                    {/* Vaihe5. Kun käyttäjä painaa "Save", handleSubmit-funktio suoritetaan yllä. */}
                     <input type='submit' value='save' className="nappi" style={{ marginRight: '10px',marginBottom: '10px' }} />
+
                     <input type='button' value='back'className="nappi" onClick={() => setMuokkaustila(false)} />
                 
             </form>

@@ -7,12 +7,24 @@ import CustomerAdd from './customerAdd';
 import CustomerEdit from './customerEdit'
 //import { withTheme } from 'styled-components';
 
+/*Tässä CustomerList-komponentissa haetaan asiakastiedot CustomerServicen getAll-metodilla ja asetetaan ne customers-stateen.
+Käytetään useEffect-hookia, joka suorittaa haun vain kerran, kun komponentti latautuu.
+Kun lisäystila on true, näytetään CustomerAdd-komponentti.
+Kun muokkaustila on true, näytetään CustomerEdit-komponentti.
+Kun show on true, näytetään asiakkaat.
+Kun käyttäjä syöttää hakusanan, se tallennetaan search-stateen.
+Kun käyttäjä painaa nappia, joka kutsuu editCustomer-funktiota, asetetaan muokattava asiakas muokattavaCustomer-stateen ja muokkaustila trueksi.
+Kun käyttäjä syöttää hakusanan, se tallennetaan search-stateen.
+Täällä siis loopataan kaikki Customerit läpi. Ei yksittäiseessä Customer-komponentissa.
+CSS tiedostoon viitataan return osiossa className'customerList'. Sillä säädetään ainoastaan taustakuvaa tähän komponenttiin.*/
+
 const CustomerList = ({ setMessage, setIsPositive, setShowMessage,  }) => {
    
     const [customers, setCustomers] = useState([])    
     const [show, setShow] = useState(false)
     const [lisäystila, setLisäystila] = useState(false)
     const [muokkaustila, setMuokkaustila] = useState(false)
+
     const [muokattavaCustomer, setMuokattavaCustomer] = useState(false)
     const [search, setSearch] = useState('')
     
@@ -42,6 +54,17 @@ const CustomerList = ({ setMessage, setIsPositive, setShowMessage,  }) => {
         setSearch(event.target.value.toLowerCase())
     }
     
+    // Vaihe2.
+    //editCustomer funktio laukaistaan alla.
+    //setMuokattaCustomer funktio suoritetaan ja sille annetaan parametriksi customerprops, joka on yksittäinen (ehjä) asiakasobjekti.
+    //Tämä muuttaa Staten muokattavaCustomerin arvoksi customerpropsin, joka sisältää yhden asiakkaan (ehjät) tiedot.
+    //Seuraavaksi setMuokkaustila-funktio suoritetaan ja sille annetaan parametriksi true.
+    //State muokkaustila "ylhäällä" muuttuu true:ksi, joka on muuten deaultina false.
+    //Tämä aiheuttaa uudelleenrenderöinnin, jolloin CustomerEdit.jsx näytetään tässä komponentissa.
+    //Vaihe3 alhaalla.
+   
+    
+
     const editCustomer = (customerprops) => {
         setMuokattavaCustomer(customerprops)
         setMuokkaustila(true)
@@ -68,6 +91,11 @@ return (
                     {lisäystila && ( <CustomerAdd setLisäystila= {setLisäystila} setCustomers={setCustomers}
                     setIsPositive={setIsPositive} setMessage={setMessage} setShowMessage={setShowMessage}/>                  
                     )}
+
+                    {/* Vaihe3. Koska muokkaustila muuttuu  === true, johtuen editCustomer funktion kutsusta, 
+                    jossa sen tilaa muutetaan falsesta trueksi, React renderöi CustomerEdit.jsx-komponentin ja näyttää sen tässä.
+                    muokattavaCustomer(joka sisältää yhden customerin tiedot) välitetään propseina --> CustomerEdit-komponentille, 
+                    eli nyt se on käytettävissä lomakkeen kentissä. */}
 
                     {muokkaustila && ( <CustomerEdit setMuokkaustila ={setMuokkaustila} 
                     setIsPositive={setIsPositive} setMessage={setMessage} setShowMessage={setShowMessage}

@@ -1,0 +1,22 @@
+1️⃣ Käyttäjä painaa "Edit"-painiketta customer.jsx-tiedostossa
+➡️ Kutsu editCustomer(customerprops)
+
+2️⃣ editCustomer(customer)-funktio CustomerList.jsx-tiedostossa
+➡️ Tallentaa asiakkaan stateen (setMuokattavaCustomer(customer))
+➡️ Avaa muokkaustilan (setMuokkaustila(true))
+
+3️⃣ CustomerEdit.jsx-komponentti renderöidään
+➡️ Lomake täyttyy valitun asiakkaan tiedoilla
+
+4️⃣ Käyttäjä muokkaa tietoja ja painaa "Save"
+➡️ handleSubmit kokoaa uuden asiakasobjektin
+➡️ Lähettää sen CustomerService.update(newCustomer)-funktiolla
+
+5️⃣ CustomerService.update(newCustomer) lähettää PUT-pyynnön back-endiin
+➡️ Tietokanta päivitetään, ja React sulkee muokkausnäkymän (setMuokkaustila(false))
+
+Kaikki alkaa siitä, että käyttäjä painaa "Edit"-painiketta.
+Muokattava asiakas tallennetaan stateen, jotta se voidaan välittää lomakkeelle.
+Lomakkeen "Save"-painike lähettää uudet tiedot back-endiin.
+Kun päivitys onnistuu, muokkaustila suljetaan ja päivitys näkyy UI:ssa
+
